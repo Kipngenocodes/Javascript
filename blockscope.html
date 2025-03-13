@@ -1,0 +1,21 @@
+<html>
+<head>
+   <title> Variable declaration with let keyword </title>
+</head>
+<body>
+   <script>
+      function test() {
+	     let bool = true;
+		 if (bool) {
+		    let x = 30;
+
+		    var y = 40;
+		    document.write("x = " + x + ", y = " + y + "<br/>");
+		 }
+		 // x can't be accessible here
+		 document.write("y = " + y + "<br/>");
+		}
+      test();
+   </script>
+</body>
+</html>
