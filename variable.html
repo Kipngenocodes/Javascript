@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Variables in HTML</title>
+    <style>
+     .output {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>   
+</head>
+<body>
+    <h1>Working with Variables in HTML</h1>
+    
+    <!-- Places to display variables -->
+    <div class="output">
+        <p>Var variable: <span id="varOutput"></span></p>
+        <p>Let variable: <span id="letOutput"></span></p>
+        <p>Const variable: <span id="constOutput"></span></p>
+    </div>
+
+    <button onclick="updateVariables()">Update Variables</button>
+
+    <script>
+        // Variable declarations
+        var myVar = "Initial var value";
+        let myLet = "Initial let value";
+        const myConst = "Constant value";
+
+        // Function to display variables
+        function displayVariables() {
+            // Get HTML elements by ID and set their content
+            document.getElementById("varOutput").innerHTML = myVar;
+            document.getElementById("letOutput").innerHTML = myLet;
+            document.getElementById("constOutput").innerHTML = myConst;
+        }
+
+        // Function to update variables
+        function updateVariables() {
+            myVar = "Updated var value";    // var can be reassigned
+            myLet = "Updated let value";    // let can be reassigned
+            // myConst = "New const";       // This would cause an error
+            
+            // Update the display
+            displayVariables();
+        }
+
+        // Initial display of variables when page loads
+        window.onload = displayVariables;
+    </script>
+</body>
+</html>
