@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Data Types</title>
+    <style>
+        .container {
+            margin: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            font-family: Arial, sans-serif;
+        }
+        .data-type {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Data Types Demo</h1>
+    
+    <div class="container" id="output">
+        <!-- Data types will be displayed here -->
+    </div>
+
+    <script>
+        // Function to display data types
+        function showDataTypes() {
+            // Basic Data Types
+            let numberType = 42;                    // Number
+            let stringType = "Hello World";         // String
+            let booleanType = true;                 // Boolean
+            let undefinedType;                      // Undefined
+            let nullType = null;                    // Null
+            let symbolType = Symbol("unique");      // Symbol
+            let bigIntType = 12345678901234567890n;// BigInt
+
+            // Complex Data Types
+            let objectType = {                      // Object
+                name: "John",
+                age: 30
+            };
+            let arrayType = [1, 2, 3, 4, 5];       // Array
+            let functionType = function() {         // Function
+                return "I'm a function";
+            };
+
+            // Store all examples in an array for easy display
+            const dataTypes = [
+                { name: "Number", value: numberType, type: typeof numberType },
+                { name: "String", value: stringType, type: typeof stringType },
+                { name: "Boolean", value: booleanType, type: typeof booleanType },
+                { name: "Undefined", value: undefinedType, type: typeof undefinedType },
+                { name: "Null", value: nullType, type: typeof nullType },
+                { name: "Symbol", value: "Symbol()", type: typeof symbolType },
+                { name: "BigInt", value: bigIntType, type: typeof bigIntType },
+                { name: "Object", value: JSON.stringify(objectType), type: typeof objectType },
+                { name: "Array", value: arrayType, type: typeof arrayType },
+                { name: "Function", value: "function()", type: typeof functionType }
+            ];
+
+            // Get the container element
+            let container = document.getElementById("output");
+
+            // Create and append elements for each data type
+            dataTypes.forEach(item => {
+                let div = document.createElement("div");
+                div.className = "data-type";
+                div.innerHTML = `<strong>${item.name}:</strong> 
+                                Value = ${item.value}, 
+                                Type = ${item.type}`;
+                container.appendChild(div);
+            });
+        }
+
+        // Run when page loads
+        window.onload = showDataTypes;
+    </script>
+</body>
+</html>
