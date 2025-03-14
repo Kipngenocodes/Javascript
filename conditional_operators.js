@@ -52,3 +52,8 @@ console.log(message);
 var numbers = [1, 2, 3, 4, 5];
 var max = (numbers[0] > numbers[1]) ? numbers[0] : numbers[1];
 console.log(max); // Output: 2  
+
+// Example with null and undefined
+var value = null;
+var message = (value !== undefined) ? "Value is defined" : "Value is undefined";
+console.log(message); // Output: Value is undefined
