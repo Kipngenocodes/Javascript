@@ -62,3 +62,13 @@ let name = "Alice";
 let age = 25;
 let greeting = `Hello, my name is ${name} and I am ${age} years old.`;
 console.log(greeting); // Hello, my name is Alice and I am 25 years old.    
+
+// date and time
+let now = new Date();
+console.log(now);
+
+// checking the datatype of a variable
+console.log(typeof str1); // string
+console.log(typeof num1); // number
+console.log(typeof bool1); // boolean   
+
