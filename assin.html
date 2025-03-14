@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Conditional (Ternary) Operator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        h1 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+        }
+        .code-block {
+            margin-bottom: 30px;
+        }
+        .output {
+            background-color: #e9f7ef;
+            border-left: 4px solid #2ecc71;
+            padding: 10px 15px;
+            margin-top: 5px;
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+        }
+        .description {
+            background-color: #eaf2f8;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        .syntax {
+            font-weight: bold;
+            background-color: #f5eef8;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Conditional (Ternary) Operator</h1>
+    
+    <div class="description">
+        <p>The JavaScript conditional (ternary) operator is the only operator that takes three operands – a condition followed by a question mark (?).</p>
+    </div>
+
+    <div class="syntax">
+        <p>Syntax:</p>
+        <code>condition ? value1 : value2;</code>
+        <p>If the condition is true, value1 is returned. If the condition is false, value2 is returned.</p>
+    </div>
+
+    <h2>Basic Examples</h2>
+    
+    <div class="code-block">
+        <pre>
+// Example 1: Basic usage with boolean condition
+var condition = true;
+var result = condition ? "Condition is true" : "Condition is false";
+console.log(result);</pre>
+        <div class="output">Output: Condition is true</div>
+    </div>
+
+    <div class="code-block">
+        <pre>
+// Example 2: With false condition
+var condition = false;
+var result = condition ? "Condition is true" : "Condition is false";
+console.log(result);</pre>
+        <div class="output">Output: Condition is false</div>
+    </div>
+
+    <h2>Examples with Numbers</h2>
+    
+    <div class="code-block">
+        <pre>
+// Example with numbers
+var a = 5;
+var b = 10;
+var max = (a > b) ? a : b;
+console.log(max);</pre>
+        <div class="output">Output: 10</div>
+    </div>
+
+    <h2>Examples with Strings</h2>
+    
+    <div class="code-block">
+        <pre>
+// Example with strings
+var name = "John";
+var greeting = (name === "John") ? "Hello, John!" : "Hello, stranger!";
+console.log(greeting);</pre>
+        <div class="output">Output: Hello, John!</div>
+    </div>
+
+    <h2>Examples with Functions</h2>
+    
+    <div class="code-block">
+        <pre>
+// Example with functions
+function compareNumbers(a, b) {
+    return (a > b) ? a : b;
+}
+
+var num1 = 5;
+var num2 = 10;
+var max = compareNumbers(num1, num2);
+console.log(max);</pre>
+        <div class="output">Output: 10</div>
+    </div>
+
+    <h2>Examples with Objects</h2>
+    
+    <div class="code-block">
+        <pre>
+// Example with objects
+var person = {
+    name: "John",
+    age: 30
+};
+
+var message = (person.age > 25) ? "Person is over 25 years old" : "Person is not over 25 years old";
+console.log(message);</pre>
+        <div class="output">Output: Person is over 25 years old</div>
+    </div>
+
+    <h2>Examples with Arrays</h2>
+    
+    <div class="code-block">
+        <pre>
+// Example with arrays
+var numbers = [1, 2, 3, 4, 5];
+var max = (numbers[0] > numbers[1]) ? numbers[0] : numbers[1];
+console.log(max);</pre>
+        <div class="output">Output: 2</div>
+    </div>
+
+    <h2>Try It Live</h2>
+    <p>Open your browser's console (F12 or right-click and select "Inspect" then navigate to "Console") to see the results of the example code below.</p>
+
+    <script>
+        // Example 1: Basic usage with boolean condition
+        var condition = true;
+        var result = condition ? "Condition is true" : "Condition is false";
+        console.log("Example 1:", result);
+
+        // Example 2: With false condition
+        condition = false;
+        result = condition ? "Condition is true" : "Condition is false";
+        console.log("Example 2:", result);
+
+        // Example with numbers
+        var a = 5;
+        var b = 10;
+        var max = (a > b) ? a : b;
+        console.log("Numbers example:", max);
+
+        // Example with strings
+        var name = "John";
+        var greeting = (name === "John") ? "Hello, John!" : "Hello, stranger!";
+        console.log("Strings example:", greeting);
+
+        // Example with functions
+        function compareNumbers(a, b) {
+            return (a > b) ? a : b;
+        }
+
+        var num1 = 5;
+        var num2 = 10;
+        max = compareNumbers(num1, num2);
+        console.log("Functions example:", max);
+
+        // Example with objects
+        var person = {
+            name: "John",
+            age: 30
+        };
+
+        var message = (person.age > 25) ? "Person is over 25 years old" : "Person is not over 25 years old";
+        console.log("Objects example:", message);
+
+        // Example with arrays
+        var numbers = [1, 2, 3, 4, 5];
+        max = (numbers[0] > numbers[1]) ? numbers[0] : numbers[1];
+        console.log("Arrays example:", max);
+    </script>
+</body>
+</html>
