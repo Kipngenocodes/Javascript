@@ -1,0 +1,20 @@
+<html>
+<body>
+   <div id = "output"></div>
+   <script>
+      const output = document.getElementById("output");
+      let pow = 2 ** []; // Number([]) = 0
+      output .innerHTML = "10 ** [] = " + pow + "<br>";
+      pow = [] ** 2; // Number([]) = 0
+      output.innerHTML += "[] ** 2 = " + pow + "<br>";
+      pow = 2 ** [2]; // Number([2]) = 2    
+      output.innerHTML += "10 ** [2] = " + pow + "<br>";
+      pow = "2" ** 2; // Number("2") = 2
+      output.innerHTML += "2 ** 2 = " + pow + "<br>";
+      pow = "2a" ** 2; // Number("2a") = NaN
+      output.innerHTML += "2a ** 2 = " + pow + "<br>";
+      pow = [2, 3] ** 2; // Number([2, 3]) = NaN
+      output.innerHTML += "[2, 3] ** 2 = " + pow + "<br>";    
+  </script>
+</body>
+</html>
