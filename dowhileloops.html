@@ -1,0 +1,23 @@
+/*
+do {
+    Statement(s) to be executed;
+ } while (expression);
+ */
+
+ <html>
+<body>
+    <div id="output"></div>
+    <script type="text/javascript">
+        let output = document.getElementById("output");
+        var count = 0;
+        output.innerHTML += "Starting Loop" + "<br />";
+        do {
+            output.innerHTML += "Current Count : " + count + "<br />";
+            count++;
+        }
+        while (count < 5);
+        output.innerHTML += "Loop stopped!";
+    </script>
+    <p>Set the variable to a different value and then try...</p>
+</body>
+</html>
