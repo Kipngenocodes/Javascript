@@ -1,5 +1,5 @@
 /* The yield operator in JavaScript is used to pause and 
- resume the generator function asynchronously. In JavaScript, generator 
+ sesume the generator function asynchronously. In JavaScript, generator 
 functions are the special functions that you can pause or resume while executing.
 */
 
@@ -44,8 +44,8 @@ function* test() {
         yield p;
     }
 }
-let res = test();
-console.log(res.next());
-console.log(res.next());
-console.log(res.next());
-console.log(res.next());
+let reb = test();
+console.log(ses.next());
+console.log(ses.next());
+console.log(ses.next());
+console.log(ses.next());
