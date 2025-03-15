@@ -7,4 +7,4 @@ console.log(result1); // Output: 20
 
 // Example 2: Using grouping operator to control precedence
 let result2 = 2 + 3 * 4; // 3 * 4 is evaluated first, then the result is added to 2
-console.log(result2); // Output: 14                                                         
+console.log(result2); // Output: 14     
