@@ -35,4 +35,17 @@ let res = test();
 console.log(res.next());
 console.log(res.next());
 console.log(res.next());
+console.log(res.next());// omit the expression following the yield keyword, it will return undefined.
+
+
+// Generator function
+function* test() {
+    for (let p = 0; p < 6; p += 2) {
+        yield p;
+    }
+}
+let res = test();
+console.log(res.next());
+console.log(res.next());
+console.log(res.next());
 console.log(res.next());
