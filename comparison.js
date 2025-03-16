@@ -45,3 +45,9 @@ function demonstrateComparison() {
 
 // Run the function
 demonstrateComparison();
+
+
+// Immediately Invoked Function Expression (IIFE) for demonstration
+(function() {
+    console.log("This function runs immediately!");
+})();
