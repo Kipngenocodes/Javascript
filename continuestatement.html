@@ -1,0 +1,21 @@
+<html>
+<head>
+   <title> JavaScript - Continue statement </title>
+</head>
+<body>
+   <p id = "output"> </p>
+   <script>
+      let output = document.getElementById("output");
+      var x = 1;
+      output.innerHTML += "Entering the loop. <br /> ";
+      while (x < 5) {
+         x = x + 1;
+         if (x == 2 || x == 3) {
+            continue;   // skip rest of the loop body
+         }
+         output.innerHTML += x + "<br />";
+      }
+      output.innerHTML += "Exiting the loop!<br /> ";
+   </script>
+</body>
+</html>
