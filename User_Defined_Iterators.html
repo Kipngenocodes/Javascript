@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Iterators - Enhanced</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        #output {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <h1>Iterator Demo</h1>
+    <p id="output"></p>
+    <button onclick="displayIteratorResults()">Run Iterator Again</button>
+
+    <script>
+        // Function to display iterator results
+        function displayIteratorResults() {
+            const output = document.getElementById("output");
+            const nums = [10, 72, 45];
+            const iter = nums[Symbol.iterator]();
+
+            // Clear previous output
+            output.innerHTML = "";
+
+            // Use a loop to handle all iterator steps dynamically
+            let result;
+            do {
+                result = iter.next();
+                output.innerHTML += JSON.stringify(result) + "<br>";
+            } while (!result.done);
+        }
+
+        // Run once on page load
+        window.onload = displayIteratorResults;
+    </script>
+</body>
+</html>
