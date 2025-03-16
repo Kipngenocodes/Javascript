@@ -1,0 +1,21 @@
+<html>
+<head>
+   <title> JavaScript - Break statement </title>
+</head>
+<body>
+   <p id = "output"> </p>
+   <script>
+      let output = document.getElementById("output");
+      var x = 1;
+      output.innerHTML += "Entering the loop. <br /> ";
+      while (x < 10) {
+         if (x == 3 || x == 7) {
+            break;   // breaks out of loop completely
+         }
+         x = x + 1;
+         output.innerHTML += x + "<br />";
+      }
+      output.innerHTML += "Exiting the loop!<br /> ";
+   </script>
+</body>
+</html>
