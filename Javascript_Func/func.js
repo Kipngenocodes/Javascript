@@ -12,3 +12,12 @@ function addNumbers(a, b) {
 let result = addNumbers(13, 50);
 console.log(result); // Output: 8
  
+
+// Function Expression
+const multiplyNumbers = function(a, b) {
+    return a * b;
+};
+
+let result2 = multiplyNumbers(10, 5);
+console.log(result2);
+
