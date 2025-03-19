@@ -34,3 +34,14 @@ function addNumbers(a, b) {
     console.log(product6);    
     var product7 = multiplyNumbers(5, 7); // product7 will be 35 (5 * 7)
     console.log(product7);  
+
+    //  without default parameter
+    function multiplyNumbers2(a, b) {
+        return a * b;
+    }
+    var product8 = multiplyNumbers2(5); // product8 will be NaN (5 * undefined)
+    console.log(product8);  
+    var product9 = multiplyNumbers2(5, '10'); // product9 will be NaN (5 * 10)
+    console.log(product9);
+    var product10 = multiplyNumbers2(5, 0); // product10 will be 0 (5 * 0)
+    
