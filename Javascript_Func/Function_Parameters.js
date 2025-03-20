@@ -44,4 +44,4 @@ function addNumbers(a, b) {
     var product9 = multiplyNumbers2(5, '10'); // product9 will be NaN (5 * 10)
     console.log(product9);
     var product10 = multiplyNumbers2(5, 0); // product10 will be 0 (5 * 0)
-    
+  
