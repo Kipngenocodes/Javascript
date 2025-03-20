@@ -1,0 +1,10 @@
+<html>
+<body>
+   <p id = "output"> </p>
+   <script>
+      const func = new Function("return 10 + 20");
+      document.getElementById("output").innerHTML =
+      "The value returned from the function is: " + func();
+   </script>
+</body>
+</html>
