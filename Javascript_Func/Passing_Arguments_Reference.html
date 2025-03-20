@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Passing Arguments by Reference</title>
+    </head>
+    <body>
+        <p id="output"></p>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const output = document.getElementById("output");
+                function update(name) {
+                    name.person = "Zara Ali";
+                }
+                var name = {
+                    person: "John Doe"
+                };              
+                output.innerHTML += "Before update: " + name.person + "<br>";
+                update(name);
+                output.innerHTML += "After update: " + name.person;
+            });
+        </script>
+    </body>   
+</html>
