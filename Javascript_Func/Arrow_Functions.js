@@ -36,3 +36,12 @@ const addition = (a, b) => {
 };
 
 console.log(addition(5, 3)); // Output: 8
+
+// Arrow Function with Default Parameters
+const greeting = (name = 'Guest') => `Hello, ${name}!`; // Default parameter value
+console.log(greeting()); // Output: Hello, Guest!
+
+// Arrow Function without parameters
+const sayhello = () => 'Hello, World!';
+console.log(sayhello());
+
