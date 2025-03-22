@@ -1,17 +1,35 @@
 <html>
 <head>
-   <title> JavaScript - Function call() method </title>
+<title> JavaScript - Function call() method </title>
 </head>
 <body>
-   <p id = "output1"> </p>
-   <p id = "output2"> </p>
-   <script>    
-      function test() {
-         return "The function is invoked!";
-      }
+<p id = "output1"> </p>
+<p id = "output2"> </p>
+<script>    
+    function test() {
+        return "The function is invoked!";
+    }
         
-      document.getElementById("output1").innerHTML = test();
-      document.getElementById("output2").innerHTML = test.call();
-   </script>
+    document.getElementById("output1").innerHTML = test();
+    document.getElementById("output2").innerHTML = test.call();
+
+    const student = {
+        getAge: function(){
+        return this.age;
+        }
+    }
+    const student1 = {
+        name: "John",
+        age: 22
+    }
+
+    const student2 = {
+        name: "Doe",
+        age: 18
+    }
+    
+    document.getElementById("output1").innerHTML =student.getAge.call(student1);
+    document.getElementById("output2").innerHTML =student.getAge.call(student2);
+</script>
 </body>
 </html>
