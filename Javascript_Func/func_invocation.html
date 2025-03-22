@@ -1,12 +1,21 @@
 <!-- The function invocation is the synonym of the function call or function execution. -->
 <html>
 <body>
-   <p id = "output"> </p>
-   <script>    
-      function merge(str1, str2) {
-         return str1 + str2;
-      }
-      document.getElementById("output").innerHTML = merge("Hello", " World!");  
-   </script>
+<p id = "output"> </p>
+<script>    
+function merge(str1, str2) {
+    return str1 + str2;
+    }
+    document.getElementById("output").innerHTML = merge("Hello", " World!<br/>");  
+ // for better readability in console
+// Function invocation using the function constructor
+function Car(name, model, year) {
+        this.name = name;
+        this.model = model;
+        this.year = year;
+    }
+    const ODCar = new Car("OD", "Q6", 2020);
+    document.getElementById("output").innerHTML += JSON.stringify(ODCar);
+</script>
 </body>
 </html>
