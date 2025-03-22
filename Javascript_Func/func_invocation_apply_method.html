@@ -1,20 +1,40 @@
 <html>
 <head>
-<title> JavaScript - Function apply() method </title>
+    <title>JavaScript - Function apply() method</title>
 </head>
 <body>
-<p id = "output"> </p>
-<script>
-function showCar() {
-    return "The price of the " + this.name + " " + 
-        this.model + " is: " + this.price;
-    }
-    let car = {
-    name: "OD",
-    model: "Q6",
-    price: 10000000,
-    }
-    document.getElementById("output").innerHTML = showCar.apply(car);
-</script>
+    <p id="output"></p>
+    <script>
+        // First function: Display car details
+        function showCar() {
+            return "The price of the " + this.name + " " + 
+                   this.model + " is: " + this.price;
+        }
+
+        // Car object
+        let car = {
+            name: "OD",
+            model: "Q6",
+            price: 10000000,
+        };
+
+        // Set initial output with car details and a line break
+        document.getElementById("output").innerHTML = showCar.apply(car) + "<br>";
+
+        // Second function: Calculate sum
+        function printSum(p1, p2) {
+            return this.num1 + this.num2 + p1 + p2;
+        }
+
+        // Numbers object
+        const nums = {
+            num1: 5,
+            num2: 10,
+        };
+
+        // Calculate sum and append to output
+        const ans = printSum.apply(nums, [40, 32]);
+        document.getElementById("output").innerHTML += "Total sum is " + ans;
+    </script>
 </body>
 </html>
