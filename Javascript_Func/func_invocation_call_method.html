@@ -1,0 +1,17 @@
+<html>
+<head>
+   <title> JavaScript - Function call() method </title>
+</head>
+<body>
+   <p id = "output1"> </p>
+   <p id = "output2"> </p>
+   <script>    
+      function test() {
+         return "The function is invoked!";
+      }
+        
+      document.getElementById("output1").innerHTML = test();
+      document.getElementById("output2").innerHTML = test.call();
+   </script>
+</body>
+</html>
