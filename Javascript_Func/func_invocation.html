@@ -7,7 +7,18 @@ function merge(str1, str2) {
     return str1 + str2;
     }
     document.getElementById("output").innerHTML = merge("Hello", " World!<br/>");  
+
+// object method invocation
+const obj = {
+    name: "John",
+    getAge: () => {
+    return 10;
+    }
+ }
+ document.getElementById("output").innerHTML +=  obj.getAge();
+
  // for better readability in console
+console.log('<br/>');
 // Function invocation using the function constructor
 function Car(name, model, year) {
         this.name = name;
@@ -15,6 +26,7 @@ function Car(name, model, year) {
         this.year = year;
     }
     const ODCar = new Car("OD", "Q6", 2020);
+
     document.getElementById("output").innerHTML += JSON.stringify(ODCar);
 </script>
 </body>
