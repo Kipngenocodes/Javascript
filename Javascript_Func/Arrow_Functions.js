@@ -45,3 +45,11 @@ console.log(greeting()); // Output: Hello, Guest!
 const sayhello = () => 'Hello, World!';
 console.log(sayhello());
 
+// arrow function with object return type
+const createPerson = (name, age) => ({ name, age });
+const person = createPerson('Alice', 25);
+console.log(person); // Output: { name: 'Alice', age: 25 }
+
+// Arrow Function as an Expression
+const square = (x) => x * x;
+console.log(square(5));
