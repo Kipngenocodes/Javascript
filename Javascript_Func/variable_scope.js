@@ -1,41 +1,58 @@
-/*The variable scope in JavaScript determines to the 
-accessibility and visibility of the variable in different part of the code. 
-The scope of a variable is determined by where it is declared in the code. 
-There are three types of variable scope in JavaScript:
-1. Global Scope: A variable declared outside of any function or block has a global scope.
-   It can be accessed from anywhere in the code, including inside functions and blocks.
-2. Function Scope: A variable declared inside a function has a function scope.
-   It can only be accessed within that function and is not visible outside of it.
-3. Block Scope: A variable declared inside a block (e.g., inside curly braces {}) has a block scope.
-   It can only be accessed within that block and is not visible outside of it.
-4. local Scope: A variable declared inside a function or block has a local scope.   
-   It can only be accessed within that function or block and is not visible outside of it. */   
+// scope_demo.js
 
-// Javascript Block Scope
-// Example
+/* Variable Scope in JavaScript:
+   1. Global Scope: Variables declared outside any function or block.
+      Accessible everywhere in the code.
+   2. Function Scope: Variables declared with 'var' inside a function.
+      Accessible only within that function.
+   3. Block Scope: Variables declared with 'let' or 'const' inside a block (e.g., { }).
+      Accessible only within that block.
+*/
+
+// Global scope variable
+var globalVar = "I'm global!";
+let globalLet = "I'm also global!";
+const globalConst = "Global constant!";
+
 function myFunction() {
-    var x = 10; // Function scope
-    let y = 20; // Block scope
-    const z = 30; // Block scope
+    // Function scope variable
+    var x = 10; // 'var' has function scope
+    let y = 20; // 'let' has block scope, but here it's function-level
+    const z = 30; // 'const' has block scope, but here it's function-level
 
-    console.log(x); // 10
-    console.log(y); // 20
-    console.log(z); // 30
-    console.log(<br/>);
+    console.log("Inside function, before block:");
+    console.log("x (function scope):", x); // 10
+    console.log("y (outer block scope):", y); // 20
+    console.log("z (outer block scope):", z); // 30
+    console.log("---");
+
+    // Block scope
     {
-        var x = 100; // Same variable, different scope
-        let y = 200; // New variable with block scope
-        const z = 300; // New variable with block scope
+        var x = 100; // Redeclares the same 'var' variable (function scope)
+        let y = 200; // New variable, block scope
+        const z = 300; // New variable, block scope
 
-        console.log(x); // 100
-        console.log(y); // 200
-        console.log(z); // 300
+        console.log("Inside block:");
+        console.log("x (function scope, reassigned):", x); // 100
+        console.log("y (inner block scope):", y); // 200
+        console.log("z (inner block scope):", z); // 300
     }
-// JavaScript variables defined using the 'let' and 'const' keyword inside a { } block can be accessible only inside the block in which they are defined.
-console.log(<br/>);
-    console.log(x); // 100 (function scope, same variable)
-    console.log(y); // 20 (outer block scope)
-    console.log(z); // 30 (outer block scope)
+
+    console.log("---");
+    console.log("Inside function, after block:");
+    console.log("x (function scope):", x); // 100 (changed by block)
+    console.log("y (outer block scope):", y); // 20 (inner y is separate)
+    console.log("z (outer block scope):", z); // 30 (inner z is separate)
 }
 
+// Call the function
 myFunction();
+
+console.log("---");
+console.log("Outside function (global scope):");
+console.log("globalVar:", globalVar); // "I'm global!"
+console.log("globalLet:", globalLet); // "I'm also global!"
+console.log("globalConst:", globalConst); // "Global constant!"
+// console.log(x); // ReferenceError: x is not defined (function scope)
+// console.log(y); // ReferenceError: y is not defined (block/function scope)
+// console.log(z); // ReferenceError: z is not defined (block/function scope)
