@@ -55,4 +55,4 @@ console.log("globalLet:", globalLet); // "I'm also global!"
 console.log("globalConst:", globalConst); // "Global constant!"
 // console.log(x); // ReferenceError: x is not defined (function scope)
 // console.log(y); // ReferenceError: y is not defined (block/function scope)
-// console.log(z); // ReferenceError: z is not defined (block/function scope)
+// console.log(z); // ReferenceError: z is not defined (block/function scope)clear
