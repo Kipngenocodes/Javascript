@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript - Closures with Parameters</title>
+</head>
+<body>
+    <p id="output"></p>
+    <script>
+        // Outer function with a parameter
+        function greetMaker(name) {
+            let greeting = "Hello, " + name; // Captured in closure
+
+            // Inner function
+            function sayGreeting() {
+                return greeting + "! How are you?";
+            }
+
+            return sayGreeting;
+        }
+
+        // Create greeting instances
+        const greetAlice = greetMaker("Alice");
+        const greetBob = greetMaker("Bob");
+
+        // Display results
+        let output = "";
+        output += greetAlice() + "<br>"; // "Hello, Alice! How are you?"
+        output += greetBob() + "<br>";   // "Hello, Bob! How are you?"
+
+        document.getElementById("output").innerHTML = output;
+    </script>
+</body>
+</html>
