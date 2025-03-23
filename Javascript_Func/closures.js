@@ -28,3 +28,8 @@ console.log(myCounter()); // 3
 
 // Show that 'count' is private
 console.log(typeof count); // undefined (not accessible outside)
+
+// importance of closures
+// Closures are important in JavaScript because they allow for data encapsulation and
+//  the creation of private variables. They enable the creation of functions with persistent state,
+//  which can be useful in various scenarios, such as event handling, callbacks, and asynchronous programming.  
