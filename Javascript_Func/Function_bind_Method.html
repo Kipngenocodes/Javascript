@@ -1,0 +1,26 @@
+<!-- functionToBind.bind(thisValue, arg1, arg2, ...); -->
+<! this is a special keyword that is used within functions to refer to the object on which the function is invoked. -->
+<1 --The value of this is depended on how a function is being called and behaviour of this can vary in different contexts. -->
+
+
+<!DOCTYPE html>
+<html>
+        <head>
+            <title>JavaScript - Function bind() method</title>
+        </head>
+        <body>
+            <p id="output"></p>
+            <script>
+                // Original function
+                function greet(message) {
+                    return message + ', ' + this.name;
+                }
+                // Object with a 'name' property
+                const person = { name: 'John Doe' };
+                // Bind the function to the object
+                const greetPerson = greet.bind(person, 'Hello');
+                // Call the bound function
+                document.getElementById("output").innerHTML = greetPerson();
+            </script>
+        </body>
+</html>
