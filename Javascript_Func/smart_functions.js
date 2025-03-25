@@ -16,3 +16,17 @@ function addition (a= 89, b= 90) {
 }
 
 console.log(addition()); // Output: 179
+
+// Javascript Rest Parameters
+function sum(...args) {
+    let sum = 0;
+    for (let arg of args) sum += arg;
+    return sum;
+  }
+  console.log(sum(1, 2, 3));
+
+// JavaScript Destructuring or Named parameters
+function multiply({ a, b }) {
+    return a * b;
+  }
+  console.log(multiply({ a: 2, b: 3 }));    
