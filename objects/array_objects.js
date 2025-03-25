@@ -198,3 +198,7 @@ console.log("Elements from index 1 to 4:", rangeSlice); // Output: [3, 1, 8, 2]
 // Example:
 const arr12 = [1, 2, 3, 4, 5];
 console.log("Array length:", arr12.length); // Output: 5
+
+// Adding a new element to the array
+arr12.push(6);
+console.log("After adding element:", arr12); // Output: [1, 2, 3, 4, 5, 6]
