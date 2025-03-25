@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String HTML Wrappers</title>
+    <style>
+        /* Simple styles to make the text stand out */
+        .output {
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>String HTML Wrappers Example</h1>
+
+    <div class="output" id="output-anchor"></div>
+    <div class="output" id="output-big"></div>
+    <div class="output" id="output-bold"></div>
+    <div class="output" id="output-italics"></div>
+    <div class="output" id="output-link"></div>
+
+    <script>
+        function anchor(text, href) {
+            return `<a href="${href}" target="_blank">${text}</a>`;
+        }
+
+        function big(text) {
+            return `<big>${text}</big>`;
+        }
+
+        function blink(text) {
+            return `<blink>${text}</blink>`; // Note: <blink> is deprecated.
+        }
+
+        function bold(text) {
+            return `<b>${text}</b>`;
+        }
+
+        function fixed(text) {
+            return `<tt>${text}</tt>`;
+        }
+
+        function fontcolor(text, color) {
+            return `<font color="${color}">${text}</font>`; // Deprecated in HTML5.
+        }
+
+        function fontsize(text, size) {
+            return `<font size="${size}">${text}</font>`; // Deprecated, use CSS.
+        }
+
+        function italics(text) {
+            return `<i>${text}</i>`;
+        }
+
+        function link(text, url) {
+            return `<a href="${url}" target="_blank">${text}</a>`;
+        }
+
+        function small(text) {
+            return `<small>${text}</small>`;
+        }
+
+        function strike(text) {
+            return `<strike>${text}</strike>`;
+        }
+
+        function sub(text) {
+            return `<sub>${text}</sub>`;
+        }
+
+        function sup(text) {
+            return `<sup>${text}</sup>`;
+        }
+
+        // Using the functions to set the text inside HTML elements
+        document.getElementById('output-anchor').innerHTML = anchor("Click here to visit OpenAI", "https://www.openai.com");
+        document.getElementById('output-big').innerHTML = big("This text is big");
+        document.getElementById('output-bold').innerHTML = bold("This is bold text");
+        document.getElementById('output-italics').innerHTML = italics("This text is italic");
+        document.getElementById('output-link').innerHTML = link("Go to OpenAI", "https://www.openai.com");
+    </script>
+</body>
+</html>
