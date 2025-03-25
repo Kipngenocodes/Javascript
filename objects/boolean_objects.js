@@ -11,4 +11,16 @@ console.log(val); // Output: true
 
 // Creating a boolean object with false value
 const val1 = new Boolean(false);
-console.log(val1); // Output: false
+console.log(val1); // Output: false 
+
+
+// JavaScript Boolean() Function
+console.log(Boolean(1));         // true
+console.log(Boolean(0));         // false
+console.log(Boolean("hello"));   // true
+console.log(Boolean(""));        // false
+console.log(Boolean(null));      // false
+console.log(Boolean(undefined)); // false
+console.log(Boolean({}));        // true
+console.log(Boolean([]));        // true
+console.log(Boolean(NaN));       // false
