@@ -24,3 +24,13 @@ console.log(Boolean(undefined)); // false
 console.log(Boolean({}));        // true
 console.log(Boolean([]));        // true
 console.log(Boolean(NaN));       // false
+
+
+// Boolean Expression in JavaScript
+const x = 10;
+const y = 20;
+if (x > y) {
+    console.log("x is greater than y");
+} else {
+    console.log("x is not greater than y");
+}
