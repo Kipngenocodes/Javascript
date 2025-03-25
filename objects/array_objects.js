@@ -150,3 +150,42 @@ console.log("values():", [...iterator]); // Output: [9, 0, 0, 10, 11, 5, 7, 8]
 // 38. with() - Returns a new array with the element replaced at the specified index.
 let newArray = arr.with(3, 20); // Replace element at index 3 with 20
 console.log("with():", newArray); // Output: [9, 0, 0, 20, 11, 5, 7, 8]
+
+
+// Accessing Array Elements
+// You can access array elements using their index.
+// Array indexes are zero-based, which means the first element is at index 0, the second element is at index 1, and so on.
+// You can access elements using bracket notation [] with the index number.
+
+// Define an array
+const arr = [5, 3, 1, 8, 2, 9];
+
+// Function to access array elements within a specified range
+function accessRange(arr, start, end) {
+    console.log(`Accessing elements from index ${start} to ${end}:`);
+    for (let i = start; i <= end; i++) {
+        console.log(`Index ${i}: ${arr[i]}`);
+    }
+}
+
+// Direct access examples
+console.log("Direct Access Examples:");
+console.log("First element (index 0):", arr[0]);    // Output: 5
+console.log("Third element (index 2):", arr[2]);    // Output: 1
+console.log("Last element (index 5):", arr[5]);     // Output: 9
+
+// Using our range function
+console.log("\nRange Access Example:");
+accessRange(arr, 1, 4);  // Access elements from index 1 to 4
+/* Output:
+Accessing elements from index 1 to 4:
+Index 1: 3
+Index 2: 1
+Index 3: 8
+Index 4: 2
+*/
+
+// Bonus: Using modern JavaScript slice() to get a range
+console.log("\nUsing slice() for range:");
+const rangeSlice = arr.slice(1, 5); // Gets elements from index 1 to 4 (end is exclusive)
+console.log("Elements from index 1 to 4:", rangeSlice); // Output: [3, 1, 8, 2]
