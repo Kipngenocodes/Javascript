@@ -189,3 +189,12 @@ Index 4: 2
 console.log("\nUsing slice() for range:");
 const rangeSlice = arr.slice(1, 5); // Gets elements from index 1 to 4 (end is exclusive)
 console.log("Elements from index 1 to 4:", rangeSlice); // Output: [3, 1, 8, 2]
+
+// array.length Property
+// The length property returns the number of elements in the array.
+// The length is always one more than the highest index in the array.
+// This means the last element is always at index length - 1.
+
+// Example:
+const arr12 = [1, 2, 3, 4, 5];
+console.log("Array length:", arr12.length); // Output: 5
