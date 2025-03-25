@@ -202,3 +202,21 @@ console.log("Array length:", arr12.length); // Output: 5
 // Adding a new element to the array
 arr12.push(6);
 console.log("After adding element:", arr12); // Output: [1, 2, 3, 4, 5, 6]
+
+// Traversing a JavaScript Array
+// You can traverse an array using a for loop.
+// The for loop can be used to iterate over the elements of an array.
+
+// Example:
+const arr13 = [1, 2, 3, 4, 5];
+for (let i = 0; i < arr13.length; i++) {
+    console.log(`Element at index ${i}: ${arr13[i]}`);
+}
+/* Output:
+Element at index 0: 1
+Element at index 1: 2
+Element at index 2: 3
+Element at index 3: 4
+Element at index 4: 5
+*/  
+>>>>>>> objects
