@@ -89,6 +89,6 @@ function demonstrateGC() {
     // The large array can now be garbage collected
     return wm;
 }
-
+// what about this.
 const testWM = demonstrateGC();
 // When testWM is no longer needed, its contents can be GC'd
