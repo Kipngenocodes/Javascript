@@ -1,20 +1,124 @@
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Working With Literals</title>
-    </head> 
-    <body>
-        <p id = "output"> </p>
-            <script>
-                let car = "BMW";
-                let model = "X5";
-                const price = 5000000;
-                const carStr = `The price of the ${car} ${model} is ${price}.`;
-                document.getElementById("output").innerHTML = carStr;
-            </script>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Working With Template Literals</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .demo-section {
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .output {
+            background-color: #e0f7fa;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            color: #0277bd;
+            margin-top: 30px;
+        }
+        code {
+            background-color: #f1f1f1;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: Consolas, monospace;
+        }
+    </style>
+</head> 
+<body>
+    <h1>JavaScript Template Literals Tutorial</h1>
+    
+    <div class="demo-section">
+        <h2>Basic Template Literals</h2>
+        <p>Template literals use backticks (`) instead of quotes and allow embedding expressions with ${expression}:</p>
+        <p class="output" id="output"></p>
+        <p class="output" id="output1"></p>
+        <p class="output" id="output2"></p>
+    </div>
+
+    <div class="demo-section">
+        <h2>Multiline String Example</h2>
+        <p>Template literals make it easy to create multiline strings:</p>
+        <p class="output" id="multiline"></p>
+    </div>
+
+    <div class="demo-section">
+        <h2>Advanced Expression Evaluation</h2>
+        <p>You can put any valid JavaScript expression inside ${...}:</p>
+        <p class="output" id="conditional"></p>
+        <p class="output" id="complex"></p>
+    </div>
+
+    <div class="demo-section">
+        <h2>Comparison with Traditional Concatenation</h2>
+        <p>Traditional concatenation:</p>
+        <p class="output" id="traditional"></p>
+        <p>Same result with template literals:</p>
+        <p class="output" id="template"></p>
+    </div>
+
+    <script>
+        // Basic examples (from your original code, fixed)
+        let car = "BMW";
+        let model = "X5";
+        const price = 5000000;
+        const carStr = `The price of the ${car} ${model} is ${price}.`;
+        document.getElementById("output").innerHTML = carStr;
+        
+        function func() {
+            return 10;
+        }
+        
+        const str1 = `The sum of 2 and 3 is ${2 + 3}.`;
+        const str2 = `The return value from the function is ${func()}.`;
+        document.getElementById("output1").innerHTML = str1;
+        document.getElementById("output2").innerHTML = str2; 
+        
+        // Multiline example
+        const multilineStr = `This is a multiline string.
+It spans multiple lines.
+No special characters needed!
+Just write naturally.`;
+        document.getElementById("multiline").innerHTML = multilineStr.replace(/\n/g, '<br>');
+        
+        // Advanced expressions
+        const isOnSale = true;
+        const discount = 15;
+        const conditionalStr = `This ${car} ${model} is ${isOnSale ? `on sale with ${discount}% off!` : 'not on sale.'}`; 
+        document.getElementById("conditional").innerHTML = conditionalStr;
+        
+        const inventory = [
+            { make: "BMW", model: "X5", price: 5000000 },
+            { make: "Audi", model: "Q7", price: 5500000 },
+            { make: "Mercedes", model: "GLE", price: 6000000 }
+        ];
+        
+        const complexStr = `We have ${inventory.length} luxury SUVs in stock. 
+        The average price is ${inventory.reduce((sum, car) => sum + car.price, 0) / inventory.length}.`;
+        document.getElementById("complex").innerHTML = complexStr;
+        
+        // Comparison
+        // Traditional concatenation
+        const traditionalStr = "The price of the " + car + " " + model + " is " + price + ".";
+        document.getElementById("traditional").innerHTML = traditionalStr;
+        
+        // Template literal (same result)
+        document.getElementById("template").innerHTML = `The price of the ${car} ${model} is ${price}.`;
+    </script>
+</body>
 </html>
