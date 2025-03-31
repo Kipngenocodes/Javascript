@@ -93,3 +93,6 @@ console.log(personObjWithArgs.city); // Output: New York
 console.log(personObjWithArgs.country); // Output: USA
 console.log(personObjWithArgs.country_of_birth); // Output: India   
 personObjWithArgs.greet(); // Output: Hello, my name is John and I am 30 years old. I live in New York, USA. I was born in India.
+
+
+// Strict Mode in JavaScript classes 
