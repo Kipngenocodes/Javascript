@@ -49,3 +49,47 @@ const carObj2 = new CarFunction("BMW");
 
 console.log(carObj1.getBrand()); // Output: Porsche
 console.log(carObj2.getBrand()); // Output: BMW
+
+
+// Creating class objects without arguments
+class Person {
+    constructor() {
+        this.name = "John";
+        this.age = 30;
+    }
+}
+
+// Creating an object from the Person class/instantiation of the class
+const personObj = new Person();
+
+console.log(personObj.name); // Output: John
+console.log(personObj.age); // Output: 30   years old
+
+// Creating class objects with arguments
+class PersonWithArgs {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+        this.city = "New York"; 
+        this.country = "USA";
+        this.country_of_birth = "India";
+        // Adding a method to the class
+        // The method is a function that is defined inside the class.
+        // The method is used to perform some action on the object.
+        // The method is defined using the function keyword.
+        // The method is defined inside the class.
+        this.greet = function () {
+            console.log(`Hello, my name is ${this.name} and I am ${this.age} years old. I live in ${this.city}, ${this.country}. I was born in ${this.country_of_birth}.`);
+        };
+    }
+}
+
+// Creating an object from the PersonWithArgs class/instantiation of the class
+const personObjWithArgs = new PersonWithArgs("John", 30);
+
+console.log(personObjWithArgs.name); // Output: John
+console.log(personObjWithArgs.age); // Output: 30   years old
+console.log(personObjWithArgs.city); // Output: New York
+console.log(personObjWithArgs.country); // Output: USA
+console.log(personObjWithArgs.country_of_birth); // Output: India   
+personObjWithArgs.greet(); // Output: Hello, my name is John and I am 30 years old. I live in New York, USA. I was born in India.
