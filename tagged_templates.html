@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tagged Template Literals Demo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .output-section {
+            margin-bottom: 20px;
+        }
+        
+        .output-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #4CAF50;
+        }
+        
+        .output-box {
+            background-color: #f9f9f9;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .code-section {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            border-left: 4px solid #2196F3;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        
+        .explanation {
+            background-color: #fffde7;
+            padding: 15px;
+            border-radius: 4px;
+            border-left: 4px solid #FFC107;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tagged Template Literals Demo</h1>
+    
+    <div class="container">
+        <h2>Original vs. Formatted Output</h2>
+        
+        <div class="output-section">
+            <p class="output-title">Raw Values (Parameter Values):</p>
+            <div id="output1" class="output-box">Loading...</div>
+        </div>
+        
+        <div class="output-section">
+            <p class="output-title">Formatted Result:</p>
+            <div id="output2" class="output-box">Loading...</div>
+        </div>
+        
+        <div class="explanation">
+            <h3>How This Works</h3>
+            <p>This demo shows how tagged template literals work in JavaScript. The <code>format</code> function receives:</p>
+            <ul>
+                <li>The string parts (split by the expressions)</li>
+                <li>The evaluated expressions as individual arguments</li>
+            </ul>
+            <p>The function then combines these in a custom way to create the final string.</p>
+        </div>
+        
+        <h3>The Code</h3>
+        <div class="code-section">
+            <pre>function format(strings, ...values) {
+  // Log information about inputs
+  console.log("String parts:", strings);
+  console.log("Expression values:", values);
+  
+  // Display the raw values for demonstration
+  document.getElementById("output1").innerHTML = 
+    "Name: " + values[0] + ", Price: " + values[1];
+  
+  // Combine strings and values in alternating order
+  let result = strings[0];
+  for (let i = 0; i < values.length; i++) {
+    result += values[i] + strings[i + 1];
+  }
+  
+  return result;
+}
+
+const price = 100;
+let name = "John";
+const res = format`Hi, ${name}! The price is $${price}.`;
+document.getElementById("output2").innerHTML = res;</pre>
+        </div>
+    </div>
+    
+    <script>
+        function format(strings, ...values) {
+            // Log information about inputs
+            console.log("String parts:", strings);
+            console.log("Expression values:", values);
+            
+            // Display the raw values for demonstration
+            document.getElementById("output1").innerHTML = 
+                "Name: " + values[0] + ", Price: " + values[1];
+            
+            // Combine strings and values in alternating order
+            let result = strings[0];
+            for (let i = 0; i < values.length; i++) {
+                result += values[i] + strings[i + 1];
+            }
+            
+            return result;
+        }
+
+        const price = 100;
+        let name = "John";
+        const res = format`Hi, ${name}! The price is $${price}.`;
+        document.getElementById("output2").innerHTML = res;
+    </script>
+</body>
+</html>
