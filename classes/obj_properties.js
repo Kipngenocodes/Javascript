@@ -47,3 +47,7 @@ console.log(person.gender); // Output: Female
 person.age = undefined; // setting age to undefined
 
 console.log(person.age); // Output: undefined   
+
+// drop the property from the object
+delete person.age;
+console.log(person.age); // Output: undefined
