@@ -46,3 +46,23 @@ console.log(person.language); // Output: en
 console.log(person.lang = "fr"); // Output: fr  
 console.log(person.language); // Output: fr
 console.log(person.lang); // Output: fr
+
+
+// JavaScript Setters
+/*set methodName(value) {
+    // Method body
+} */
+
+// Example of using setters in JavaScript
+const persona= {
+    firstName: "John",
+    lastName: "Doe",
+    language: "",
+    // Setter method to set the language
+    set lang(lang) {
+        this.language = lang;
+    }
+};
+console.log(persona.language); // Output: ""
+console.log(persona.lang = "en"); // Output: en
+console.log(persona.language); // Output: en    
