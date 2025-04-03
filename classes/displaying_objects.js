@@ -41,3 +41,9 @@ student.display(); // Output: Name: Alice, Age: 25
 console.log(JSON.stringify(student)); // Output: {"name":"Alice","age":25,"studentId":"12345"}
 console.log(student); // Output: Student { name: 'Alice', age: 25, studentId: '12345' }
 console.log(student.toString()); // Output: [object Object]
+
+// Using the Object.enteries() Method
+const obj = { a: 1, b: 2, c: 3 };
+const entries = Object.entries(obj);
+console.log("Object.entries(obj):", entries); // Output: [ [ 'a', 1 ], [ 'b', 2 ], [ 'c', 3 ] ]
+console.log("Object.entries(obj).map(([key, value]) => `${key}: ${value}`):", entries.map(([key, value]) => `${key}: ${value}`)); // Output: [ 'a: 1', 'b: 2', 'c: 3' ]`    
