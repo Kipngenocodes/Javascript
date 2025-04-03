@@ -47,3 +47,10 @@ const obj = { a: 1, b: 2, c: 3 };
 const entries = Object.entries(obj);
 console.log("Object.entries(obj):", entries); // Output: [ [ 'a', 1 ], [ 'b', 2 ], [ 'c', 3 ] ]
 console.log("Object.entries(obj).map(([key, value]) => `${key}: ${value}`):", entries.map(([key, value]) => `${key}: ${value}`)); // Output: [ 'a: 1', 'b: 2', 'c: 3' ]`    
+
+console.log("<br>");
+// Using the for...in Loop
+const obj2 = { x: 10, y: 20, z: 30 };
+for (const key in obj2) {
+    console.log(`${key}: ${obj2[key]}`); // Output: x: 10, y: 20, z: 30
+}
