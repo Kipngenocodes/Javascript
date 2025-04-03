@@ -41,3 +41,38 @@ Person.prototype.greet = function () {
 // Creating an instance of the Person object using the new keyword
 const person2 = new Person("Alice", 25);
 person2.greet(); // Output: Hello, my name is Alice and I am 25 years old.      
+
+// Built-in Object Constructors in JavaScript
+// JavaScript provides several built-in object constructors that can be used to create objects of different types.
+// Eaxmple of built-in object constructors in JavaScript
+const date = new Date(); // Creates a new Date object   
+console.log(date); // Output: Current date and time
+console.log(typeof date); // Output: object 
+// Example of using the Array object constructor in JavaScript
+const arr = new Array(1, 2, 3, 4, 5); // Creates a new Array object
+console.log(arr); // Output: [1, 2, 3, 4, 5]
+console.log(typeof arr); // Output: object  
+// Example of using the String object constructor in JavaScript
+const str = new String("Hello");
+console.log(str); // Output: [String: 'Hello']
+console.log(typeof str); // Output: object
+// Example of using the Number object constructor in JavaScript
+const num = new Number(10);
+console.log(num); // Output: [Number: 10]
+console.log(typeof num); // Output: object
+// Example of using the Boolean object constructor in JavaScript
+const bool = new Boolean(true);
+console.log(bool); // Output: [Boolean: true]
+console.log(typeof bool); // Output: object
+// Example of using the Object object constructor in JavaScript
+const obj = new Object({ name: "John", age: 30 });  
+console.log(obj); // Output: { name: 'John', age: 30 }
+console.log(typeof obj); // Output: object
+// Example of using the Function object constructor in JavaScript
+const func = new Function("x", "y", "return x + y");
+console.log(func(5, 10)); // Output: 15
+console.log(typeof func); // Output: function
+// Example of using the RegExp object constructor in JavaScript
+const regex = new RegExp("abc");
+console.log(regex); // Output: /abc/
+console.log(typeof regex); // Output: object
