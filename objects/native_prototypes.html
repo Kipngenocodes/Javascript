@@ -1,8 +1,12 @@
-html>
+<html>
 <body>
+	<p id = "output">After updating the string.toLowerCase() method: </p>
 	<script>
-		console.log(Array.prototype);
+		String.prototype.toLowerCase = function () {
+			return this.toUpperCase();
+		}
+		let str = "Hello World";
+		document.getElementById("output").innerHTML += str.toLowerCase();
 	</script>
-	<p>Please open the web console before executing the above program.</p>
 </body>
 </html>
