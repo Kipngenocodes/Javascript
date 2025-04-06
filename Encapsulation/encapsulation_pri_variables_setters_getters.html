@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> Working with Encapsulation with getters and setters</head>
+<body>
+    <div id="output1"> The initial username is: </div>Z
+    <div id="output2"> The new username is: </div>
+    <script>
+        class User {
+            #username = "Kipcode";
+            #Password = "1234";
+            #isLoggedIn = false;
+            getUsername() {
+                return this.#username;
+            }
+            setUsername(newUsername) {
+                this.#username = newUsername;
+            }
+    }
+        const user = new User();
+        document.getElementById("output1").innerHTML += user.getUsername();
+        user.setUsername("Kiopcode1234");
+        document.getElementById("output2").innerHTML += user.getUsername();
+    </script>
+</body>
+</html>
