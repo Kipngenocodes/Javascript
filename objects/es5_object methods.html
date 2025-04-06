@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Javascript ES5 Object Methods</title>
+    </head>
+    <body>
+        <p id="output"></p>
+        <script>
+            // ES5 Object methods -- Object.create()
+            // Object.create() method creates a new object, using an existing object as the prototype of the newly created object.
+            const person = {
+                firstName: "John",
+                lastName: "Doe"
+            };
+        
+            const student = Object.create(person);
+            student.age = 18;
+            
+            // JavaScript Object.defineProperty() Method
+            const Car = {
+                make: "Toyota",
+                model: "Corolla",
+                year: 2020
+            };
+
+            Object.defineProperty(Car, "color", {
+                value: "Red",
+                writable: true,    // Allows the property to be changed
+                enumerable: true,  // Makes the property show up in loops (e.g., for...in)
+                configurable: true // Allows the property to be deleted or reconfigured
+            });
+
+            Object.defineProperty(Car, "getCarManufacturer", {
+                value: "Toyota",   // Could also be a function if you want a getter
+                writable: false,   // Prevents the property from being changed
+                enumerable: true,  // Makes the property show up in loops
+                configurable: true // Allows the property to be deleted or reconfigured
+            });
+
+            // Combine both outputs without overwriting
+            document.getElementById("output").innerHTML = 
+                "Student Info:<br>" +
+                student.firstName + "<br>" + 
+                student.lastName + "<br>" + 
+                student.age + "<br>" +
+                "<br>Car Info:<br>" +
+                "Car Make: " + Car.make + "<br>" +
+                "Car Model: " + Car.model + "<br>" +
+                "Car Year: " + Car.year + "<br>" +
+                "Car Color: " + Car.color + "<br>" +
+                "Car Manufacturer: " + Car.getCarManufacturer;
+        </script>
+    </body>
+</html>
