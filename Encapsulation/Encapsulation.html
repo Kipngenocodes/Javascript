@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <p id="output"></p>
+        <script>
+            let output = document.getElementById("output");
+            // Shopping cart closure
+            function shoppingcart() {
+                const cartitems = [];  // Private array to store items
+                // Add item to cart
+                function additem(item) {
+                    cartitems.push(item);
+                    output.innerHTML += `${item.name} added to the cart.<br>`;
+                }
+                // Remove item from cart by name
+                function removeitem(itemName) {
+                    const index = cartitems.findIndex(item => item.name === itemName);
+                    if (index !== -1) {
+                        const removedItem = cartitems.splice(index, 1)[0];  // Remove and get item
+                        output.innerHTML += `${removedItem.name} removed from the cart.<br>`;
+                    } else {
+                        output.innerHTML += `Item ${itemName} not found in the cart.<br>`;
+                    }
+                }
+                return { additem, removeitem };  // Expose methods
+            }
+            // Define items
+            const item1 = { name: "Apple", price: 1.00 };
+            const item2 = { name: "Banana", price: 0.50 };
+            const item3 = { name: "Orange", price: 0.75 };
+            const item4 = { name: "Grapes", price: 2.00 };
+            // Create a shopping cart instance
+            const cart = shoppingcart();
+            // Add items to the cart
+            cart.additem(item1);
+            cart.additem(item2);
+            cart.additem(item3);
+            cart.additem(item4);
+            // Remove an item from the cart
+            cart.removeitem("Banana");
+        </script>
+    </body>
+</html>
