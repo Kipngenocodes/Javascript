@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <div id="output1"> The Car mileage per hour is: </div>
+    <div id="output2"> The Car mileage per hour after update is: </div>
+    <script>
+        class speedtrain {
+            #brand = 'Sukhoi'
+            #model = 'Su-30'
+            #mileage = 9546.5
+            #speed = 875.0
+            #fueltype = 'Jet Fuel'
+            #fuelcapacity = 55000.0
+            #fuelconsumption = '950g/km'
+
+            getspeed() {
+                return this.#speed
+            }
+            getmileage() {
+                return this.#mileage  // Changed to return the value instead of assigning it
+            }
+            setmileage(mileage) {
+                this.#mileage = mileage
+            }
+            getfueltype() {
+                return this.#fueltype
+            }   
+            getfuelcapacity() {
+                return this.#fuelcapacity
+            }
+            getfuelconsumption() {
+                return this.#fuelconsumption
+            }   
+        }
+        
+        // Create an instance of the class
+        const mytrain = new speedtrain() 
+        document.getElementById("output1").innerHTML += mytrain.getmileage() + " km"  // Changed to getmileage to show mileage, not speed
+        
+        // Update the mileage
+        mytrain.setmileage(10000.0)
+        document.getElementById("output2").innerHTML += mytrain.getmileage() + " km"   
+    </script>
+</body>
+</html>
