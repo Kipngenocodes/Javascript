@@ -1,0 +1,52 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>JavaScript - Prototype Chaining</title>
+    </head>
+    <body>
+        <p id="output"></p>
+        <script>
+        function Person( username, city, age, name, country, state)  {
+            this.username = username;
+            this.name = name;
+            this.city = city;
+            this.age = age;
+            this.country = country;
+            this.state = state;
+        }
+
+        Person.prototype.getAge = function() {
+            return this.age;
+        }
+        Person.prototype.getName = function() {
+            return this.name;
+        }        
+        Person.prototype.getCity = function() {
+            return this.city;
+        }
+        Person.prototype.getCountry = function() {
+            return this.country;
+        }
+        Person.prototype.getState = function() {
+            return this.state;
+        }        
+        const PersonOne_object = new Person('John Doe', 'New York', 30, 'John', 'United States', 'New York');
+        const PersonTwo_object = new Person('Jane Doe', 'Los Angeles', 25, 'Jane', 'United States', 'California');
+        const PersonThree_object = new Person('Sam Smith', 'Chicago', 35, 'Sam', 'United States', 'Illinois');
+        const PersonFour_object = new Person('Anna Johnson', 'Houston', 28, 'Anna', 'United States', 'Texas');
+        const PersonFive_object = new Person('Mike Brown', 'Phoenix', 32, 'Mike', 'United States', 'Arizona');
+        const PersonSix_object = new Person('Emily Davis', 'Philadelphia', 27, 'Emily', 'United States', 'Pennsylvania');
+        const PersonSeven_object = new Person('David Wilson', 'San Francisco', 29, 'David', 'United States', 'California');
+        const PersonEight_object = new Person('Olivia Martinez', 'Miami', 31, 'Olivia', 'United States', 'Florida');
+        const PersonNine_object = new Person('James Taylor', 'Dallas', 33, 'James', 'United States', 'Texas');
+
+        document.getElementById("output").innerHTML +=  
+                "Person One: " + PersonOne_object.getName() + ", Age: " + PersonOne_object.getAge() + ", City: "
+                + PersonOne_object.getCity() + ", Country: " + PersonOne_object.getCountry() + ", State: " + PersonOne_object.getState() + "<br>";
+        document.getElementById("output").innerHTML +=
+                "Person Two: " + PersonTwo_object.getName() + ", Age: " + PersonTwo_object.getAge() + ", City: "
+                + PersonTwo_object.getCity() + ", Country: " + PersonTwo_object.getCountry() + ", State: " + PersonTwo_object.getState() + "<br>";
+                        
+        </script>
+    </body>
+</html>
