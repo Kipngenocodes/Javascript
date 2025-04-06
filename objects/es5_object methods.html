@@ -37,7 +37,28 @@
                 configurable: true // Allows the property to be deleted or reconfigured
             });
 
-            // Combine both outputs without overwriting
+            // JavaScript Object.defineProperties() Method
+            const person2 = {
+                firstName: "Jane",
+                lastName: "Smith"
+            };
+
+            Object.defineProperties(person2, {
+                age: {
+                    value: 25,
+                    writable: true,    // Allows the property to be changed
+                    enumerable: true,  // Makes the property show up in loops
+                    configurable: true // Allows the property to be deleted or reconfigured
+                },
+                city: {
+                    value: "New York",
+                    writable: false,   // Prevents the property from being changed
+                    enumerable: true,  // Makes the property show up in loops
+                    configurable: false // Prevents the property from being deleted or reconfigured
+                }
+            });
+
+            // Combine all outputs into a single assignment
             document.getElementById("output").innerHTML = 
                 "Student Info:<br>" +
                 student.firstName + "<br>" + 
@@ -48,7 +69,12 @@
                 "Car Model: " + Car.model + "<br>" +
                 "Car Year: " + Car.year + "<br>" +
                 "Car Color: " + Car.color + "<br>" +
-                "Car Manufacturer: " + Car.getCarManufacturer;
+                "Car Manufacturer: " + Car.getCarManufacturer + "<br>" +
+                "<br>Person2 Info:<br>" +
+                person2.firstName + "<br>" +
+                person2.lastName + "<br>" +
+                person2.age + "<br>" +
+                person2.city;
         </script>
     </body>
 </html>
