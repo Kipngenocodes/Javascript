@@ -4,83 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inheritance Example</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .output {
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin: 10px 0;
-            background-color: #f9f9f9;
-        }
-        h1 {
-            color: #333;
-        }
-        .code-section {
-            background-color: #f5f5f5;
-            padding: 15px;
-            border-left: 4px solid #4CAF50;
-            margin-bottom: 20px;
-            font-family: monospace;
-        }
-    </style>
 </head>
 <body>
-    <h1>JavaScript Inheritance Example</h1>
-    
-    <div class="code-section">
-        <pre>
-// Parent class
-class Animal {
-    constructor(name) {
-        this.name = name;
-    }
-
-    speak() {
-        return `${this.name} makes a noise.`;
-    }
-}
-
-// Child class inheriting from Animal
-class Dog extends Animal {
-    constructor(name, breed) {
-        super(name); // Call parent constructor
-        this.breed = breed;
-    }
-    
-    speak() {
-        return `${this.name} barks.`;
-    }
-    
-    fetch() {
-        return `${this.name} fetches the ball.`;
-    }
-}
-
-// Child class inheriting from Animal
-class Cat extends Animal {
-    constructor(name, color) {
-        super(name);
-        this.color = color;
-    }
-    
-    speak() {
-        return `${this.name} meows.`;
-    }
-    
-    climb() {
-        return `${this.name} climbs the tree.`;
-    }
-}
-        </pre>
-    </div>
-    
-    <h2>Output:</h2>
-    <div id="output" class="output"></div>
+    <div id="output"></div>
     
     <script>
         // Parent class
@@ -135,18 +61,18 @@ class Cat extends Animal {
         const cat = new Cat('Whiskers', 'orange');
         
         // Demonstrating inheritance
-        output.innerHTML += `<p><strong>Generic Animal:</strong> ${animal.speak()}</p>`;
-        output.innerHTML += `<p><strong>Dog:</strong> ${dog.speak()}</p>`;
-        output.innerHTML += `<p><strong>Dog Breed:</strong> ${dog.breed}</p>`;
-        output.innerHTML += `<p><strong>Dog Action:</strong> ${dog.fetch()}</p>`;
-        output.innerHTML += `<p><strong>Cat:</strong> ${cat.speak()}</p>`;
-        output.innerHTML += `<p><strong>Cat Color:</strong> ${cat.color}</p>`;
-        output.innerHTML += `<p><strong>Cat Action:</strong> ${cat.climb()}</p>`;
+        output.innerHTML += `<p>Generic Animal: ${animal.speak()}</p>`;
+        output.innerHTML += `<p>Dog: ${dog.speak()}</p>`;
+        output.innerHTML += `<p>Dog Breed: ${dog.breed}</p>`;
+        output.innerHTML += `<p>Dog Action: ${dog.fetch()}</p>`;
+        output.innerHTML += `<p>Cat: ${cat.speak()}</p>`;
+        output.innerHTML += `<p>Cat Color: ${cat.color}</p>`;
+        output.innerHTML += `<p>Cat Action: ${cat.climb()}</p>`;
         
         // Demonstrating instanceof operator
-        output.innerHTML += `<p><strong>dog instanceof Dog:</strong> ${dog instanceof Dog}</p>`;
-        output.innerHTML += `<p><strong>dog instanceof Animal:</strong> ${dog instanceof Animal}</p>`;
-        output.innerHTML += `<p><strong>cat instanceof Animal:</strong> ${cat instanceof Animal}</p>`;
+        output.innerHTML += `<p>dog instanceof Dog: ${dog instanceof Dog}</p>`;
+        output.innerHTML += `<p>dog instanceof Animal: ${dog instanceof Animal}</p>`;
+        output.innerHTML += `<p>cat instanceof Animal: ${cat instanceof Animal}</p>`;
     </script>
 </body>
 </html>
