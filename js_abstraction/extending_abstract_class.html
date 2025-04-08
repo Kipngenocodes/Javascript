@@ -1,0 +1,30 @@
+<html>
+<body>
+    <div id = "output">The name of the fruit is: </div>
+    <script>
+      // Abstract class
+        function fruit() {
+            this.name = "Fruit";
+            if (this.constructor === fruit) { // Preventing the instance of the object
+            throw new Error("You can't create the instance of the fruit.");
+            }
+    }
+
+      // Implementing method in the prototype
+        fruit.prototype.getName = function () {
+            return this.name;
+        }
+
+      // Child class
+        function Apple(fruitname) {
+            this.name = fruitname;
+        }
+
+      // Extending the Apple class with the fruit class
+        Apple.prototype = Object.create(fruit.prototype);
+
+        const apple = new Apple("Apple");
+        document.getElementById("output").innerHTML += apple.getName();
+    </script>
+</body>
+</html>
