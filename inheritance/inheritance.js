@@ -35,8 +35,8 @@ class Cat extends Animal {
         console.log(`${this.name} meows.`);
     }
 }
-const dog = new Dog('Buddy');
-dog.speak(); // Buddy barks.
+const myDog = new Dog('Buddy');
+myDog.speak(); // Buddy barks.
 const cat = new Cat('Whiskers');    
 cat.speak(); // Whiskers meows.
 // The `Dog` and `Cat` classes inherit from the `Animal` class. 
@@ -142,3 +142,23 @@ class MountainBiking extends Biking {
 
 console.log(Biking.getType()); // Output: Biking
 console.log(MountainBiking.getType()); // Output: Mountain Biking
+
+// JavaScript Prototype Based Inheritance
+// In JavaScript, inheritance is primarily achieved through the prototype chain.
+// example of prototype-based inheritance:
+function Animal(name) {
+    this.name = name;
+}
+
+Animal.prototype.speak = function () {
+    console.log(`${this.name} makes a noise.`);
+}
+function Dog(name) {
+    Animal.call(this, name);
+}
+
+Dog.prototype = Object.create(Animal.prototype);
+Dog.prototype.constructor = Dog;
+
+const dog = new Dog('Buddy');
+dog.speak(); // Output: Buddy makes a noise.    
