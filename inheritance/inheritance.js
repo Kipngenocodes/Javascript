@@ -13,4 +13,30 @@
 // Child  class body.
 //     }
 
-// Example of inheritance in JavaScript using ES6 classes:
+// Example of multi-level inheritance in JavaScript using ES6 classes:
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+
+    speak() {
+        console.log(`${this.name} makes a noise.`);
+    }
+}
+
+class Dog extends Animal {
+    speak() {
+        console.log(`${this.name} barks.`);
+    }   
+
+}
+class Cat extends Animal {
+    speak() {
+        console.log(`${this.name} meows.`);
+    }
+}
+const dog = new Dog('Buddy');
+dog.speak(); // Buddy barks.
+const cat = new Cat('Whiskers');    
+cat.speak(); // Whiskers meows.
+// The `Dog` and `Cat` classes inherit from the `Animal` class.
