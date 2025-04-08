@@ -116,3 +116,29 @@ console.log(`Rectangle area: ${rectangle.getArea()}`); // Rectangle area: 50
 const circle = new Circle('blue', 3);
 console.log(`Circle color: ${circle.getColor()}`); // Circle color: blue
 console.log(`Circle area: ${circle.getArea()}`); // Circle area: 28.274333882308138 
+
+
+// Inheriting Static Members of the Class
+// In JavaScript, static methods and properties are associated with the class itself rather than instances of the class.
+// When a class inherits from another class, it can also inherit static members.
+// This means that the child class can access static methods and properties defined in the parent class.
+// Static members are defined using the `static` keyword in the class definition.
+// They are called on the class itself, not on instances of the class.
+
+class Biking {
+    constructor(name) {
+        this.name = name;
+    }
+
+    static getType() {
+        return 'Biking';
+    }
+}
+class MountainBiking extends Biking {
+    static getType() {
+        return 'Mountain Biking';
+    }
+}
+
+console.log(Biking.getType()); // Output: Biking
+console.log(MountainBiking.getType()); // Output: Mountain Biking
