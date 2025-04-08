@@ -1,0 +1,23 @@
+<html>
+<body>
+    <div id = "output"> </div>
+    <script>
+        try {
+         // Object constructor
+            function fruit() {
+            this.name = "Fruit";
+            if (this.constructor === fruit) {// Preventing the instance of the object
+                throw new Error("You can't create the instance of the fruit.");
+            }
+        }
+         // Implementing method in the prototype
+        fruit.prototype.getName = function () {
+            return this.name;
+        }
+        const apple = new fruit();
+        } catch (error) {
+            document.getElementById("output").innerHTML = error;
+        }
+    </script>
+</body>
+</html>
