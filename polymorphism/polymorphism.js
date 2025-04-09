@@ -29,3 +29,24 @@ console.log(shape.area());
 console.log(circle.area(5)); // Calling the method of Circle class
 
 console.log(rectangle.area(5, 10)); // Calling the method of Rectangle class
+
+// Parent Class Method's Functionality Extension in Child Class
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+
+    speak() {
+        return `${this.name} makes a noise.`;
+    }
+}
+
+class Dog extends Animal {
+    speak() {
+        return `${this.name} barks.`; // Overriding the speak method of Animal class
+    }
+
+}
+// Creating an instance of Dog class
+const dog = new Dog('Rover');
+console.log(dog.speak()); // Output: Rover barks.
