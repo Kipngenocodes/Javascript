@@ -22,3 +22,10 @@ const person = { name: 'John', age: 30 };
 const { name, age } = person;
 console.log(name); // Output: 'John'
 console.log(age); // Output: 30
+
+// Nested object destructuring
+const nestedObj = { a: 1, b: { cr: 2 } };
+const { b: { cr } } = nestedObj;
+console.log(c); // Output: 2    
+
+   
