@@ -54,3 +54,22 @@ const { address: { street, zip } } = person; // Accessing nested properties
 console.log(street);
 // Output: '123 Main St'
 console.log(zip);
+
+// Object Destructuring and Function Parameters
+// You can also use object destructuring in function parameters to extract properties directly from the argument object.
+// This is especially useful when you want to pass an object to a function and you want to access its properties directly in the function body.
+
+function displayPerson({ name, age, city }) {
+    console.log(`Name: ${name}`);
+    console.log(`Age: ${age}`);
+    console.log(`City: ${city}`);
+}
+displayPerson(person); // Output: Name: John Doe, Age: 30, City: New York
+// You can also use default values in function parameters to set default values for properties that are not present in the argument object. 
+
+function displayPerson({ name, age, city = 'Unknown' }) {
+    console.log(`Name: ${name}`);
+    console.log(`Age: ${age}`);
+    console.log(`City: ${city}`);
+}
+displayPerson({ name: 'Jane Doe', age: 25 }); // Output: Name: Jane Doe, Age: 25, City: Unknown
