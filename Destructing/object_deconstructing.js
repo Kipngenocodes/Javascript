@@ -52,3 +52,5 @@ console.log(restOfPerson); // Output: { age: 30, city: 'New York', country: 'USA
 // Accessing nested properties
 const { address: { street, zip } } = person; // Accessing nested properties
 console.log(street);
+// Output: '123 Main St'
+console.log(zip);
