@@ -106,5 +106,3 @@
     console.log("- __dirname exists:", typeof __dirname !== 'undefined');
     }
 
-    // Note: globalThis is the standardized way to access the global object
-    // across all JavaScript environments since ECMAScript 2020
