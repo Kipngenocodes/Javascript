@@ -1,0 +1,1 @@
+//  mixins in javascript llow you to add the properties of the other objects or classes to the target object's or class's prototype and extend the functionality of the target object. After that, you can access the other object's method using the target object.
