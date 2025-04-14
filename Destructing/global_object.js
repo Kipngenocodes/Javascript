@@ -106,3 +106,7 @@
     console.log("- __dirname exists:", typeof __dirname !== 'undefined');
     }
 
+    // PART 9: Conclusion
+
+    console.log("\n=== Conclusion ===");
+    console.log("In summary, the global object is a window in a browser, a global in Node.js, or a worker in a web worker.");
