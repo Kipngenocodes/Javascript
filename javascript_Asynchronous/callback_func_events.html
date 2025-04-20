@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callback Function with Events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #808080; /* Changed to gray */
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <button id="clickButton">Click Me!</button>
+    <button id="hoverButton">Hover Over Me!</button>
+    <div id="output">Waiting for events...</div>
+
+    <script>
+        // Function to update the output div
+        function updateOutput(message) {
+            document.getElementById('output').textContent = message;
+        }
+
+        // Callback function for click event
+        function handleClick() {
+            updateOutput('Button was clicked!');
+        }
+
+        // Callback function for mouseover event
+        function handleMouseOver() {
+            updateOutput('Mouse is over the button!');
+        }
+
+        // Callback function for mouseout event
+        function handleMouseOut() {
+            updateOutput('Mouse left the button!');
+        }
+
+        // Adding event listeners with callback functions
+        document.getElementById('clickButton').addEventListener('click', handleClick);
+        document.getElementById('hoverButton').addEventListener('mouseover', handleMouseOver);
+        document.getElementById('hoverButton').addEventListener('mouseout', handleMouseOut);
+
+        // Example of a callback with setTimeout
+        function delayedCallback(callback) {
+            setTimeout(() => {
+                callback('Delayed action completed after 2 seconds!');
+            }, 2000);
+        }
+
+        // Using the delayed callback
+        document.getElementById('clickButton').addEventListener('click', () => {
+            delayedCallback(updateOutput);
+        });
+    </script>
+</body>
+</html>
