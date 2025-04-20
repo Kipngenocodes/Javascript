@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callback Functions</title>
+</head>
+<body>
+    <div id="output"></div>
+    <script>
+        function sayHello(name) {
+            return `Hello, ${name}!`;
+        }
+
+        function sayGoodbye(name) {
+            return `Goodbye, ${name}!`;
+        }
+
+        function greet(name, callback) {
+            const message = callback(name);
+            console.log(message);
+        }
+
+        greet("John", sayHello); // Output: Hello, John!
+        greet("Alice", sayGoodbye); // Output: Goodbye, Alice!
+
+        let output = document.getElementById("output");
+
+        function mathOperation(a, b, operation) {
+            let result = operation(a, b);
+            // Append the result instead of overwriting
+            output.innerHTML += `The result is: ${result}<br>`;
+        }
+
+        // Perform various mathematical operations using callbacks
+        mathOperation(5, 3, function(x, y) {
+            return x + y; // Addition: 5 + 3 = 8
+        });
+        mathOperation(5, 3, function(x, y) {
+            return x - y; // Subtraction: 5 - 3 = 2
+        });
+        mathOperation(5, 3, function(x, y) {
+            return x * y; // Multiplication: 5 * 3 = 15
+        });
+        mathOperation(5, 3, function(x, y) {
+            return x / y; // Division: 5 / 3 ≈ 1.6667
+        });
+        mathOperation(5, 3, function(x, y) {
+            return x % y; // Modulus: 5 % 3 = 2
+        });
+        mathOperation(5, 3, function(x, y) {
+            return x ** y; // Exponentiation: 5^3 = 125
+        });
+        mathOperation(5, 3, function(x, y) {
+            return Math.pow(x, y); // Power: 5^3 = 125
+        });
+        mathOperation(5, 3, function(x, y) {
+            return Math.sqrt(x); // Square root of x: sqrt(5) ≈ 2.236
+        });
+        mathOperation(5, 3, function(x, y) {
+            return Math.sqrt(y); // Square root of y: sqrt(3) ≈ 1.732
+        });
+        mathOperation(5, 3, function(x, y) {
+            return Math.abs(x); // Absolute value of x: |5| = 5
+        });
+        mathOperation(5, 3, function(x, y) {
+            return Math.abs(y); // Absolute value of y: |3| = 3
+        });
+    </script>
+</body>
+</html>
