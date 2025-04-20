@@ -13,5 +13,5 @@
 setTimeout(function() {
     console.log("This message is displayed after a 2-second delay.");
 }
-, 2000); // 2000 milliseconds = 2 seconds
+, 20000); // 2000 milliseconds = 2 seconds
 // console.log("This message is displayed immediately.");   
