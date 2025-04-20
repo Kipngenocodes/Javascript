@@ -1,0 +1,27 @@
+<!-- Demosntrating callback functions` -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callback Functions</title>
+</head>
+<body>
+    <script>
+        function sayHello(name) {
+            return `Hello, ${name}!`;
+        }
+
+        function sayGoodbye(name) {
+            return `Goodbye, ${name}!`;
+            }   
+
+        function greet(name, callback) {
+            const message = callback(name);
+            console.log(message);
+        }
+
+        greet("John", sayHello); // Output: Hello, John!
+        greet("Alice", sayGoodbye); // Output: Goodbye, Alice!
+    </script>
+</body>
