@@ -69,13 +69,13 @@
         // Example of a callback with setTimeout  
         function delayedCallback(callback) {
             setTimeout(() => {
-                callback('Delayed action completed after 2 seconds!');
+                callback('Delayed action completed after 2 seconds!.');
             }, 2000);
         }
 
         // Using the delayed callback
         document.getElementById('clickButton').addEventListener('click', () => {
-            delayedCallback(updateOutput);
+            delayedCallback(updateOutput); 
         });
     </script>
 </body>
