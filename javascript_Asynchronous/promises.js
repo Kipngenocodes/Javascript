@@ -23,7 +23,7 @@ function isEvenPromise(num) {
         }
         if (num % 2 === 0) {
             resolve(`${num} is even`);
-
+    
         } else {
             reject(`${num} is odd`);  
         }
