@@ -42,6 +42,7 @@ isEvenPromise("hello")
     .then(result => console.log(result)) // Output: 4 is even
     .catch(error => console.error(error)); // Output: Input must be a number
 // Example of using the promise with an odd number
+isEvenPromise(5)
 
 
 
