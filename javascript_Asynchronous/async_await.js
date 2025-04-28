@@ -25,9 +25,9 @@ If the function throws an error, the promise will be rejected with that error.
 
 // Syntax for creating an async function
 // async function functionName() {  
-//    // Perform asynchronous operations
-//    // Call resolve() if successful
-//    // Call reject() if failed   
+   // Perform asynchronous operations
+   // Call resolve() if successful
+   // Call reject() if failed   
 // }
 
 // Example of an async function that returns a promise
