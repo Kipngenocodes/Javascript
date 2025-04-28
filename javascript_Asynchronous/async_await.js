@@ -1,80 +1,156 @@
-/*
-The JavaScript functions defined with the async/await keyword 
-can perform the same task as promises with fewer lines of code, and it makes the code readable. 
-The promise's syntax is a bit complex, so the async/await syntax is introduced.
-The async/await syntax makes it easier to write asynchronous code in JavaScript.
-*/
+/**
+ * JavaScript Async/Await Tutorial
+ * 
+ * Async/await provides a cleaner way to work with Promises in JavaScript,
+ * making asynchronous code look and behave more like synchronous code.
+ */
 
-// To use async/await, we need to define an async function first. 
-// For this we write async before function definition. An async function returns a promise. 
-// The await keyword is used inside an async function only.
-// The await keyword makes JavaScript wait for the promise to resolve before continuing the function.
-
-// The JavaScript Async Keyword
-// The async function allows you to produce asynchronous code.
-// The await keyword is used to wait for a promise to resolve.
-
-/*
-It always returns the promise.
-If you don't return the promise manually and return the data, string, number, etc., 
-it creates a new promise and resolves that promise with the returned value.     
-The async function always returns a promise.
-If the function returns a value, the promise will be resolved with that value.  
-If the function throws an error, the promise will be rejected with that error.
-*/
-
-// Syntax for creating an async function
-// async function functionName() {  
-   // Perform asynchronous operations
-   // Call resolve() if successful
-   // Call reject() if failed   
-// }
-
-// Example of an async function that returns a promise
+// Example 1: Basic number validation with async/await
 async function isEvenPromise(num) {
+    // Simulating some async operation
     return new Promise((resolve, reject) => {
-        if (typeof num !== 'number') {
-            reject('Input must be a number');
-        }
-        else if (num % 2 === 0) {
-            resolve(`${num} is even`);
-        } else {
-            reject(`${num} is odd`);  
-        }
+        // Add a small delay to simulate async processing
+        setTimeout(() => {
+            if (typeof num !== 'number') {
+                reject('Input must be a number');
+            }
+            else if (num % 2 === 0) {
+                resolve(`${num} is even`);
+            } else {
+                reject(`${num} is odd`);
+            }
+        }, 500);
     });
 }
 
-// Example of using the async function with an even number
-async function testEvenNumber() {
+// Example 2: Simulated API call
+async function fetchUserData(userId) {
+    // Simulating fetch with a Promise that doesn't require actual HTTP
+    return new Promise((resolve, reject) => {
+        console.log(`Fetching data for user ${userId}...`);
+        
+        // Simulate network delay
+        setTimeout(() => {
+            // Sample data for demo purposes
+            if (userId < 1) {
+                reject(new Error('Invalid user ID'));
+                return;
+            }
+            
+            const userData = {
+                id: userId,
+                name: `User ${userId}`,
+                email: `user${userId}@example.com`,
+                registered: new Date().toISOString()
+            };
+            
+            console.log("Data retrieved successfully");
+            resolve(userData);
+        }, 1000);
+    });
+}
+
+// Example 3: Chaining multiple async operations
+async function processUserActivity(userId) {
     try {
-        const result = await isEvenPromise(4);
-        console.log(result); // Output: 4 is even
+        // First async operation
+        const userData = await fetchUserData(userId);
+        console.log(`Found user: ${userData.name}`);
+        
+        // Second async operation (simulating activity fetch)
+        const userActivity = await new Promise((resolve) => {
+            setTimeout(() => {
+                resolve({
+                    userId: userId,
+                    lastLogin: new Date().toISOString(),
+                    activities: ['login', 'view profile', 'edit settings']
+                });
+            }, 800);
+        });
+        
+        // Combining results from multiple async operations
+        return {
+            user: userData,
+            activity: userActivity,
+            summary: `${userData.name} performed ${userActivity.activities.length} activities`
+        };
+    } catch (error) {
+        console.error(`Failed to process user activity: ${error.message || error}`);
+        throw error; // Re-throw to allow calling function to handle it
+    }
+}
+
+// Example 4: Parallel async operations with Promise.all
+async function fetchMultipleUsers(userIds) {
+    try {
+        console.log(`Fetching data for ${userIds.length} users simultaneously...`);
+        
+        // Run all fetch operations in parallel
+        const userPromises = userIds.map(id => fetchUserData(id));
+        const users = await Promise.all(userPromises);
+        
+        console.log(`Successfully retrieved ${users.length} users`);
+        return users;
+    } catch (error) {
+        console.error('Error in batch operation:', error);
+        throw error;
+    }
+}
+
+// Main function to execute our examples
+async function runExamples() {
+    // Example 1 tests
+    console.log("\n--- Example 1: Basic Promise Tests ---");
+    try {
+        console.log(await isEvenPromise(4)); // Should resolve
     } catch (error) {
         console.error(error);
     }
-}
-
-// Example of using the async function with an odd number
-async function testOddNumber() {
+    
     try {
-        const result = await isEvenPromise(5);
-        console.log(result); 
+        await isEvenPromise(5); // Should reject
     } catch (error) {
-        console.error(error); // Output: 5 is odd
+        console.error(error);
+    }
+    
+    try {
+        await isEvenPromise("hello"); // Should reject
+    } catch (error) {
+        console.error(error);
+    }
+
+    // Example 2 test
+    console.log("\n--- Example 2: User Data Fetch ---");
+    try {
+        const user = await fetchUserData(42);
+        console.log('User data:', user);
+    } catch (error) {
+        console.error('Failed to fetch user:', error);
+    }
+    
+    // Example 3 test
+    console.log("\n--- Example 3: Chained Operations ---");
+    try {
+        const processedData = await processUserActivity(7);
+        console.log('Processed data:', processedData);
+    } catch (error) {
+        console.error('Processing failed:', error);
+    }
+    
+    // Example 4 test
+    console.log("\n--- Example 4: Parallel Operations ---");
+    try {
+        const users = await fetchMultipleUsers([1, 2, 3]);
+        console.log('Multiple users:', users);
+    } catch (error) {
+        console.error('Failed to fetch multiple users:', error);
     }
 }
 
-// Example of using the async function with an invalid input
-async function testInvalidInput() {
-    try {
-        const result = await isEvenPromise("hello");
-        console.log(result);
-    } catch (error) {
-        console.error(error); // Output: Input must be a number
-    }
-}
-
-// Call the async functions to see the results
-testEvenNumber();
-testOddNumber();
-testInvalidInput();
+// Execute all examples
+console.log("Starting async/await examples...");
+runExamples().then(() => {
+    console.log("\nAll examples completed!");
+}).catch(err => {
+    console.error("Fatal error in examples:", err);
+});
