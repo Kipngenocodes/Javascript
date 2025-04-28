@@ -43,6 +43,8 @@ isEvenPromise("hello")
     .catch(error => console.error(error)); // Output: Input must be a number
 // Example of using the promise with an odd number
 isEvenPromise(5)
+    .then(result => console.log(result)) // Output: 5 is odd    
+    .catch(error => console.error(error)); // Output: Input must be a number
 
 
 
