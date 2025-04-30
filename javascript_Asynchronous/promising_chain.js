@@ -49,3 +49,28 @@ promise1.then((result) => {
 }).then((result) => {
     console.log(`p2 resulted ${result}`);
 }); 
+
+// Error Handling with Promise Chaining
+
+// When handling errors in promise chaining, you can use the catch() method to catch any errors that occur during the execution of the promises.
+// The catch() method is used to handle errors that occur during the execution of the promises in the promise chain.
+// example of promise chaining with error handling
+let promise5 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        console.log("The first promise has resolved");
+        resolve(10);
+    }, 1 * 1000);
+});
+promise5.then((result) => {
+    console.log(`p1 resulted ${result}`);
+    // return another promise
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("This is the second promise result");
+        }, 2 * 1000);
+    });
+}).then((result) => {
+    console.log(`p2 resulted ${result}`);
+}).catch((error) => {
+    console.error("Error occurred:", error);
+});
