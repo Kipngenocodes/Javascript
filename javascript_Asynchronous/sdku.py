@@ -13,7 +13,6 @@ class SudokuGenerator:
         self.solution = None
     
     def is_valid(self, board, row, col, num):
-        # Optimized: Use direct checks with bit manipulation for flags if needed
         for x in range(9):
             if board[row][x] == num or board[x][col] == num:
                 return False
@@ -25,7 +24,6 @@ class SudokuGenerator:
         return True
     
     def find_best_cell(self, board):
-        # Find cell with fewest possible numbers (MRV heuristic)
         min_options = 10
         best_cell = None
         for row in range(9):
@@ -35,18 +33,17 @@ class SudokuGenerator:
                     if options < min_options:
                         min_options = options
                         best_cell = (row, col)
-                    if min_options == 0:  # No valid numbers
+                    if min_options == 0:
                         return None
         return best_cell
     
     def solve_board(self, board):
-        # Optimized backtracking with MRV
         cell = self.find_best_cell(board)
         if not cell:
-            return True  # No empty cells or invalid state
+            return True
         row, col = cell
         nums = list(range(1, 10))
-        random.shuffle(nums)  # Randomize for varied solutions
+        random.shuffle(nums)
         for num in nums:
             if self.is_valid(board, row, col, num):
                 board[row][col] = num
@@ -56,7 +53,6 @@ class SudokuGenerator:
         return False
     
     def count_solutions(self, board, limit=2):
-        # Count solutions to ensure uniqueness (stop at limit)
         solutions = [0]
         self._count_solutions(board, solutions, limit)
         return solutions[0]
@@ -95,7 +91,6 @@ class SudokuGenerator:
         difficulties = {'easy': 30, 'medium': 40, 'hard': 50, 'expert': 60}
         cells_to_remove = difficulties.get(difficulty.lower(), 40)
         
-        # Ensure unique solution
         attempts = 0
         max_attempts = 10
         while attempts < max_attempts:
@@ -111,7 +106,7 @@ class SudokuGenerator:
                 if self.count_solutions([row[:] for row in temp_board]) == 1:
                     self.board[i][j] = 0
                     removed += 1
-            if removed >= cells_to_remove - 2:  # Allow slight variation
+            if removed >= cells_to_remove - 2:
                 break
             attempts += 1
         
@@ -232,8 +227,8 @@ class SudokuGame:
         base_scores = {'easy': 1000, 'medium': 2000, 'hard': 3000, 'expert': 4000}
         base = base_scores.get(self.difficulty.lower(), 2000)
         time_taken = self.elapsed_time
-        max_time = 1800  # 30 minutes
-        time_bonus = max(0, 1000 * (1 - time_taken / max_time))
+        max_time = 1800
+        time_bonus = max(0,  Ascending-Descending (A/D) comparison
         hint_penalty = self.hints_used * 100
         expected_moves = {'easy': 51, 'medium': 41, 'hard': 31, 'expert': 21}
         move_bonus = max(0, (expected_moves[self.difficulty.lower()] - self.moves_made) * 10)
@@ -265,10 +260,25 @@ def display_timer(game):
         sys.stdout.write(f"\rTime: {minutes}m {seconds}s")
         sys.stdout.flush()
         time.sleep(1)
-    # Print final time
     minutes, seconds = divmod(int(game.elapsed_time), 60)
     sys.stdout.write(f"\rTime: {minutes}m {seconds}s\n")
     sys.stdout.flush()
+
+def get_difficulty():
+    difficulties = {'1': 'easy', '2': 'medium', '3': 'hard', '4': 'expert'}
+    while True:
+        print("\nChoose difficulty:")
+        print("1. Easy")
+        print("2. Medium")
+        print("3. Hard")
+        print("4. Expert")
+        choice = input("Enter your choice (1-4, or Enter for Medium): ").strip()
+        if choice == "":
+            print("Defaulting to Medium difficulty.")
+            return 'medium'
+        if choice in difficulties:
+            return difficulties[choice]
+        print("Invalid choice. Please enter 1, 2, 3, 4, or press Enter for default.")
 
 def main():
     print("Welcome to Sudoku!")
@@ -294,16 +304,10 @@ def main():
             if not success:
                 continue
         else:
-            print("\nChoose difficulty:")
-            print("1. Easy")
-            print("2. Medium")
-            print("3. Hard")
-            print("4. Expert")
-            choice = input("Enter your choice (1-4) [default: 2]: ").strip()
-            difficulties = {'1': 'easy', '2': 'medium', '3': 'hard', '4': 'expert'}
-            game.new_game(difficulties.get(choice, 'medium'))
+            difficulty = get_difficulty()
+            print(f"\nStarting new {difficulty} game...")
+            game.new_game(difficulty)
         
-        # Start timer thread
         timer_thread = threading.Thread(target=display_timer, args=(game,), daemon=True)
         timer_thread.start()
         
