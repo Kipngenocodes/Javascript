@@ -12,8 +12,8 @@ func_name(() => {
 */
 
 // Example 1: Basic Callback Function
-function multipication(a) {
-    return a * 2; // Note: Likely a typo; should be 'multiplication'
+function multipication(a, b) {
+    return a * b; // Note: Likely a typo; should be 'multiplication'
 }
 function add(a, b) {
     return a + b;
