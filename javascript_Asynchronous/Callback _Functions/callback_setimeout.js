@@ -1,13 +1,20 @@
-// working of callback function with setTimeout
-// setTimeout is a built-in JavaScript function that executes a callback function after a specified delay (in milliseconds).
-// It is commonly used to simulate asynchronous behavior in JavaScript. 
-// It is a way to perform non-blocking operations in JavaScript.
-// It allows you to execute a function after a specified delay without blocking the execution of other code.
-// This is particularly useful in scenarios where you want to delay the execution of a function or create a timer-based effect.
-
-// Example 1: Basic setTimeout with callback
+// C:\Users\p1\Desktop\javascript\javascript_Asynchronous\loading_external_resources\delayedGreeting.js
 function delayedGreeting() {
     setTimeout(() => {
         console.log("Hello after 2 seconds!");
     }, 2000);
 }
+
+function delayedGreetingWithCallback(callback) {
+    setTimeout(() => {
+        console.log("Hello after 20 seconds!");
+        callback(); // Call the callback function after the delay
+    }, 20000);
+}
+
+// Execute the functions to get output
+delayedGreeting(); // Trigger the first function
+
+delayedGreetingWithCallback(() => {
+    console.log("Callback executed after 20 seconds!");
+});
