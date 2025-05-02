@@ -1,4 +1,4 @@
-// validateAsync.js (Node.js)
+// C:\Users\p1\Desktop\javascript\javascript_Asynchronous\loading_external_resources\validateAsync.js
 const fetch = require('node-fetch').default;
 
 async function validateAsync(data) {
@@ -10,15 +10,16 @@ async function validateAsync(data) {
         errors.email = 'Invalid email format';
     }
 
-    // Asynchronous check: Ensure email is not taken
+  // Asynchronous check: Check if email exists using JSONPlaceholder
     if (!errors.email) {
         try {
-        const response = await fetch(`https://api.example.com/check-email?email=${encodeURIComponent(data.email)}`);
+        const response = await fetch(`https://jsonplaceholder.typicode.com/users?email=${encodeURIComponent(data.email)}`);
         if (!response.ok) {
-            throw new Error('API request failed');
+            throw new Error(`API request failed: ${response.statusText}`);
         }
         const result = await response.json();
-        if (result.taken) {
+        // If result array has entries, email is "taken"
+        if (result.length > 0) {
             errors.email = 'Email is already registered';
         }
         } catch (error) {
@@ -32,7 +33,7 @@ async function validateAsync(data) {
 
 // Example usage
 (async () => {
-    const data = { username: 'john', email: 'john@example.com' };
+    const data = { username: 'john', email: 'Spincere@april.biz' }; // Email exists in JSONPlaceholder
     const errors = await validateAsync(data);
     if (errors) {
         console.log('Validation errors:', errors);
