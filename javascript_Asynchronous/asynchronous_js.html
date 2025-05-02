@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Asynchronous JavaScript</title>
+    </head>
+    <body>
+        <h1>Asynchronous JavaScript</h1>
+        <p id="output"></p>
+        <script>
+            const output = document.getElementById("output");
+            // Asynchronous JavaScript using setTimeout
+            setTimeout(() => {
+                output.innerHTML += "This is an asynchronous message after 2 seconds.<br>";
+            }, 2000);
+
+            // Asynchronous JavaScript using fetch
+            fetch("https://jsonplaceholder.typicode.com/posts/1")
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                output.innerHTML += "Title: " + data.title + "<br>";
+                output.innerHTML += "Body: " + data.body + "<br>";
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error);
+            });
+        </script>
+    </body>
+</html>
