@@ -17,4 +17,4 @@ delayedGreeting(); // Trigger the first function
 
 delayedGreetingWithCallback(() => {
     console.log("Callback executed after 20 seconds!");
-});
+});   
