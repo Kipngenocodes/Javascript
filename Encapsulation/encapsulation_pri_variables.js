@@ -4,7 +4,7 @@ class BankAccount {
     #owner;
 
     constructor(owner, initialBalance) {
-        this.#owner = owner ;
+        this.#owner = owner1 ;
         this.#balance = initialBalance;
         this.#accountNumber = this.#generateAccountNumber();
     }
