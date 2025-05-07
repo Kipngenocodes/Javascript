@@ -22,12 +22,25 @@ let promise = new Promise((resolve, reject) => {
 // 4. settled: The promise is either fulfilled or rejected. The promise is no longer pending.
 
 // Example of the promise object
-var numbers = [1, 2, 3, 4, 5];  
-var promise = new Promise(function(resolve, reject) {
+const numbers = [1, 2, 3, 4, 5];
+
+const numberPromise = new Promise((resolve, reject) => {
     if (numbers.length > 0) {
-        resolve(numbers); // Resolve the promise with the numbers array
+        resolve(numbers); // Resolve with the numbers array
     } else {
-        reject("No numbers found"); // Reject the promise with an error message
+        reject(new Error("No numbers found")); // Reject with an Error object
+    }
+});
+
+// Using async/await for cleaner promise handling
+async function processNumbers() {
+    try {
+        const result = await numberPromise;
+        console.log("Numbers:", result); // Output: Numbers: [1, 2, 3, 4, 5]
+    } catch (error) {
+        console.error("Error:", error.message); // Output: Error: No numbers found
     }
 }
-);
+
+// Execute the async function
+processNumbers();
