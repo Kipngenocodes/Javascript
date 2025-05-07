@@ -69,3 +69,24 @@ async function tryCatchExample() {
 
   // Execute the try...catch example
 tryCatchExample();
+
+
+// JavaScript Await Keyword
+/* async function func_name(parameters) {
+    await promise;
+    Function body
+}
+*/
+// Example of async function with await
+async function asyncAwaitExample() {
+    const promise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("Didn't we have a great time?"); // Resolve the promise after 2 seconds
+        }, 2000);
+    });
+
+    const result = await promise; // Wait for the promise to resolve
+    console.log(result); // Output: Promise resolved
+}
+
+asyncAwaitExample(); // Call the async function to see the output
