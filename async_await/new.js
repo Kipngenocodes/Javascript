@@ -92,16 +92,25 @@ async function asyncAwaitExample() {
 asyncAwaitExample(); // Call the async function to see the output
 
 // Error Handling with Javascript Async/Await
-async function errorHandlingmain() {
+async function fetchData() {
+    const url = "https://jsonplaceholder.typicode.com/posts/1"; // Valid public API URL
     try {
-        const response = await fetch("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        const response = await fetch(url);
         if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
         const data = await response.json();
-        console.log("Data fetched successfully:", data);
+        console.log("Data fetched successfully from", url, ":", data);
     } catch (error) {
-        console.error("Error fetching data:", error.message);
+            console.error("Error fetching data from", url, ":", error.message);
+        if (error.name === "TypeError") {
+            console.error("Possible network issue or invalid URL.");
+        }
     }
+    finally {
+        console.log("Fetch attempt completed.");
     }
-errorHandlingmain(); // Call the async function to see the output
+}
+  // Call the async function to execute
+
+    fetchData();
