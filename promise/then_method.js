@@ -38,3 +38,15 @@ async function processNumbers() {
     console.error("Error:", error.message); // Output: Error: The numbers are not equal
     }
 }
+
+// Having finally in the promise chain
+promise
+    .then((result) => {
+        console.log("Success:", result);
+    })
+    .catch((error) => {
+        console.error("Error:", error.message);
+    })
+    .finally(() => {
+        console.log("Promise chain completed");
+    });
