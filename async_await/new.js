@@ -30,3 +30,42 @@ async function awaitExample() {
 }
 
 awaitExample(); // Call the async function to see the output
+
+// Approach 1: Using .then() and .catch() for error handling
+async function gettingData() {
+    try {
+        const response = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+      return data; // Return data for use in .then()
+    } catch (error) {
+      throw error; // Re-throw error for .catch()
+    }
+    }
+
+gettingData()
+    .then((data) => {
+        console.log("Data fetched successfully:", data);
+    })
+    .catch((error) => {
+        console.error("Error fetching data:", error.message);
+    });
+
+  // Approach 2: Using try...catch within async function
+async function tryCatchExample() {
+    try {
+        const response = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log("Data fetched successfully (try...catch):", data);
+    } catch (error) {
+        console.error("Error fetching data (try...catch):", error.message);
+    }
+    }
+
+  // Execute the try...catch example
+tryCatchExample();
