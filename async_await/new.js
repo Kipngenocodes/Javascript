@@ -90,3 +90,18 @@ async function asyncAwaitExample() {
 }
 
 asyncAwaitExample(); // Call the async function to see the output
+
+// Error Handling with Javascript Async/Await
+async function errorHandlingmain() {
+    try {
+        const response = await fetch("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log("Data fetched successfully:", data);
+    } catch (error) {
+        console.error("Error fetching data:", error.message);
+    }
+    }
+errorHandlingmain(); // Call the async function to see the output
