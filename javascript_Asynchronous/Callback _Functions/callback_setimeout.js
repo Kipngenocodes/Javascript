@@ -4,6 +4,7 @@ function delayedGreeting() {
         console.log("Hello after 2 seconds!");
     }, 2000);
 }
+//This has to be challenging 
 
 function delayedGreetingWithCallback(callback) {
     setTimeout(() => {
