@@ -114,3 +114,26 @@ async function fetchData() {
   // Call the async function to execute
 
     fetchData();
+
+
+// Example of async function with javascript async Class methods
+/*async method_name() {
+    return await promise;
+}*/
+
+// Example of async class method
+class AsyncExample {
+    async fetchData() {
+        const promise = new Promise((resolve) => {
+            setTimeout(() => {
+                resolve("Data fetched from async class method");
+            }, 2000);
+        });
+
+        const result = await promise; // Wait for the promise to resolve
+        console.log(result); // Output: Data fetched from async class method
+    }
+}
+// Create an instance of the class and call the async method
+const asyncExample = new AsyncExample();    
+asyncExample.fetchData(); // Call the async method to see the output
