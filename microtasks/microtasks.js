@@ -44,3 +44,30 @@ function demoMicrotaskExecution() {
 }
   // Run the function
     demoMicrotaskExecution();
+
+// Macrotasks
+// The Macrotasks are also a short function that gets executed after the execution of all code, which is inside the call stack and microtask queue.
+// Javascript  run-time engine adds the macrotasks into the macrotask queue and executes them after the completion of all microtasks.
+// The macrotasks are executed after the completion of all microtasks and the call stack is empty.
+// Macrotasks include setTimeout(), setInterval(), and I/O operations.
+
+// Example demonstrating the execution order of macrotasks
+function demoMacrotaskExecution() {
+        // Synchronous code: Executes immediately
+        console.log('Start');
+
+        // Macrotask: Scheduled in the macrotask queue (executes after microtasks)
+        setTimeout(() => {
+        console.log('Timeout 1 - Macrotask');
+        }, 0);
+
+        // Macrotask: Another macrotask via setTimeout
+        setTimeout(() => {
+        console.log('Timeout 2 - Macrotask');
+        }, 0);
+
+        // Synchronous code: Executes immediately
+        console.log('End');
+}
+// Run the function
+demoMacrotaskExecution();
