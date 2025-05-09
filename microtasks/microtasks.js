@@ -7,3 +7,40 @@
 collecting the event data, and executing the sub-tasks. The event loop is a single-threaded loop that runs continuously, checking for tasks to execute. 
 The event loop is responsible for executing the code, processing it, collecting the event data, and executing the sub-tasks.
 The event loop is a single-threaded loop that runs continuously, checking for tasks to execute. */  
+
+// Microtasks are executed before any macrotasks, such as setImmediate() and setTimeout()..
+// Microtasks is a s shorter functions that is produced by promise, or asynchronous function and consume later.
+// list of microtasks are Promise Callbacks, MutationObserver callbacks, and queueMicrotask() callbacks.
+
+/*Whatever callback function you pass as an argument of the then(), catch(), 
+or finally() method while consuming the promise code it gets added into the microtask queue. */
+
+// Example demonstrating microtasks vs macrotasks execution order
+function demoMicrotaskExecution() {
+        // Synchronous code: Executes immediately
+        console.log('Start');
+    
+        // Macrotask: Scheduled in the macrotask queue (executes after microtasks)
+        setTimeout(() => {
+        console.log('Timeout 1 - Macrotask');
+        }, 0);
+    
+        // Microtask: Scheduled in the microtask queue (executes before macrotasks)
+        Promise.resolve().then(() => {
+        console.log('Promise 1 - Microtask');
+        // Nested microtask: Scheduled during microtask execution
+        Promise.resolve().then(() => {
+            console.log('Promise 2 - Nested Microtask');
+        });
+        });
+    
+        // Microtask: Another microtask via queueMicrotask
+        queueMicrotask(() => {
+        console.log('QueueMicrotask 1 - Microtask');
+        });
+    
+        // Synchronous code: Executes immediately
+        console.log('End');
+}
+  // Run the function
+    demoMicrotaskExecution();
