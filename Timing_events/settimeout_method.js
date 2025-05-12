@@ -16,6 +16,7 @@ setTimeout(greet, 3000); // Executes greet() after 3 seconds (3000 milliseconds)
 function greetUser(name) {
     console.log(`Hello, ${name}!`);
 }
+setTimeout(greetUser, 2000, "John");
 
 
 // Example of setTimeout() with promise
@@ -30,3 +31,11 @@ function greetUserWithPromise(name) {
 greetUserWithPromise("John").then((message) => {
     console.log(message);
 });
+
+// ClearTimeout() method example
+let timeoutId = setTimeout(() => {
+    console.log("This will not be executed.");
+}, 5000);
+
+clearTimeout(timeoutId); // Cancels the timeout before it executes
+console.log("Timeout cleared.");
