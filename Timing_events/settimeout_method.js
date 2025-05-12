@@ -39,3 +39,13 @@ let timeoutId = setTimeout(() => {
 
 clearTimeout(timeoutId); // Cancels the timeout before it executes
 console.log("Timeout cleared.");
+
+// Can I use window.setInterval() and window.clearInterval() instead of the  setTimeout() method in Node.js?
+// No, you cannot use window.setInterval() and window.clearInterval() in Node.js.
+// Instead, you can use the setInterval() and clearInterval() methods provided by Node.js.
+// Example:
+let intervalId = setInterval(() => {
+    console.log("This will be executed every 2 seconds.");
+}, 2000);
+// Yes, you can use the setTimeout() method in Node.js.
+// Eample 
