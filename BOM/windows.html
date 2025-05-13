@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variable Scope Demo</title>
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 10px;
+        }
+        .output {
+        margin: 10px 0;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        }
+        button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        }
+        button:hover {
+        background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Variable Scope Demo</h1>
+    <div id="output1" class="output">The value of the global num variable is: </div>
+    <div id="output2" class="output">The value of the local num variable is: </div>
+    <div id="output3" class="output">The value of the car object is: </div>
+    <button onclick="test()">Run Test</button>
+
+    <script>
+        'use strict';
+
+        // Global variable
+        const num = 100;
+
+        // Global constant object
+        const car = {
+        brand: "Honda",
+        model: "city"
+        };
+
+        // Function to demonstrate variable scope and DOM manipulation
+        function test() {
+        // Local variable
+        const localNum = 300;
+
+        // Get DOM elements with null checks
+        const output1 = document.getElementById("output1");
+        const output2 = document.getElementById("output2");
+        const output3 = document.getElementById("output3");
+
+        if (!output1 || !output2 || !output3) {
+            console.error("One or more output elements not found");
+            return;
+        }
+
+        // Update DOM with explicit values
+        output1.innerHTML = `The value of the global num variable is: ${num}`;
+        output2.innerHTML = `The value of the local num variable is: ${localNum}`;
+        output3.innerHTML = `The value of the car object is: ${car.brand || 'Unknown'}`;
+        }
+
+        // Run on load (optional, can be removed if button-only is preferred)
+        test();
+    </script>
+</body>
+</html>
