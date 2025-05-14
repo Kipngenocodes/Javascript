@@ -28,6 +28,14 @@
         font-size: 1.2em;
         background-color: #f9f9f9;
         }
+        #output3 { 
+        margin: 20px 0;
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1.2em;
+        background-color: #f9f9f9;
+        }
         button {
         padding: 10px 20px;
         background-color: #4CAF50;
@@ -46,8 +54,10 @@
     <h1>Window Height and Width Demo</h1>
     <p id="output">The height of the window is: </p> 
     <p id="output2">The width of the window is: </p>  
+    <p id="output3">The screenleft of the window is: </p>
     <button onclick="updateHeight()">Refresh Height</button>
     <button onclick="updateWidth()">Refresh Width</button>
+    <button onclick="updateScreenLeft()">Refresh Screen Left</button>
     <br><br>
 
     <script>
@@ -71,14 +81,26 @@
         }
         output2.innerHTML = `The width of the window is: ${window.innerWidth}px`;
         }
+    // Function to update screen left
+    function updateScreenLeft() {
+        const output3 = document.getElementById("output3");
+        if (!output3) {
+        console.error("Output element not found");
+        return;
+        }
+        output3.innerHTML = `The screen left of the window is: ${window.screenLeft}px`;
+        }
 
     // Initial update
     updateHeight();
     updateWidth();
+    updateScreenLeft();
 
     // Update on window resize
     window.addEventListener('resize', updateHeight);
     window.addEventListener('resize', updateWidth);
+    window.addEventListener('resize', updateScreenLeft);
+
     </script>
 </body>
 </html>
