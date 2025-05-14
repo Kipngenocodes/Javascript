@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window Height Demo</title>
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 10px;
+        text-align: center;
+        }
+        #output {
+        margin: 20px 0;
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1.2em;
+        background-color: #f9f9f9;
+        }
+        #output2 {
+        margin: 20px 0;
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1.2em;
+        background-color: #f9f9f9;
+        }
+        button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        }
+        button:hover {
+        background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Window Height and Width Demo</h1>
+    <p id="output">The height of the window is: </p> 
+    <p id="output2">The width of the window is: </p>  
+    <button onclick="updateHeight()">Refresh Height</button>
+    <button onclick="updateWidth()">Refresh Width</button>
+    <br><br>
+
+    <script>
+    'use strict';
+
+    // Function to update window height
+    function updateHeight() {
+        const output = document.getElementById("output");
+        if (!output) {
+        console.error("Output element not found");
+        return;
+        }
+        output.innerHTML = `The height of the window is: ${window.innerHeight}px`;
+        }
+    // Function to update window width
+    function updateWidth() {
+        const output2 = document.getElementById("output2");
+        if (!output2) {
+        console.error("Output element not found");
+        return;
+        }
+        output2.innerHTML = `The width of the window is: ${window.innerWidth}px`;
+        }
+
+    // Initial update
+    updateHeight();
+    updateWidth();
+
+    // Update on window resize
+    window.addEventListener('resize', updateHeight);
+    window.addEventListener('resize', updateWidth);
+    </script>
+</body>
+</html>
