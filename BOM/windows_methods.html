@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Window Object Methods Demo</title>
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f4f4f4;
+        }
+        h1 {
+        text-align: center;
+        color: #2c3e50;
+        }
+        .controls {
+        text-align: center;
+        margin-bottom: 20px;
+        }
+        .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        }
+        .card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        padding: 20px;
+        width: 300px;
+        transition: transform 0.2s;
+        }
+        .card:hover {
+        transform: translateY(-5px);
+        }
+        .card h3 {
+        margin: 0 0 10px;
+        color: #4CAF50;
+        font-size: 18px;
+        }
+        .card p {
+        margin: 0 0 15px;
+        font-size: 14px;
+        color: #555;
+        }
+        .card button {
+        padding: 8px 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        }
+        .card button:hover {
+        background-color: #45a049;
+        }
+        .result {
+        margin-top: 10px;
+        font-size: 14px;
+        color: blue;
+        }
+        .error {
+        color: red;
+        font-style: italic;
+        }
+        #childWindowBtn {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        }
+        #childWindowBtn:hover {
+        background-color: #45a049;
+        }
+        #animationBox {
+        width: 50px;
+        height: 50px;
+        background-color: #4CAF50;
+        position: relative;
+        margin: 20px auto;
+        display: none;
+        border-radius: 5px;
+        }
+        @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+        }
+        button:active {
+        animation: pulse 0.2s;
+        }
+    </style>
+    </head>
+    <body>
+    <h1>Interactive Window Object Methods Demo</h1>
+    <div class="controls">
+        <button id="childWindowBtn" onclick="openChildWindow()">Open Child Window for Context-Dependent Methods</button>
+    </div>
+    <div id="animationBox"></div>
+    <div class="card-container" id="methodsContainer"></div>
+
+    <script>
+        'use strict';
+
+        // Array of window methods with descriptions
+        const windowMethods = [
+        { name: 'alert', description: 'Shows an alert message.' },
+        { name: 'atob', description: 'Converts a base-64 string to a normal string.' },
+        { name: 'blur', description: 'Removes focus from the window.' },
+        { name: 'btoa', description: 'Encodes a string to base-64.' },
+        { name: 'cancelAnimationFrame', description: 'Cancels an animation frame.' },
+        { name: 'cancelIdleCallback', description: 'Cancels an idle callback.' },
+        { name: 'clearImmediate', description: 'Clears a setImmediate action.' },
+        { name: 'clearInterval', description: 'Resets a setInterval timer.' },
+        { name: 'clearTimeout', description: 'Stops a setTimeout timer.' },
+        { name: 'close', description: 'Closes the current window.' },
+        { name: 'confirm', description: 'Shows a confirm box for user confirmation.' },
+        { name: 'focus', description: 'Focuses the current window.' },
+        { name: 'getComputedStyle', description: 'Returns computed CSS styles.' },
+        { name: 'getSelection', description: 'Returns the selected text range.' },
+        { name: 'matchMedia', description: 'Checks if the document matches media queries.' },
+        { name: 'moveBy', description: 'Moves the window relative to its current position.' },
+        { name: 'moveTo', description: 'Moves the window to an absolute position.' },
+        { name: 'open', description: 'Opens a new window.' },
+        { name: 'postMessage', description: 'Sends a message to a window.' },
+        { name: 'print', description: 'Prints the window content.' },
+        { name: 'prompt', description: 'Shows a prompt box for user input.' },
+        { name: 'requestAnimationFrame', description: 'Schedules an animation update.' },
+        { name: 'requestIdleCallback', description: 'Schedules a callback when the browser is idle.' },
+        { name: 'resizeBy', description: 'Resizes the window by a number of pixels.' },
+        { name: 'resizeTo', description: 'Sets the window to a specific size.' },
+        { name: 'scrollTo', description: 'Scrolls the window to an absolute position.' },
+        { name: 'scrollBy', description: 'Scrolls the window relative to the current position.' },
+        { name: 'setImmediate', description: 'Runs a callback after other operations.' },
+        { name: 'setInterval', description: 'Executes an action repeatedly at intervals.' },
+        { name: 'setTimeout', description: 'Executes an action after a delay.' },
+        { name: 'stop', description: 'Stops the window from loading.' }
+        ];
+
+        // State for tracking child window and method states
+        let childWindow = null;
+        let animationFrameId = null;
+        let idleCallbackId = null;
+        let intervalId = null;
+        let timeoutId = null;
+        let immediateId = null;
+
+        // Function to open a child window
+        function openChildWindow() {
+        childWindow = window.open('', 'ChildWindow', 'width=400,height=400');
+        if (childWindow) {
+            childWindow.document.write('<h1>Child Window</h1><p>Test window for window methods.</p>');
+            document.getElementById('childWindowBtn').textContent = 'Child Window Open (Click to Reopen)';
+        }
+        }
+
+        // Function to populate card container
+        function populateMethodsContainer() {
+        const container = document.getElementById('methodsContainer');
+        if (!container) {
+            console.error('Methods container not found');
+            return;
+        }
+
+        container.innerHTML = '';
+        windowMethods.forEach(method => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+            <h3>${method.name}</h3>
+            <p>${method.description}</p>
+            <button onclick="demonstrateMethod('${method.name}')">Run</button>
+            <div class="result" id="result-${method.name}"></div>
+            `;
+            container.appendChild(card);
+        });
+        }
+
+        // Function to demonstrate each method
+        function demonstrateMethod(methodName) {
+        const resultElement = document.getElementById(`result-${methodName}`);
+        if (!resultElement) return;
+
+        try {
+            switch (methodName) {
+            case 'alert':
+                window.alert('This is an alert message!');
+                resultElement.innerHTML = 'Alert shown';
+                break;
+            case 'atob':
+                resultElement.innerHTML = window.atob('SGVsbG8=');
+                break;
+            case 'btoa':
+                resultElement.innerHTML = window.btoa('Hello');
+                break;
+            case 'blur':
+                if (childWindow && !childWindow.closed) {
+                childWindow.blur();
+                resultElement.innerHTML = 'Child window blurred';
+                } else {
+                resultElement.innerHTML = '<span class="error">Open child window first</span>';
+                }
+                break;
+            case 'focus':
+                if (childWindow && !childWindow.closed) {
+                childWindow.focus();
+                resultElement.innerHTML = 'Child window focused';
+                } else {
+                resultElement.innerHTML = '<span class="error">Open child window first</span>';
+                }
+                break;
+            case 'close':
+                if (childWindow && !childWindow.closed) {
+                childWindow.close();
+                resultElement.innerHTML = 'Child window closed';
+                document.getElementById('childWindowBtn').textContent = 'Open Child Window for Context-Dependent Methods';
+                } else {
+                resultElement.innerHTML = '<span class="error">Open child window first</span>';
+                }
+                break;
+            case 'confirm':
+                const confirmed = window.confirm('Do you confirm this action?');
+                resultElement.innerHTML = confirmed.toString();
+                break;
+            case 'prompt':
+                const input = window.prompt('Enter your name:', 'User');
+                resultElement.innerHTML = input || 'Cancelled';
+                break;
+            case 'getComputedStyle':
+                const style = window.getComputedStyle(document.body);
+                resultElement.innerHTML = `Font: ${style.fontFamily}`;
+                break;
+            case 'getSelection':
+                const selection = window.getSelection().toString();
+                resultElement.innerHTML = selection || 'No text selected';
+                break;
+            case 'matchMedia':
+                const media = window.matchMedia('(max-width: 600px)');
+                resultElement.innerHTML = `Matches: ${media.matches}`;
+                break;
+            case 'open':
+                const newWindow = window.open('about:blank', 'TestWindow', 'width=300,height=300');
+                if (newWindow) {
+                newWindow.document.write('<h1>New Window</h1>');
+                resultElement.innerHTML = 'New window opened';
+                }
+                break;
+            case 'print':
+                if (window.confirm('Open print dialog?')) {
+                window.print();
+                resultElement.innerHTML = 'Print dialog opened';
+                }
+                break;
+            case 'stop':
+                if (window.confirm('Stop page loading? (May not work after full load)')) {
+                window.stop();
+                resultElement.innerHTML = 'Stop attempted';
+                }
+                break;
+            case 'scrollTo':
+                window.scrollTo(0, 100);
+                resultElement.innerHTML = 'Scrolled to y=100';
+                break;
+            case 'scrollBy':
+                window.scrollBy(0, 50);
+                resultElement.innerHTML = 'Scrolled down 50px';
+                break;
+            case 'moveBy':
+                if (childWindow && !childWindow.closed) {
+                childWindow.moveBy(50, 50);
+                resultElement.innerHTML = 'Child window moved by 50px';
+                } else {
+                resultElement.innerHTML = '<span class="error">Open child window first</span>';
+                }
+                break;
+            case 'moveTo':
+                if (childWindow && !childWindow.closed) {
+                childWindow.moveTo(100, 100);
+                resultElement.innerHTML = 'Child window moved to (100,100)';
+                } else {
+                resultElement.innerHTML = '<span class="error">Open child window first</span>';
+                }
+                break;
+            case 'resizeBy':
+                if (childWindow && !childWindow.closed) {
+                childWindow.resizeBy(20, 20);
+                resultElement.innerHTML = 'Child window resized by 20px';
+                } else {
+                resultElement.innerHTML = '<span class="error">Open child window first</span>';
+                }
+                break;
+            case 'resizeTo':
+                if (childWindow && !childWindow.closed) {
+                childWindow.resizeTo(500, 500);
+                resultElement.innerHTML = 'Child window resized to 500x500';
+                } else {
+                resultElement.innerHTML = '<span class="error">Open child window first</span>';
+                }
+                break;
+            case 'setTimeout':
+                timeoutId = window.setTimeout(() => {
+                resultElement.innerHTML = 'Timeout triggered after 1s';
+                }, 1000);
+                resultElement.innerHTML = 'Timeout scheduled';
+                break;
+            case 'clearTimeout':
+                if (timeoutId) {
+                window.clearTimeout(timeoutId);
+                resultElement.innerHTML = 'Timeout cleared';
+                } else {
+                resultElement.innerHTML = '<span class="error">Run setTimeout first</span>';
+                }
+                break;
+            case 'setInterval':
+                intervalId = window.setInterval(() => {
+                const el = document.getElementById(`result-${methodName}`);
+                if (el) el.innerHTML = `Interval tick: ${new Date().toLocaleTimeString()}`;
+                }, 1000);
+                resultElement.innerHTML = 'Interval started';
+                break;
+            case 'clearInterval':
+                if (intervalId) {
+                window.clearInterval(intervalId);
+                resultElement.innerHTML = 'Interval cleared';
+                } else {
+                resultElement.innerHTML = '<span class="error">Run setInterval first</span>';
+                }
+                break;
+            case 'setImmediate':
+                immediateId = window.setImmediate(() => {
+                resultElement.innerHTML = 'Immediate callback executed';
+                });
+                resultElement.innerHTML = 'Immediate scheduled';
+                break;
+            case 'clearImmediate':
+                if (immediateId) {
+                window.clearImmediate(immediateId);
+                resultElement.innerHTML = 'Immediate cleared';
+                } else {
+                resultElement.innerHTML = '<span class="error">Run setImmediate first</span>';
+                }
+                break;
+            case 'requestAnimationFrame':
+                const box = document.getElementById('animationBox');
+                box.style.display = 'block';
+                let pos = 0;
+                function animate() {
+                pos += 2;
+                if (pos > 200) pos = 0;
+                box.style.left = `${pos}px`;
+                animationFrameId = window.requestAnimationFrame(animate);
+                }
+                animationFrameId = window.requestAnimationFrame(animate);
+                resultElement.innerHTML = 'Animation started (see box above)';
+                break;
+            case 'cancelAnimationFrame':
+                if (animationFrameId) {
+                window.cancelAnimationFrame(animationFrameId);
+                document.getElementById('animationBox').style.display = 'none';
+                resultElement.innerHTML = 'Animation cancelled';
+                } else {
+                resultElement.innerHTML = '<span class="error">Run requestAnimationFrame first</span>';
+                }
+                break;
+            case 'requestIdleCallback':
+                idleCallbackId = window.requestIdleCallback(deadline => {
+                resultElement.innerHTML = `Idle callback ran with ${deadline.timeRemaining().toFixed(2)}ms remaining`;
+                });
+                resultElement.innerHTML = 'Idle callback scheduled';
+                break;
+            case 'cancelIdleCallback':
+                if (idleCallbackId) {
+                window.cancelIdleCallback(idleCallbackId);
+                resultElement.innerHTML = 'Idle callback cancelled';
+                } else {
+                resultElement.innerHTML = '<span class="error">Run requestIdleCallback first</span>';
+                }
+                break;
+            case 'postMessage':
+                if (childWindow && !childWindow.closed) {
+                childWindow.postMessage('Hello from parent!', '*');
+                resultElement.innerHTML = 'Message sent to child window';
+                } else {
+                resultElement.innerHTML = '<span class="error">Open child window first</span>';
+                }
+                break;
+            default:
+                resultElement.innerHTML = '<span class="error">Not implemented</span>';
+            }
+        } catch (error) {
+            resultElement.innerHTML = `<span class="error">Error: ${error.message}</span>`;
+        }
+        }
+
+        // Initialize cards
+        populateMethodsContainer();
+
+        // Listen for postMessage responses
+        window.addEventListener('message', event => {
+        const resultElement = document.getElementById('result-postMessage');
+        if (resultElement) {
+            resultElement.innerHTML = `Received: ${event.data}`;
+        }
+        });
+    </script>
+</body>
+</html>
