@@ -17,3 +17,127 @@ It can be accessed using window.document syntax. It can also be accessed without
 
     document.doctype − Returns the Document Type Declaration (DTD) of the document.
 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Properties Viewer</title>
+    <style>
+        :root {
+            --primary-color: #4285f4;
+            --secondary-color: #f1f3f4;
+            --border-color: #dadce0;
+            --text-color: #202124;
+            --padding: 1rem;
+            --border-radius: 8px;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 var(--padding);
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .property-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        
+        .property-card {
+            padding: var(--padding);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            background-color: white;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            transition: box-shadow 0.2s ease;
+        }
+        
+        .property-card:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .property-name {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .property-value {
+            background-color: var(--secondary-color);
+            padding: 0.75rem;
+            border-radius: calc(var(--border-radius) - 2px);
+            word-break: break-all;
+            white-space: pre-wrap;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #5f6368;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Document Object Properties</h1>
+    
+    <div class="property-container">
+        <div class="property-card">
+            <div class="property-name">Document Title</div>
+            <div class="property-value" id="output1"></div>
+        </div>
+        
+        <div class="property-card">
+            <div class="property-name">Document URL</div>
+            <div class="property-value" id="output2"></div>
+        </div>
+        
+        <div class="property-card">
+            <div class="property-name">Body Element</div>
+            <div class="property-value" id="output3"></div>
+        </div>
+        
+        <div class="property-card">
+            <div class="property-name">Head Element</div>
+            <div class="property-value" id="output4"></div>
+        </div>
+        
+        <div class="property-card">
+            <div class="property-name">Document Element</div>
+            <div class="property-value" id="output5"></div>
+        </div>
+        
+        <div class="property-card">
+            <div class="property-name">Doctype Declaration</div>
+            <div class="property-value" id="output6"></div>
+        </div>
+    </div>
+    
+    <footer>
+        Document properties displayed using JavaScript
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById("output1").textContent = document.title;
+            document.getElementById("output2").textContent = document.URL;
+            document.getElementById("output3").textContent = document.body.toString();
+            document.getElementById("output4").textContent = document.head.toString();
+            document.getElementById("output5").textContent = document.documentElement.toString();
+            document.getElementById("output6").textContent = document.doctype ? document.doctype.name : 'None';
+        });
+    </script>
+</body>
+</html>
