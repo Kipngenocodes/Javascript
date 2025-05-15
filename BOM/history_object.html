@@ -1,0 +1,31 @@
+<!-- In JavaScript, the window 'history' object contains information about the browser's session history.   
+It contains the array of visited URLs in the current session.
+The 'history' object is a property of the 'window' object. 
+The history property can be accessed with or without referencing its owner object, i.e., window object.
+
+Syntax:
+window.history.methodName();
+OR
+history.methodName();
+
+Javascript History Back() Method
+The back() method loads the previous URL in the history list.
+Syntax:
+history.back();
+-->
+
+<!DOCTYPE html>
+<html lang="en"></html>    
+    <body>
+        <p> Click "Go Back" button to load previous URL </p>
+        <button onclick="goback()"> Go Back </button>
+        <p id = "output"> </p>
+        <script>
+            function goback() {
+                history.back();
+                document.getElementById("output").innerHTML +=
+                "You will have gone to previous URL if it exists" ;
+            }
+        </script>
+    </body>
+</html>
