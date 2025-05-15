@@ -1,0 +1,61 @@
+<!--The location object in JavaScript provides information about the browser's location, i.e., URLs. 
+It is a built-in property of both the window and document objects. We can access it using either window.location or document.location.
+
+Syntax: window.location or document.location
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Properties Viewer</title>
+    <style>
+        body {
+            background-color: #0000ff; /* Blue background */
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            color: #202124;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        #output {
+            background-color: #f1f3f4;
+            padding: 1rem;
+            border-radius: 8px;
+            word-break: break-all;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div id="output"></div>
+    <script>
+        // Store location properties for cleaner code
+        const locationProps = {
+            href: location.href,
+            protocol: location.protocol,
+            host: location.host,
+            hostname: location.hostname,
+            port: location.port,
+            pathname: location.pathname,
+            search: location.search
+        };
+
+        // Build the output string
+        let output = `
+            href: ${locationProps.href}<br>
+            protocol: ${locationProps.protocol}<br>
+            host: ${locationProps.host}<br>
+            hostname: ${locationProps.hostname}<br>
+            port: ${locationProps.port}<br>
+            pathname: ${locationProps.pathname}<br>
+            search: ${locationProps.search}<br>
+        `;
+
+        // Update the output div in a single operation
+        document.getElementById("output").innerHTML = output;
+    </script>
+</body>
+</html>
