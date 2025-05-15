@@ -1,0 +1,31 @@
+<!-- object in JavaScript is used to access the information of the user's browser. Using the 'navigator' object,
+you can get the browser version and name and check whether the cookie is enabled in the browser.
+The 'navigator' object is a property of the window object. The navigator object can be accessed using the read-only window.navigator property.
+
+syntax: window.navigator.property;
+or 
+navigator.property;`-->
+
+<!-- Example -->
+<!DOCTYPE html>
+<html lang="en">
+<body>  
+    <p> Browser Information</p>
+    <p id = "demo"> </p>
+    <script>
+        document.getElementById("demo").innerHTML = 
+        "App Name: " + navigator.appName + "<br>" +
+        "App Code Name: " + navigator.appCodeName + "<br>" +
+        "App Version: " + navigator.appVersion + "<br>" +
+        "Cookie Enabled: " + navigator.cookieEnabled + "<br>" +
+        "Language: " + navigator.language + "<br>" + 
+        "Plugins: " + navigator.plugins + "<br>" +
+        "mimeTypes[]: " + navigator.mimeTypes + "<br>" +
+        "platform: " + navigator.platform + "<br>" +
+        "online: " + navigator.online + "<br>" +
+        "product: " + navigator.product + "<br>" +   
+        "userAgent: " + navigator.userAgent;
+    </script>
+    <p>Please note you may get different result depending on your browser. </p>
+</body>
+</html>
