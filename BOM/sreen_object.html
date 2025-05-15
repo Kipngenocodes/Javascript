@@ -1,0 +1,138 @@
+<!--The screen object in JavaScript is a property of the 'window' object. 
+The 'screen' object's properties contain information about the device's screen. 
+The screen object can be accessed by using the window.screen syntax.
+We can also access it without using the window object.
+width − The width of the screen in pixels.
+
+height − The height of the screen in pixels.
+
+availWidth − The width of the screen, minus the width of the window taskbar.
+
+availHeight − The height of the screen, minus the height of the window taskbar.
+
+colorDepth − The number of bits per pixel that the screen can display.
+
+pixelDepth − The number of bits per pixel that the screen is actually using.
+
+syntax: window.screen.property;
+OR
+screen.property;-->
+
+<!--             border-radius: var(--border-radius);
+Example of  using screen properties
+-->
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Properties Viewer</title>
+    <style>
+        :root {
+            --primary-color: #4285f4;
+            --secondary-color: #f1f3f4;
+            --border-color: #dadce0;
+            --text-color: #202124;
+            --padding: 1rem;
+            --border-radius: 8px;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 var(--padding);  
+        }
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .property-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        .property-name {
+            font-weight: bold;
+        }
+        .property-value {
+            background-color: var(--secondary-color);
+            padding: 0.75rem;
+            border-radius: calc(var(--border-radius) - 2px);
+            word-break: break-all;
+            white-space: pre-wrap;
+        }
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #5f6368;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+    </style>    
+</head> 
+<body>
+    <h1>Screen Properties</h1>
+    <div class="property-container">
+        <div class="property">
+            <span class="property-name">width:</span>
+            <span class="property-value">${screen.width}</span>
+        </div>
+        <div class="property">
+            <span class="property-name">height:</span>
+            <span class="property-value">${screen.height}</span>
+        </div>
+        <div class="property">
+            <span class="property-name">availWidth:</span>
+            <span class="property-value">${screen.availWidth}</span>
+        </div>
+        <div class="property">
+            <span class="property-name">availHeight:</span>
+            <span class="property-value">${screen.availHeight}</span>
+        </div>
+        <div class="property">
+            <span class="property-name">colorDepth:</span>
+            <span class="property-value">${screen.colorDepth}</span>
+        </div>
+        <div class="property">
+            <span class="property-name">pixelDepth:</span>
+            <span class="property-value">${screen.pixelDepth}</span>
+        </div>
+    </div>
+    <script>
+        // Example of using screen properties
+        document.querySelectorAll('.property-value').forEach((element, index) => {
+            switch (index) {
+                case 0:
+                    element.textContent = screen.width;
+                    break;
+                case 1:
+                    element.textContent = screen.height;
+                    break;
+                case 2:
+                    element.textContent = screen.availWidth;
+                    break;
+                case 3:
+                    element.textContent = screen.availHeight;
+                    break;
+                case 4:
+                    element.textContent = screen.colorDepth;
+                    break;
+                case 5:
+                    element.textContent = screen.pixelDepth;
+                    break;
+            }
+        });
+    </script>   
+    <footer>
+        Document properties displayed using JavaScript
+</body>
+</html>
