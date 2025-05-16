@@ -12,3 +12,84 @@ syntax: localStorage.setItem('key', 'value');
 localStorage.getItem('key');
 localstorage.removeItem('key');
 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Storage API Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .success { color: green; }
+        .error { color: red; }
+        .input-group { margin: 10px 0; }
+        button { margin-right: 10px; padding: 5px 10px; }
+    </style>
+</head>
+<body>
+    <h3>Web Storage API Example</h3>
+    <div class="input-group">
+        <label for="username">Username: </label>
+        <input type="text" id="username" placeholder="Enter username">
+        <label for="email">Email: </label>
+        <input type="email" id="email" placeholder="Enter email">
+    </div>
+    <button onclick="storeData()">Store Data</button>
+    <button onclick="retrieveData()">Retrieve Data</button>
+    <button onclick="removeData()">Remove Data</button>
+    <button onclick="clearStorage()">Clear Storage</button>
+
+    <div id="output"></div>
+
+    <script>
+        const output = document.getElementById('output');
+
+        function storeData() {
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            if (username && email) {
+                localStorage.setItem('username', username);
+                localStorage.setItem('email', email);
+                output.className = 'success';
+                output.innerText = 'Data stored in local storage.';
+            } else {
+                output.className = 'error';
+                output.innerText = 'Please enter both username and email.';
+            }
+        }
+
+        function retrieveData() {
+            const username = localStorage.getItem('username');
+            const email = localStorage.getItem('email');
+            if (username && email) {
+                output.className = 'success';
+                output.innerText = `Username: ${username}, Email: ${email}`;
+            } else {
+                output.className = 'error';
+                output.innerText = 'No data found in local storage.';
+            }
+        }
+
+        function removeData() {
+            localStorage.removeItem('username');
+            localStorage.removeItem('email');
+            output.className = 'success';
+            output.innerText = 'Data removed from local storage.';
+        }
+
+        function clearStorage() {
+            localStorage.clear();
+            output.className = 'success';
+            output.innerText = 'All data cleared from local storage.';
+        }
+    </script>
+</body>
+</html>
