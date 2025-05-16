@@ -39,6 +39,22 @@ element.setCustomValidity(message)-->
     <input type="password" id="password" placeholder="Enter your password" required>
     <button onclick="validateInput()">Validate Input</button>
     <p id="output"></p>
-
     <script>
-        const form = document.getElementById('myForm');
+        const output = document.getElementById('output');
+        function validateInput() {
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+
+            if (name.checkValidity() && email.checkValidity() && password.checkValidity()) {
+                output.className = 'success';
+                output.innerText = 'All inputs are valid!';
+            } else {
+                output.className = 'error';
+                output.innerText = 'Please fill out all fields correctly.';
+            }
+        }
+        <!-- Using the setCustomValidity() Method -->
+    </script>
+</body>
+</html>
