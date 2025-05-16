@@ -1,0 +1,51 @@
+<!--In JavaScript, the history API allows us to access the browsers history. It can be used to navigate through the history.
+JavaScript History API provides us with methods to manipulate window history object.
+The History object is a property of JavaScript window object. 
+The window history object contains the array of visited URLs in the current session
+// Load the previous URL in the history list
+history.back();
+
+// Load the next URL in the history list
+history.forward();
+
+// Load the page through its number
+history.go(-2); // This will go to the previous 2nd page
+history.go(2); // This will go to the next 2nd page
+
+// Get the length of the history list
+const length = history.length;-->
+
+<!--An example of History api usage-->
+<!DOCTYPE html>
+<html lang="en">    
+    <body>
+        <h3>History API Example</h3>
+        <button onclick="goBack()">Go Back</button>
+        <button onclick="goForward()">Go Forward</button>
+        <button onclick="goToPage(2)">Go to Page 2</button>
+
+        <p id = "output"></p>
+        <p id = "output1"></p>
+        <p id = "output2"></p>
+        <p id="historyLength"></p>
+
+        <script>
+            function goBack() {
+                history.back();
+                document.getElementById("output").innerText = "Going back to the previous page...";
+            }
+
+            function goForward() {
+                history.forward();
+                document.getElementById("output1").innerText = "Going forward to the next page...";
+            }
+
+            function goToPage(page) {
+                history.go(page);
+                document.getElementById("output2").innerText = "Going to page " + page + "...";
+            }
+
+            document.getElementById("historyLength").innerText = "History Length: " + history.length;
+        </script>
+    </body>
+</html>
