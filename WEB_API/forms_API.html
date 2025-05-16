@@ -10,3 +10,35 @@ After validating the input value, it returns a boolean value, representing wheth
 syntax : inputElement.checkValidity();
 element.checkValidity()
 element.setCustomValidity(message)-->
+
+<!-- Example    --> 
+<!DOCTYPE html> 
+<html lang="en">    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation API Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+    <h3>Form Validation API Example</h3>
+    <input type="text" id="name" placeholder="Enter your name" required>
+    <input type="email" id="email" placeholder="Enter your email" required>
+    <input type="password" id="password" placeholder="Enter your password" required>
+    <button onclick="validateInput()">Validate Input</button>
+    <p id="output"></p>
+
+    <script>
+        const form = document.getElementById('myForm');
