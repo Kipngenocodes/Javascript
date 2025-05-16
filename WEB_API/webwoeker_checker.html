@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Worker Support Check</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+        button {
+            padding: 5px 10px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h3>Web Worker Support Check</h3>
+    <button onclick="checkWorkerSupport()">Check Web Worker Support</button>
+    <button onclick="runWorker()" id="runWorkerBtn" disabled>Run Sample Worker</button>
+    <div id="output"></div>
+
+    <script>
+        const output = document.getElementById('output');
+        const runWorkerBtn = document.getElementById('runWorkerBtn');
+
+        function checkWorkerSupport() {
+            if (typeof Worker !== 'undefined') {
+                output.className = 'success';
+                output.innerText = 'Web Workers are supported in this browser!';
+                runWorkerBtn.disabled = false; // Enable the worker button
+            } else {
+                output.className = 'error';
+                output.innerText = 'Web Workers are not supported in this browser.';
+                runWorkerBtn.disabled = true;
+            }
+        }
+
+        function runWorker() {
+            if (typeof Worker === 'undefined') {
+                output.className = 'error';
+                output.innerText = 'Web Workers are not supported.';
+                return;
+            }
+
+            // Create a new Web Worker
+            const worker = new Worker(URL.createObjectURL(new Blob([`
+                self.onmessage = function(e) {
+                    const result = e.data * 2; // Example task: multiply input by 2
+                    self.postMessage(result);
+                };
+            `], { type: 'application/javascript' })));
+
+            // Send data to the worker
+            worker.postMessage(42);
+
+            // Handle messages from the worker
+            worker.onmessage = function(e) {
+                output.className = 'success';
+                output.innerText = `Worker result: ${e.data}`;
+                worker.terminate(); // Clean up the worker
+            };
+
+            // Handle worker errors
+            worker.onerror = function(error) {
+                output.className = 'error';
+                output.innerText = `Worker error: ${error.message}`;
+                worker.terminate();
+            };
+        }
+    </script>
+</body>
+</html>
