@@ -1,0 +1,32 @@
+WEB API is an Application Program Interface for web .Work with any Programming language.
+It is a standard protocol or set of rules to communicate between two software components or systems.
+provides an easy syntax for us of complex code.
+Types of WEB APIs:
+
+1. Browser API (CLIENT-SIDE JAVASCRIPT API)
+2. SERVER API
+3. THIRD PARTY API
+
+Browser API (Client-side JavaScript API):
+The browser APIs are set of Web APIs that are provided by the browsers.
+The browser API is developed on top of the core JavaScript, which you can use to manipulate the web page's functionality.
+There are multiple browser APIs available which can be used to interact with the web page.
+
+                list of common browser APIs
+
+Storage API − It allows you to store the data in the browser's local storage.
+DOM API − It allows you to access DOM elements and manipulate them.
+History API − It allows you to get the browsers history.
+Fetch API − It allows you to fetch data from web servers.
+Forms API − It allows you to validate the form data.
+
+                Server API
+
+A server API provides different functionalities to the web server. Server APIs allow developers to interact with server and access data and resources.
+REST API is a server API that allows us to create and consume the resources on the server.A JSON API is popular API for accessing data in JSON format. The XML API is a popular API for accessing data in XML format.
+
+            Third-party APIs
+
+The third-party API allows you to get the data from their web servers. For example, YouTube API allows you to get the data from YouTubes web server.
+like YOUTUBE API, FACEBOOK API, TWITTER API, etc.
+Create and expose API endpoints for your own software. So, other applications can use your API endpoints to get the data from your web server.
