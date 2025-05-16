@@ -23,11 +23,13 @@ const length = history.length;-->
         <button onclick="goBack()">Go Back</button>
         <button onclick="goForward()">Go Forward</button>
         <button onclick="goToPage(2)">Go to Page 2</button>
+        <button onclick="goToPage(-2)">Go to Previous Page</button>
 
         <p id = "output"></p>
         <p id = "output1"></p>
         <p id = "output2"></p>
-        <p id="historyLength"></p>
+        <p id = "output3"></p>
+        <p id="historyLength"></p>S
 
         <script>
             function goBack() {
@@ -43,6 +45,10 @@ const length = history.length;-->
             function goToPage(page) {
                 history.go(page);
                 document.getElementById("output2").innerText = "Going to page " + page + "...";
+            }
+            function goToPreviousPage(page) {
+                history.go(page);
+                document.getElementById("output3").innerText = "Going to previous page " + page + "...";
             }
 
             document.getElementById("historyLength").innerText = "History Length: " + history.length;
