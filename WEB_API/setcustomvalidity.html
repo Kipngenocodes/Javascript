@@ -2,3 +2,134 @@
 <!-- The setCustomValidity() method allows you to set a custom validation message for an input field. 
 -->
 <!-- Example -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Validity Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .input-group {
+            margin: 10px 0;
+        }
+        .input-error {
+            border: 1px solid red;
+        }
+        #message {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+        button {
+            margin-right: 10px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <h3>Custom Form Validation Example</h3>
+    <form id="userForm" novalidate>
+        <div class="input-group">
+            <label for="username">Username: </label>
+            <input type="text" id="username" required placeholder="At least 5 characters">
+        </div>
+        <div class="input-group">
+            <label for="email">Email: </label>
+            <input type="email" id="email" required placeholder="e.g., user@example.com">
+        </div>
+        <button type="button" onclick="validateForm()">Validate Form</button>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="message"></div>
+
+    <script>
+        const form = document.getElementById('userForm');
+        const username = document.getElementById('username');
+        const email = document.getElementById('email');
+        const message = document.getElementById('message');
+
+        function validateForm() {
+            let isValid = true;
+            message.innerHTML = ''; // Clear previous messages
+            username.classList.remove('input-error');
+            email.classList.remove('input-error');
+
+            // Username validation
+            if (username.value.length < 5) {
+                username.setCustomValidity('Username must be at least 5 characters long.');
+                username.classList.add('input-error');
+                message.innerHTML += '<p class="error">Invalid Username: Must be at least 5 characters.</p>';
+                isValid = false;
+            } else {
+                username.setCustomValidity('');
+            }
+
+            // Email validation (basic regex for format)
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                email.setCustomValidity('Please enter a valid email address.');
+                email.classList.add('input-error');
+                message.innerHTML += '<p class="error">Invalid Email: Must be a valid email format.</p>';
+                isValid = false;
+            } else {
+                email.setCustomValidity('');
+            }
+
+            if (isValid) {
+                message.className = 'success';
+                message.innerHTML = 'Form is valid!';
+            } else {
+                message.className = 'error';
+            }
+        }
+
+        // Handle form submission
+        form.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent default form submission
+            validateForm();
+
+            if (username.checkValidity() && email.checkValidity()) {
+                // Simulate sending data to a backend
+                const data = {
+                    username: username.value,
+                    email: email.value
+                };
+                message.className = 'success';
+                message.innerHTML = `Data ready to send: ${JSON.stringify(data)}`;
+
+                // Example: Store in sessionStorage (or send to backend)
+                sessionStorage.setItem('username', data.username);
+                sessionStorage.setItem('email', data.email);
+
+                // Example: Send to a backend API (uncomment to use with a real API)
+                /*
+                fetch('/api/users', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(result => {
+                    message.className = 'success';
+                    message.innerHTML = result.message || 'Data sent successfully!';
+                })
+                .catch(error => {
+                    message.className = 'error';
+                    message.innerHTML = `Error: ${error.message}`;
+                });
+                */
+            }
+        });
+    </script>
+</body>
+</html>
