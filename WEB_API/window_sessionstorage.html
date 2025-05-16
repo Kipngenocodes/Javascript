@@ -1,0 +1,95 @@
+<!--The sessionStorage object also allows storing the data in the browser in the key-value pair format.
+It also allows you to store the data up to 5 MB.
+The data stored in the session storage expires when you close the tab of the browsers. 
+This is the main difference between the session storage and local storage. 
+You can also use the removeItem() or clear() method to remove the items from the session storage without closing the browser's tab.
+Note Some browsers like Chrome and Firefox maintain the session storage data if you re-open the browser's tab after closing it.
+If you close the browser window, it will definitely delete the session storage data.
+
+Syntax: sessionStorage.setItem('key', 'value');
+sessionStorage.getItem('key');-->
+
+<!--example of the session storage in JavaScript    -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Storage API Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .success { color: green; }
+        .error { color: red; }
+        .input-group { margin: 10px 0; }
+        button { margin-right: 10px; padding: 5px 10px; }
+    </style>
+</head>
+<body>
+    <h3>Web Storage API Example with sessionStorage</h3>
+    <div class="input-group">
+        <label for="username">Username: </label>
+        <input type="text" id="username" placeholder="Enter username">
+        <label for="email">Email: </label>
+        <input type="email" id="email" placeholder="Enter email">
+    </div>
+    <button onclick="setItem()">Set Item</button>
+    <button onclick="getItem()">Get Item</button>
+    <button onclick="removeItem()">Remove Item</button>
+    <button onclick="clearStorage()">Clear Storage</button>
+    <p id="output"></p>
+
+    <script>
+        const output = document.getElementById('output');
+
+        function setItem() {
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+
+            if (username && email) {
+                sessionStorage.setItem('username', username);
+                sessionStorage.setItem('email', email);
+                output.className = 'success';
+                output.innerText = 'Data stored in session storage.';
+            } else {
+                output.className = 'error';
+                output.innerText = 'Please enter both username and email.';
+            }
+        }
+
+        function getItem() {
+            const username = sessionStorage.getItem('username');
+            const email = sessionStorage.getItem('email');
+
+            if (username && email) {
+                output.className = 'success';
+                output.innerText = `Username: ${username}, Email: ${email}`;
+            } else {
+                output.className = 'error';
+                output.innerText = 'No data found in session storage.';
+            }
+        }
+
+        function removeItem() {
+            sessionStorage.removeItem('username');
+            sessionStorage.removeItem('email');
+            output.className = 'success';
+            output.innerText = 'Data removed from session storage.';
+        }
+
+        function clearStorage() {
+            sessionStorage.clear();
+            output.className = 'success';
+            output.innerText = 'All data cleared from session storage.';
+        }
+    </script>
+</body>
+</html>
