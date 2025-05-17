@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Worker Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .error { color: red; }
+        .success { color: green; }
+        .loading { color: gray; }
+        button { padding: 5px 10px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h3>Web Worker Demo</h3>
+    <button onclick="startWorker()">Start Worker</button>
+    <button onclick="stopWorker()" id="stopWorkerBtn" disabled>Stop Worker</button>
+    <div id="output" class="loading">Click "Start Worker" to begin.</div>
+
+    <script>
+        let worker = null;
+        const output = document.getElementById('output');
+        const stopWorkerBtn = document.getElementById('stopWorkerBtn');
+
+        function startWorker() {
+            if (typeof Worker !== 'undefined') {
+                if (!worker) {
+                    // Create worker using a Blob URL (or use 'app.js' in production)
+                    const workerCode = `
+                        self.onmessage = function(e) {
+                            let count = e.data.start;
+                            const max = e.data.max;
+                            while (count <= max) {
+                                self.postMessage(count);
+                                count++;
+                                // Simulate work with a small delay
+                                const startTime = Date.now();
+                                while (Date.now() - startTime < 100) {}
+                            }
+                            self.postMessage('Worker finished');
+                        };
+                    `;
+                    const blob = new Blob([workerCode], { type: 'application/javascript' });
+                    worker = new Worker(URL.createObjectURL(blob));
+                    // worker = new Worker('app.js'); // Uncomment for separate file
+
+                    worker.onmessage = function(event) {
+                        output.className = 'success';
+                        output.innerText = `Worker output: ${event.data}`;
+                    };
+
+                    worker.onerror = function(error) {
+                        output.className = 'error';
+                        output.innerText = `Worker error: ${error.message}`;
+                        stopWorker();
+                    };
+
+                    output.className = 'loading';
+                    output.innerText = 'Worker is running...';
+                    stopWorkerBtn.disabled = false;
+                    worker.postMessage({ start: 1, max: 500}); // Start worker with sample data
+                } else {
+                    output.className = 'error';
+                    output.innerText = 'Worker is already running.';
+                }
+            } else {
+                output.className = 'error';
+                output.innerText = 'Sorry, your browser does not support Web Workers.';
+                stopWorkerBtn.disabled = true;
+            }
+        }
+
+        function stopWorker() {
+            if (worker) {
+                worker.terminate();
+                worker = null;
+                output.className = 'success';
+                output.innerText = 'Worker stopped.';
+                stopWorkerBtn.disabled = true;
+            } else {
+                output.className = 'error';
+                output.innerText = 'No worker is running.';
+            }
+        }
+    </script>
+</body>
+</html>
