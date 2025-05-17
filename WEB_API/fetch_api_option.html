@@ -17,3 +17,55 @@ Syntax: fetch(url,
 
 <!--Example: Making a GET Request   -->
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API Example</title>
+    <style>
+        #output {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .loading {
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <h3>Fetch API Example</h3>
+    <div id="output" class="loading">Loading...</div>
+    let output = document.getElementById('output');
+    let url = 'https://jsonplaceholder.typicode.com/posts/1';
+    let options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    fetch(url, options)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            output.innerHTML = `
+                <h4>${data.title}</h4>
+                <p>${data.body}</p>
+                <p><strong>User ID:</strong> ${data.userId}, <strong>Post ID:</strong> ${data.id}</p>
+            `;
+        })
+        .catch(error => {
+            output.className = 'error';
+            output.innerHTML = `Error fetching data: ${error.message}`;
+        });
+
+</html>
