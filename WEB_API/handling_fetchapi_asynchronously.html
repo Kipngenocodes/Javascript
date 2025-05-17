@@ -1,0 +1,63 @@
+<!--solve the promise returned by the fetch() API asynchronously using the async/await keyword.
+syntax let response = await fetch(url);
+data = await response.json();-->
+
+<!-- Example   -->
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API Example</title>
+    <style>
+        body {
+            background-color: #0000ff; /* Blue background */
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            color: #202124;
+            margin: 2rem;
+        }
+        #output {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f1f3f4;
+            border-radius: 8px;
+        }
+        .error {
+            color: red;
+        }
+        .loading {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h3>Fetch API: an Example of Web API</h3>
+    <div id="output" class="loading">Loading...</div>
+    <script>
+        const url = 'https://jsonplaceholder.typicode.com/posts/1';
+        const output = document.getElementById('output');
+
+        async function fetchData() {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = await response.json();
+                output.innerHTML = `
+                    <h4>${data.title}</h4>
+                    <p>${data.body}</p>
+                    <p><strong>User ID:</strong> ${data.userId}, <strong>Post ID:</strong> ${data.id}</p>
+                `;
+            } catch (error) {
+                output.className = 'error';
+                output.innerHTML = `Error fetching data: ${error.message}`;
+            } finally {
+                output.classList.remove('loading');
+            }
+        }
+
+        fetchData();
+    </script>
+</html>
