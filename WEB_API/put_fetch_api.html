@@ -30,13 +30,13 @@
     <h3>Fetch API with PUT Method: an Example of Web API</h3>
     <div id="output" class="loading">Loading...</div>
     <script>
-        const url = 'https://jsonplaceholder.typicode.com/posts/1';
+        const url = "https://dummy.restapiexample.com/api/v1/update/3";
         const output = document.getElementById('output');
-        let post = {
-            id: 1,
-            title: "Updated Post Title",
-            body: "This is the updated body of the post.",
-            userId: 1
+        let employee = {
+            name: "John Doe",
+            age: 30,
+            position: "Software Engineer"
+            
         };  
         let options = {
             method: 'PUT',
@@ -45,7 +45,7 @@
             },
             body: JSON.stringify(post)
         };
-        fetch(url, options)
+        fetch(url, )
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -55,9 +55,10 @@
             .then(data => {
                 output.className = ''; // Remove loading class
                 output.innerHTML = `
-                    <h4>${data.title}</h4>
-                    <p>${data.body}</p>
-                    <p><strong>User ID:</strong> ${data.userId}, <strong>Post ID:</strong> ${data.id}</p>
+                    <h4>${data.name}</h4>
+                    <p><strong>Age:</strong> ${data.age}</p>
+                    <p><strong>Position:</strong> ${data.position}</p>
+                    <p><strong>Post ID:</strong> ${data.id}</p>
                 `;
             })
             .catch(error => {
