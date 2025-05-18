@@ -27,25 +27,24 @@
     </style>
 </head>
 <body>
-    <h3>Fetch API with PUT Method: an Example of Web API</h3>
+    <h3>Fetch API with PUT Method: Update Employee (Dummy API)</h3>
     <div id="output" class="loading">Loading...</div>
     <script>
         const url = "https://dummy.restapiexample.com/api/v1/update/3";
         const output = document.getElementById('output');
         let employee = {
             name: "John Doe",
-            age: 30,
-            position: "Software Engineer"
-            
+            salary: 100000,
+            age: 30
         };  
         let options = {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(post)
+            body: JSON.stringify(employee)
         };
-        fetch(url, )
+        fetch(url, options)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -53,12 +52,15 @@
                 return response.json();
             })
             .then(data => {
+                if (data.status !== 'success') {
+                    throw new Error('API request failed: ' + (data.message || 'Unknown error'));
+                }
                 output.className = ''; // Remove loading class
                 output.innerHTML = `
-                    <h4>${data.name}</h4>
-                    <p><strong>Age:</strong> ${data.age}</p>
-                    <p><strong>Position:</strong> ${data.position}</p>
-                    <p><strong>Post ID:</strong> ${data.id}</p>
+                    <h4>${data.data.employee_name}</h4>
+                    <p><strong>Age:</strong> ${data.data.employee_age}</p>
+                    <p><strong>Salary:</strong> ${data.data.employee_salary}</p>
+                    <p><strong>Employee ID:</strong> ${data.data.id}</p>
                 `;
             })
             .catch(error => {
