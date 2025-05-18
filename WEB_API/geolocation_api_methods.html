@@ -1,0 +1,74 @@
+<!--
+getCurrentPosition()	It is used to retrieve the current geographic location of the website user.
+watchPosition()	It is used to update the user's live location continuously.
+clearWatch()	To clear the ongoing watch of the user's location using the watchPosition() method.
+-->
+
+<!-- Example -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation API</title>
+    <style>
+        #output {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .loading {
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <h3>Geolocation API</h3>
+    <div id="output" class="loading">Loading...</div>
+
+    <script>
+        const output = document.getElementById('output');
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                position => {
+                    const { latitude, longitude } = position.coords;
+                    output.innerHTML = `
+                        <h4>Your Location:</h4>
+                        <p>Latitude: ${latitude}</p>
+                        <p>Longitude: ${longitude}</p>
+                    `;
+                },
+                error => {
+                    output.className = 'error';
+                    output.innerHTML = `Error getting location: ${error.message}`;
+                }
+            );
+        } else {
+            output.className = 'error';
+            output.innerHTML = "Geolocation is not supported by this browser.";
+        }
+        <!-- Watch Positions -->
+        navigator.geolocation.watchPosition(
+            position => {
+                const { latitude, longitude } = position.coords;
+                output.innerHTML = `
+                    <h4>Your Location:</h4>
+                    <p>Latitude: ${latitude}</p>
+                    <p>Longitude: ${longitude}</p>
+                `;
+            },
+            error => {
+                output.className = 'error';
+                output.innerHTML = `Error watching location: ${error.message}`;
+            }
+        );  
+        <!-- Clear Watch -->
+        navigator.geolocation.clearWatch();
+    </script>
+</html>
