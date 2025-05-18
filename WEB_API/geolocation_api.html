@@ -1,0 +1,24 @@
+<!-- The Geolocation API is a web API that provides a JavaScript interface to access the user's geographical location data. 
+A Geolocation API contains the various methods and properties that you can use to access the user's location on your website. 
+It detects the location of the user's using the device's GPS. The accuracy of the location depends on the accuracy of the GPS device.
+As location compromises the users' privacy, it asks for permission before accessing the location. If users grant permission, 
+websites can access the latitude, longitude,
+
+syntax: navigator.geolocation
+window.navigator.geolocation -->
+
+<!-- Checking  for the location if supported by browser -->
+
+<html>
+    <body>
+        <p id="output"></p>
+        <script>
+            const output = document.getElementById('output');
+            if (navigator.geolocation) {
+                output.innerHTML = "Geolocation is supported by this browser.";
+            } else {
+                output.innerHTML = "Geolocation is not supported by this browser."; 
+            }
+        </script>
+    </body>
+</html>
