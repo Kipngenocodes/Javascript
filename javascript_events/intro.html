@@ -45,10 +45,14 @@ syntax: <div eventhandler = 'Javascript Code'> </div>-->
     <body>
         <h1>Welcome to Hamata</h1>
         <button onclick="displayMessage()">Click Me!</button>
+        <button onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='blue'">Hover Over Me!</button>
+        <button onclick = "this.style.color = 'red'">Click Me!</button>
 
         <script>
             function displayMessage() {
                 alert("Hello, welcome to Hamata!");
             }
         </script>
+    </body>
+
 </html>
