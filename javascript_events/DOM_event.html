@@ -21,3 +21,58 @@ button of his mouse. You can put your validation, warning etc., against this eve
 We used the 'keydown' event in the code below with the <input> element. 
 Whenever the user will press any key, it will call the customizeInput() function.
 -->
+
+<!-- Example of onclick event, ondblclick event, and onkeydown event --->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Welcome to Kingdom of Hamata</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 20px;
+            }
+            h1 {
+                color: #333;
+            }
+            button {
+                padding: 10px 20px;
+                background-color: #007BFF;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #0056b3;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Welcome to Hamata</h1>
+        <button onclick="displayMessage()">Click Me!</button>
+        <button onmouseover="this.style.backgroundColor='yellow'" onmouseout="this.style.backgroundColor='blue'">Hover Over Me!</button>
+        <button onclick = "this.style.color = 'red'">Click Me!</button>
+
+        <script>
+            function displayMessage() {
+                alert("Hello, welcome to Hamata!");
+            }
+            function customizeInput() {
+                var inputField = document.getElementById("inputField");
+                inputField.style.backgroundColor = "lightblue";
+                inputField.style.color = "red";
+            }
+            function resetInput() {
+                var inputField = document.getElementById("inputField ");
+                inputField.style.backgroundColor = "";
+                inputField.style.color = "";
+            }
+        </script>
+    </body>
+</html>
