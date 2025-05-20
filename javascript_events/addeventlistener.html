@@ -11,6 +11,8 @@ include clicks, mouse movements, keyboard inputs, and document loading.
 
 -->
 <!-- 
+syntax: element.addEventListener(event, function, useCapture);
+
 Parameters
 The addEventListener() method accepts the following parameters 
 event − a string that embodies the type of action − for instance, "click", "mouseover", or 
@@ -20,5 +22,39 @@ when the specified event occurs; it's essentially the operation that
 facilitates execution at predetermined instances.
 options (optional) − it allows for the specification of additional 
 settings particularly capturing or once behaviours related to the event listener.
-syntax: element.addEventListener(event, function, useCapture);
+
 -->
+<!-- 
+Here element is an HTML element, such as a button, input or div - can
+be selected using methods like getElementById, getElementsByClassName, 
+getElementsByTagName and querySelector; these are just a few examples.
+The event listener attaches to this particular element.
+-->    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="myButton">Click Me</button>
+    <script>
+        const button = document.getElementById("myButton");
+        button.addEventListener("click", function() {
+            alert("Button clicked!");
+        });
+        // You can also use named functions
+        function showAlert() {
+            alert("Button clicked again!");
+        }
+        button.addEventListener("click", showAlert);
+        // To remove an event listener, you need to use the same function reference
+        button.removeEventListener("click", showAlert);
+        // You can also use options like { once: true } to make the event listener execute only once
+        button.addEventListener("click", function() {
+            alert("This will only show once!");
+        }, { once: true });
+    </script>
+</body>
+</html>
