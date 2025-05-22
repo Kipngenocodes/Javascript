@@ -1,0 +1,108 @@
+<!--
+Property	Description
+event.key	String representing the key value of the pressed key.
+event.code	String representing the physical key on the keyboard.
+event.location	Integer indicating the location of the key on the keyboard.
+event.ctrlKey	Boolean indicating whether the Ctrl key was held down.
+event.shiftKey	Boolean indicating whether the Shift key was held down.
+event.altKey	Boolean indicating whether the Alt key was held down.
+event.metaKey	Boolean indicating whether the Meta (Command) key was held down.
+event.repeat	Boolean indicating whether the key event is a repeat event.
+event.isComposing	Boolean indicating whether the event is part of a composition of multiple keystrokes.
+event.which	Deprecated property; previously used to identify the numeric key code.
+event.getModifierState(keyArg)	Method that returns a boolean indicating whether the modifier key is pressed.-->
+
+
+<!-- Example of keydown event, keyup event, and keypress event --->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Keyboard Events Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        h1 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        input {
+            padding: 0.75rem;
+            font-size: 1rem;
+            width: min(90%, 300px);
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        input:focus {
+            border-color: #007BFF;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            outline: none;
+        }
+        #output {
+            margin-top: 1.5rem;
+            padding: 0.75rem;
+            font-size: 1.1rem;
+            color: #ffffff;
+            background-color: #333;
+            border-radius: 5px;
+            min-height: 1.5em;
+            width: min(90%, 300px);
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        #output.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Keyboard Events Usage</h1>
+    <input type="text" id="myInput" placeholder="Type something..." aria-label="Type to see keyboard events">
+    <div id="output" aria-live="polite"></div>
+    <script>
+        const inputElement = document.getElementById('myInput');
+        const outputElement = document.getElementById('output');
+
+        function showOutput(text) {
+            if (outputElement) {
+                outputElement.textContent = text;
+                outputElement.classList.add('show');
+                // Clear output after 2 seconds of inactivity
+                clearTimeout(window.outputTimeout);
+                window.outputTimeout = setTimeout(() => {
+                    outputElement.classList.remove('show');
+                }, 2000);
+            }
+        }
+
+        if (inputElement && outputElement) {
+            const eventMap = {
+                keydown: 'Key Down',
+                keyup: 'Key Up'
+            };
+
+            function handleKeyEvent(event) {
+                const eventType = eventMap[event.type];
+                const keyInfo = `Key: ${event.key} (${event.code})`;
+                showOutput(`${eventType}: ${keyInfo}`);
+            }
+
+            inputElement.addEventListener('keydown', handleKeyEvent);
+            inputElement.addEventListener('keyup', handleKeyEvent);
+        }
+    </script>
+</body>
+</html>
