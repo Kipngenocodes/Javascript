@@ -5,12 +5,180 @@ such as text fields, buttons, checkboxes, etc. Form events allow you to execute 
 code in response to these actions, enabling you to validate form data, 
 perform actions on form submission or reset, and enhance the user experience.-->
 
-<!-- Form Event	Description
-onsubmit	Triggered when a form is submitted. It's often used for form validation before data is sent to the server.
-onreset	Triggered when the form is reset, allowing you to perform actions when the user resets the form.
-onchange	Triggered when the value of a form element (input, select, textarea) changes. Commonly used for user input validation or dynamic updates.
-oninput	Triggered immediately when the value of an input element changes, allowing for real-time handling of user input.
-onfocus	Triggered when an element receives focus, such as when a user clicks or tabs into an input field. Useful for providing feedback or enhancing the user experience.
-onblur	Triggered when an element loses focus, such as when a user clicks outside an input field or tabs away. Useful for validation or updates triggered by loss of focus. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Form Events Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        form {
+            width: min(90%, 400px);
+            margin-bottom: 1.5rem;
+        }
+        input[type="text"], input[type="email"] {
+            padding: 0.75rem;
+            font-size: 1rem;
+            width: 100%;
+            margin-bottom: 0.75rem;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            box-sizing: border-box;
+        }
+        input:focus {
+            border-color: #007BFF;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            outline: none;
+            background-color: #fff;
+        }
+        input.error {
+            border-color: #dc3545;
+            background-color: #fff5f5;
+        }
+        button {
+            padding: 0.75rem 1.5rem;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1rem;
+            margin-right: 0.5rem;
+        }
+        button:hover, button:focus {
+            background-color: #0056b3;
+        }
+        button:focus {
+            outline: 2px solid #0056b3;
+            outline-offset: 2px;
+        }
+        button[type="reset"] {
+            background-color: #6c757d;
+        }
+        button[type="reset"]:hover, button[type="reset"]:focus {
+            background-color: #5a6268;
+        }
+        #output {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            font-size: 1.1rem;
+            color: #fff;
+            background-color: #333;
+            border-radius: 5px;
+            width: min(90%, 400px);
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            min-height: 1.5em;
+        }
+        #output.show {
+            opacity: 1;
+        }
+        #output.error {
+            background-color: #dc3545;
+        }
+        #output.success {
+            background-color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <h1>Form Events</h1>
+    <form id="myForm">
+        <input type="text" id="name" placeholder="Enter your name" aria-label="Your name" required>
+        <input type="email" id="email" placeholder="Enter your email" aria-label="Your email" required>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+    <div id="output" aria-live="polite" role="alert"></div>
+    <script>
+        const form = document.getElementById('myForm');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const output = document.getElementById('output');
 
-<!--Example -->
+        function showOutput(message, type = 'info') {
+            if (output) {
+                output.textContent = message;
+                output.className = type === 'error' ? 'error' : type === 'success' ? 'success' : '';
+                output.classList.add('show');
+                clearTimeout(window.outputTimeout);
+                window.outputTimeout = setTimeout(() => {
+                    output.classList.remove('show');
+                }, 2000);
+            }
+        }
+
+        function validateInput(input, fieldName) {
+            if (!input.value.trim()) {
+                input.classList.add('error');
+                return `${fieldName} is required`;
+            }
+            if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+                input.classList.add('error');
+                return 'Please enter a valid email';
+            }
+            input.classList.remove('error');
+            return '';
+        }
+
+        if (form && nameInput && emailInput && output) {
+            const eventMap = {
+                input: (event) => `Input in ${event.target.id}: ${event.target.value}`,
+                change: (event) => {
+                    const error = validateInput(event.target, event.target.id === 'name' ? 'Name' : 'Email');
+                    return error || `Changed ${event.target.id}: ${event.target.value}`;
+                },
+                focus: (event) => `Focused on ${event.target.id}`,
+                blur: (event) => `Blurred from ${event.target.id}`
+            };
+
+            function handleEvent(event) {
+                const message = eventMap[event.type](event);
+                showOutput(message, event.type === 'change' && message.includes('required') ? 'error' : 'info');
+            }
+
+            [nameInput, emailInput].forEach(input => {
+                input.addEventListener('input', handleEvent);
+                input.addEventListener('change', handleEvent);
+                input.addEventListener('focus', handleEvent);
+                input.addEventListener('blur', handleEvent);
+            });
+
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const nameError = validateInput(nameInput, 'Name');
+                const emailError = validateInput(emailInput, 'Email');
+                if (nameError || emailError) {
+                    showOutput(nameError || emailError, 'error');
+                } else {
+                    showOutput(`Submitted: Name: ${nameInput.value}, Email: ${emailInput.value}`, 'success');
+                    form.reset();
+                }
+            });
+
+            form.addEventListener('reset', () => {
+                [nameInput, emailInput].forEach(input => input.classList.remove('error'));
+                showOutput('Form reset', 'info');
+            });
+        }
+    </script>
+</body>
+</html>
