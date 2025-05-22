@@ -1,0 +1,68 @@
+<!--JavaScript mouse events allow users to control and interact with web pages using their mouse.
+These events trigger specific functions or actions in response to user clicks, scrolls, drags, and other mouse movements.
+
+To handle mouse events in JavaScript, you can use the addEventListener() method. 
+The addEventListener() method takes two arguments: the event type and the event handler function. 
+The event type is the name of the event that you want to handle,
+and the event handler function is the function that will be called when the event occurs.-->
+
+
+<!-- Example of mouse events: --> 
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mouse Events Example</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 20px;
+            }
+            h1 {
+                color: #333;
+            }
+            button {
+                padding: 10px 20px;
+                background-color: #007BFF;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #0056b3;
+            }
+        </style>
+    </head>
+        <body>
+            <h1>Mouse Events Example</h1>
+            <button id="myButton">Click Me!</button>
+            <div id="myDiv" style="width: 200px; height: 100px; background-color: lightblue; margin-top: 20px;">
+                Hover over me!
+            </div>
+            <script>
+                const button = document.getElementById("myButton");
+                const myDiv = document.getElementById("myDiv");
+
+                button.addEventListener("click", function() {
+                    alert("Button clicked!");
+                });
+
+                myDiv.addEventListener("mouseover", function() {
+                    myDiv.style.backgroundColor = "lightcoral";
+                    myDiv.textContent = "Mouse is over me!";
+                });
+
+                myDiv.addEventListener("mouseout", function() {
+                    myDiv.style.backgroundColor = "lightblue";
+                    myDiv.textContent = "Hover over me!";
+                });
+            </script>
+        </body>
+
+</html>
