@@ -12,57 +12,147 @@ and the event handler function is the function that will be called when the even
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Mouse Events Example</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #f4f4f4;
-                margin: 0;
-                padding: 20px;
-            }
-            h1 {
-                color: #333;
-            }
-            button {
-                padding: 10px 20px;
-                background-color: #007BFF;
-                color: white;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-            button:hover {
-                background-color: #0056b3;
-            }
-        </style>
-    </head>
-        <body>
-            <h1>Mouse Events Example</h1>
-            <button id="myButton">Click Me!</button>
-            <div id="myDiv" style="width: 200px; height: 100px; background-color: lightblue; margin-top: 20px;">
-                Hover over me!
-            </div>
-            <script>
-                const button = document.getElementById("myButton");
-                const myDiv = document.getElementById("myDiv");
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Mouse Events Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1em;
+        }
+        button:hover, button:focus {
+            background-color: #0056b3;
+        }
+        button:focus {
+            outline: 2px solid #0056b3;
+            outline-offset: 2px;
+        }
+        #myDiv {
+            width: 200px;
+            height: 100px;
+            background-color: lightblue;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            outline: none;
+        }
+        #myDiv:hover, #myDiv:focus {
+            background-color: lightcoral;
+            color: white;
+        }
+        #myDiv.mousedown {
+            background-color: yellow;
+            color: black;
+        }
+        #myDiv.clicked {
+            background-color: green;
+            color: white;
+        }
+        #myDiv.double-clicked {
+            background-color: purple;
+            color: white;
+        }
+        .message {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.3s ease;
+        }
+        .message.show {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mouse Events Usage</h1>
+    <button id="myButton" aria-label="Click to show message">Click Me!</button>
+    <div id="myDiv" tabindex="0" role="button" aria-label="Interact with this element">Hover or focus on me!</div>
+    <div id="message" class="message" role="alert"></div>
+    <script>
+        const button = document.getElementById("myButton");
+        const myDiv = document.getElementById("myDiv");
+        const message = document.getElementById("message");
 
-                button.addEventListener("click", function() {
-                    alert("Button clicked!");
-                });
+        function showMessage(text) {
+            if (message) {
+                message.textContent = text;
+                message.classList.add("show");
+                setTimeout(() => {
+                    message.classList.remove("show");
+                }, 2000);
+            }
+        }
 
-                myDiv.addEventListener("mouseover", function() {
-                    myDiv.style.backgroundColor = "lightcoral";
-                    myDiv.textContent = "Mouse is over me!";
-                });
+        if (button) {
+            button.addEventListener("click", () => {
+                showMessage("Button clicked!");
+            });
+            button.addEventListener("keypress", (event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                    showMessage("Button clicked!");
+                }
+            });
+        }
 
-                myDiv.addEventListener("mouseout", function() {
-                    myDiv.style.backgroundColor = "lightblue";
-                    myDiv.textContent = "Hover over me!";
-                });
-            </script>
-        </body>
+        if (myDiv) {
+            const states = {
+                hover: { class: "hovered", text: "Mouse is over or focused!" },
+                default: { class: "", text: "Hover or focus on me!" },
+                mousedown: { class: "mousedown", text: "Mouse button down!" },
+                clicked: { class: "clicked", text: "Div clicked!" },
+                doubleClicked: { class: "double-clicked", text: "Div double-clicked!" }
+            };
 
+            function setDivState(state) {
+                myDiv.className = "";
+                if (state.class) myDiv.classList.add(state.class);
+                myDiv.textContent = state.text;
+            }
+
+            myDiv.addEventListener("mouseover", () => setDivState(states.hover));
+            myDiv.addEventListener("focus", () => setDivState(states.hover));
+            myDiv.addEventListener("mouseout", () => setDivState(states.default));
+            myDiv.addEventListener("blur", () => setDivState(states.default));
+            myDiv.addEventListener("mousedown", () => setDivState(states.mousedown));
+            myDiv.addEventListener("mouseup", () => setDivState(states.default));
+            myDiv.addEventListener("click", () => setDivState(states.clicked));
+            myDiv.addEventListener("dblclick", () => setDivState(states.doubleClicked));
+            myDiv.addEventListener("keypress", (event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                    setDivState(states.clicked);
+                }
+            });
+        }
+    </script>
+</body>
 </html>
