@@ -9,3 +9,61 @@ Load: Triggered when the entire web page, including all its resources, has finis
 unload:	Fired when the user is leaving the page or closing the browser window or tab.
 resize:	Activated when the size of the browser window is changed.
 scroll:	Fired when the user scrolls the page. -->
+
+
+<!--Example -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Window Events</title>
+    <style>
+        body {
+            height: 2000px; /* Create scrollable content */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        #output {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="output">Event output will appear here</div>
+
+    <script>
+        // Get the output element
+        const output = document.getElementById('output');
+
+        // Window load event - fires when the entire page has loaded
+        window.addEventListener('load', function() {
+            output.textContent = 'Window has fully loaded!';
+            setTimeout(() => {
+                output.textContent = 'Waiting for events...';
+            }, 2000);
+        });
+
+        // Window resize event - fires when the browser window is resized
+        window.addEventListener('resize', function() {
+            output.textContent = `Window resized to: ${window.innerWidth} x ${window.innerHeight}`;
+        });
+
+        // Window scroll event - fires when the user scrolls
+        window.addEventListener('scroll', function() {
+            output.textContent = `Scroll position: ${window.scrollY}px`;
+        });
+
+        // Window beforeunload event - fires before the window is closed
+        window.addEventListener('beforeunload', function(event) {
+            // Note: Modern browsers limit what you can do here
+            event.preventDefault();
+            event.returnValue = ''; // Shows a confirmation dialog in some browsers
+        });
+    </script>
+</body>
+</html>
