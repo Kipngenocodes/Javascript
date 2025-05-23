@@ -8,3 +8,154 @@ submit: Triggered when a form is submitted.
 keydown/keyup/keypress:	These events are triggered when a key is pressed, released, or both, respectively.
 change: Fired when the value of an input element changes, such as with text inputs or dropdowns.
 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Enhanced Document Events Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f9f9f9;
+        }
+        #output {
+            background: #333;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            min-height: 120px;
+            margin-bottom: 20px;
+            overflow-y: auto;
+            max-height: 150px;
+            font-size: 14px;
+        }
+        #clickBox {
+            width: 200px;
+            height: 100px;
+            background: #4CAF50;
+            color: white;
+            text-align: center;
+            line-height: 100px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background 0.3s;
+        }
+        #clickBox:hover {
+            background: #45a049;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"], select, button {
+            padding: 8px;
+            margin: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #1e88e5;
+        }
+        #keyInput:focus {
+            border-color: #2196F3;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="output" role="log" aria-live="polite">Event output will appear here</div>
+    <div id="clickBox" role="button" aria-label="Clickable box">Click me!</div>
+    <form id="myForm" role="form">
+        <input type="text" id="formInput" placeholder="Enter text" aria-label="Form input">
+        <button type="submit">Submit</button>
+        <button type="button" id="clearBtn">Clear</button>
+    </form>
+    <input type="text" id="keyInput" placeholder="Type here for key events" aria-label="Keyboard input">
+    <select id="dropdown" aria-label="Select an option">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+    </select>
+
+    <script>
+        // Get elements
+        const output = document.getElementById('output');
+        const clickBox = document.getElementById('clickBox');
+        const myForm = document.getElementById('myForm');
+        const formInput = document.getElementById('formInput');
+        const keyInput = document.getElementById('keyInput');
+        const dropdown = document.getElementById('dropdown');
+        const clearBtn = document.getElementById('clearBtn');
+
+        // Store event history (last 3 events)
+        let eventHistory = [];
+
+        // Function to update output with history
+        function updateOutput(message) {
+            eventHistory.unshift(message); // Add new event to the start
+            if (eventHistory.length > 3) eventHistory.pop(); // Keep only last 3
+            output.innerHTML = eventHistory.map(event => `<div>${event}</div>`).join('');
+        }
+
+        // DOMContentLoaded - fires when the HTML document is fully loaded and parsed
+        document.addEventListener('DOMContentLoaded', function() {
+            updateOutput('DOM has fully loaded and parsed!');
+            setTimeout(() => {
+                updateOutput('Waiting for events...');
+            }, 2000);
+        });
+
+        // Click event - fires when the clickBox is clicked
+        clickBox.addEventListener('click', function(event) {
+            updateOutput(`Clicked on box at position: (${event.clientX}, ${event.clientY})`);
+            clickBox.style.background = '#f44336'; // Change color on click
+            setTimeout(() => {
+                clickBox.style.background = '#4CAF50'; // Reset color
+            }, 500);
+        });
+
+        // Submit event - fires when the form is submitted
+        myForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formValue = formInput.value || 'empty';
+            updateOutput(`Form submitted with value: ${formValue}`);
+        });
+
+        // Keydown event - fires when a key is pressed
+        keyInput.addEventListener('keydown', function(event) {
+            updateOutput(`Keydown: ${event.key} (Code: ${event.code})`);
+        });
+
+        // Keyup event - fires when a key is released
+        keyInput.addEventListener('keyup', function(event) {
+            updateOutput(`Keyup: ${event.key} (Code: ${event.code})`);
+        });
+
+        // Keypress event - fires when a key that produces a character is pressed
+        keyInput.addEventListener('keypress', function(event) {
+            updateOutput(`Keypress: ${event.key} (Character code: ${event.charCode})`);
+        });
+
+        // Change event - fires when the dropdown selection changes
+        dropdown.addEventListener('change', function(event) {
+            updateOutput(`Dropdown changed to: ${event.target.value}`);
+        });
+
+        // Clear button - resets form and output
+        clearBtn.addEventListener('click', function() {
+            formInput.value = '';
+            keyInput.value = '';
+            dropdown.value = 'option1';
+            eventHistory = [];
+            updateOutput('Cleared all inputs and event history');
+        });
+    </script>
+</body>
+</html>
