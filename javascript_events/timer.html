@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer for Task Tracking</title>
+    <style>
+        body {
+            background-color: black; /* Black background */
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            color: #ffffff; /* White text for contrast */
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #timer-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: black; /* Black background for container */
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            user-select: none;
+            z-index: 1000;
+        }
+        #timer-header {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: calc(100% - 20px);
+            padding: 10px;
+            font-weight: bold;
+            background-color: #333333; /* Darker shade for header */
+            border-radius: 5px;
+            color: #ffffff; /* White text */
+        }
+        #timer-display {
+            font-size: 6rem; /* Large font for full-screen visibility */
+            text-align: center;
+            margin: 0;
+            color: #ffffff; /* White text for contrast */
+        }
+        #timer-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            background-color: #1e90ff; /* Brighter blue for buttons */
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        button:hover {
+            background-color: #4682b4; /* Hover effect */
+        }
+        .minimized #timer-display,
+        .minimized #timer-controls {
+            display: none;
+        }
+        .minimized {
+            height: auto !important;
+            background-color: transparent !important;
+        }
+        .error {
+            color: #ff4d4d; /* Brighter red for visibility */
+            text-align: center;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="timer-container">
+        <div id="timer-header">
+            <span>Pomodoro Timer</span>
+            <div>
+                <button onclick="toggleMinimize()">-</button>
+                <button onclick="closeTimer()">✕</button>
+            </div>
+        </div>
+        <div id="timer-display">25:00</div>
+        <div id="timer-controls">
+            <button onclick="startTimer()">Start</button>
+            <button onclick="pauseTimer()">Pause</button>
+            <button onclick="resetTimer()">Reset</button>
+        </div>
+    </div>
+    <script>
+        let timeLeft = 25 * 60; // 25 minutes in seconds
+        let timerRunning = false;
+        let timerId = null;
+        const timerContainer = document.getElementById('timer-container');
+        const timerDisplay = document.getElementById('timer-display');
+
+        function updateDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        }
+
+        function startTimer() {
+            if (!timerRunning) {
+                timerRunning = true;
+                timerId = setInterval(() => {
+                    if (timeLeft <= 0) {
+                        clearInterval(timerId);
+                        timerRunning = false;
+                        timerDisplay.textContent = 'Done!';
+                        alert('Pomodoro session complete! Take a 5-minute break.');
+                        resetTimer();
+                    } else {
+                        timeLeft--;
+                        updateDisplay();
+                    }
+                }, 1000);
+            }
+        }
+
+        function pauseTimer() {
+            if (timerRunning) {
+                clearInterval(timerId);
+                timerRunning = false;
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(timerId);
+            timerRunning = false;
+            timeLeft = 25 * 60;
+            updateDisplay();
+        }
+
+        function toggleMinimize() {
+            timerContainer.classList.toggle('minimized');
+            const minimizeBtn = timerContainer.querySelector('#timer-header button:first-child');
+            minimizeBtn.textContent = timerContainer.classList.contains('minimized') ? '+' : '-';
+        }
+
+        function closeTimer() {
+            timerContainer.style.display = 'none';
+            clearInterval(timerId);
+            timerRunning = false;
+        }
+
+        // Initialize display
+        updateDisplay();
+    </script>
+</body>
+</html>
