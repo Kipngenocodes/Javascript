@@ -1,0 +1,55 @@
+<!--Employing event delegation here allows for the monitoring and logging of changes in form control values: 
+the <form> element acts as a common ancestor, while an input event 
+    listener captures alterations within input fields. The script confirms by examining the target element within its handler, 
+    that events are indeed related to an <input>. The message, consequently, logs the modified input's name and new value
+    :this action not only showcases event delegation's adaptability but also its efficiency in managing dynamic form interactions.-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Event Delegation in forms</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
+            form {
+                margin: 20px;
+            }
+            input {
+                margin: 5px 0;
+            }
+
+            #output {
+                margin-top: 20px;
+                padding: 10px;
+                border: 1px solid #ccc;
+                background-color: #f9f9f9;
+            }
+
+        </style>    
+    </head> 
+    <body>
+        <form id="myForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"><br>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age"><br>
+        </form>
+
+        <div id="output"></div>
+
+        <script>
+            const form = document.getElementById('myForm');
+            const output = document.getElementById('output');
+
+            form.addEventListener('input', function(event) {
+                if (event.target.tagName === 'INPUT') {
+                    output.innerHTML = `Changed: ${event.target.name} = ${event.target.value}`;
+                }
+            });
+        </script>
+</html>
