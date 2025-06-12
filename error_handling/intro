@@ -1,0 +1,26 @@
+Syntax Errors
+Syntax errors, also called parsing errors,
+occur at compile time in traditional programming languages and at interpret time in JavaScript.
+Logical Errors
+Logic errors can be the most difficult type of errors to track down. These errors are not the result of a syntax or runtime error. Instead, they occur when you make a mistake in the logic that drives your script and do not get the expected result.
+Runtime Errors (Exceptions)
+Runtime errors, also called exceptions, occur during execution (after compilation/interpretation).
+
+<!-- Error Handling in JavaScript -->
+
+# The try...catch...finally Statement
+
+<script>
+   try {
+      // Code to run
+      [break;]
+   } 
+   catch ( e ) {
+      // Code to run if an exception occurs
+      [break;]
+   }
+   [ finally {
+      // Code that is always executed regardless of 
+      // an exception occurring
+   }]
+</script>
