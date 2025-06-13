@@ -1,0 +1,23 @@
+<!--In JavaScript, Error is a generic class for the errors. 
+You can create an instance of the Error class and pass the custom message as an argument.
+You can also create custom error classes by extending the Error class.
+The following code demonstrates how to create a custom error class in JavaScript:
+The Error class contains three properties: name, message, and stack.-->
+
+<!-- Syntax
+class CustomError{
+    constructor(message){
+    this.message = message 
+    this.name = this.constructor.name
+    this.stack = <call stack trace>
+    
+    }
+} -->
+
+<!-- Creating Custom Errors Using the Instance of the Error Class
+syntax:
+const customerror = new Error(message);
+customerror.name = "CustomErrorName";
+where message is the custom error message.
+-->
+
