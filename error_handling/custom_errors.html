@@ -21,3 +21,27 @@ customerror.name = "CustomErrorName";
 where message is the custom error message.
 -->
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Errors</title>
+</head>
+<body>
+    <div id="output"></div>
+    <script>
+        const customerror = new Error("Custom Error Message");
+        customerror.name = "CustomErrorName";
+        
+        try {
+            throw customerror; // Throwing the custom error
+        } catch (error) {
+            const output = document.getElementById("output");
+            output.innerHTML = `<p>Error Name: ${error.name}</p>`;
+            output.innerHTML += `<p>Error Message: ${error.message}</p>`;
+            output.innerHTML += `<p>Stack Trace: ${error.stack}</p>`;
+        }
+    </script>
+</body>
+</html>
