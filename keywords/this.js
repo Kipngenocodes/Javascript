@@ -13,5 +13,15 @@ When you use the 'this' keyword inside the function, it also represents the 'win
 The 'this' keyword refers to an undefined in the strict mode in the function.
 The 'this' keyword refers to the object when you use it in the object method.
 In the event handler, the 'this' keyword refers to the element on which the event is executed.
-The 'this' keyword in methods like call(), apply(), and bind() can refer to different objects.*/
+The 'this' keyword in methods like call(), apply(), and bind() can refer to different objects.
+
+synax: this.property
+or this.method() */
+
+// Setting 'this' in the global scope
+global.global_var = "I am a global variable";
+function showThis() {
+    console.log(this.global_var); // Explicitly use global
+}
+showThis.call(global); // Output: I am a global variable
 
