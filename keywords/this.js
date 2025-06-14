@@ -25,3 +25,15 @@ function showThis() {
 }
 showThis.call(global); // Output: I am a global variable
 
+
+// JavaScript 'this' in a Function
+
+global.global_var1 = "I am a global variable";
+function showThisInFunction() {
+    var local_var = "I am a local variable";
+    console.log(this.global_var1); // In non-strict mode, this refers to the global object
+    console.log(local_var); // This will work as local_var is defined in the function scope
+    }
+showThisInFunction(); // Output: I am a global variable
+// In strict mode, this will throw an error
+
