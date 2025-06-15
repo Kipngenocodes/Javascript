@@ -70,3 +70,50 @@ var person = {
 person.greet(); // Output: Hello, my name is John and I am 30 years old
 
 // "this" in arrow functions
+var obj = {
+    name: "Alice",
+    greet: function() {
+        var arrowFunc = () => {
+            console.log(`Hello, my name is ${this.name}`);
+        };
+        arrowFunc();
+    }
+};
+obj.greet(); // Output: Hello, my name is Alice
+
+// 'this' in a Child Function of an Object Method
+var person = {
+    name: "John",
+    age: 30,
+    greet: function() {
+        function innerGreet() {
+            console.log(`Hello, my name is ${this.name}`); // 'this' refers to the global object or undefined in strict mode
+        }
+        innerGreet();
+    }
+};
+person.greet(); // Output: Hello, my name is undefined (or throws an error in strict mode)
+
+// Explicit Function Binding in JavaScript in call(), apply(), or bind() methods are used for the explicit binding.
+const obj1 = {
+    name: "Alice",
+    age: 25,
+    sayinghello: function(greeting) {
+        console.log(`${greeting}, Name: ${this.name}, Age: ${this.age}`);
+    }
+};
+
+const obj2 = {
+    name: "Bob",
+    age: 30
+};
+
+// Using call()
+obj1.sayinghello.call(obj2, "Hello"); // Output: Hello, Name: Bob, Age: 30
+
+// Using apply()
+obj1.sayinghello.apply(obj2, ["Hi"]); // Output: Hi, Name: Bob, Age: 30
+
+// Using bind()
+const boundFunction = obj1.sayinghello.bind(obj2, "Hey");
+boundFunction(); // Output: Hey, Name: Bob, Age: 30
