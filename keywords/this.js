@@ -37,3 +37,36 @@ function showThisInFunction() {
 showThisInFunction(); // Output: I am a global variable
 // In strict mode, this will throw an error
 
+// this in restricted mode
+'use strict';
+var global_var2 = "I am a global variable";
+function showThisInStrictMode() {
+    console.log(this.global_var2); // In strict mode, this is undefined
+}
+showThisInStrictMode();
+
+
+// 'this' in a Constructor Function
+function Location(city, country) {
+    this.city = city;
+    this.country = country;
+    this.showLocation = function() {
+        console.log(`City: ${this.city}, Country: ${this.country}`);
+    };
+}
+// Creating an instance of the Location class
+var loc = new Location("New York", "USA");
+loc.showLocation(); // Output: City: New York, Country: USA
+
+
+// "this" in an Object Method
+var person = {
+    name: "John",
+    age: 30,
+    greet: function() {
+        console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+    }
+};
+person.greet(); // Output: Hello, my name is John and I am 30 years old
+
+// "this" in arrow functions
