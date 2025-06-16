@@ -1,0 +1,2 @@
+The HTML DOM allows JavaScript to access and modify the content of HTML elements.
+JavaScript can change all HTML elements, attributes, CSS styles in the page. JavaScript can also add, remove the HTML elements and attributes. Using JavaScript, we can even create new events in the page.
