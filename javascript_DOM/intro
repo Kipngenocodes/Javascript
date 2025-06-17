@@ -1,2 +1,16 @@
 The HTML DOM allows JavaScript to access and modify the content of HTML elements.
 JavaScript can change all HTML elements, attributes, CSS styles in the page. JavaScript can also add, remove the HTML elements and attributes. Using JavaScript, we can even create new events in the page.
+
+The DOM is an acronym for the Document Object Model. It is a programming interface for Core, XML, and HTML DOM.
+
+It is a W3C (World Wide Web Consortium) standard.
+
+The DOM defines the logical or tree-like structure of the web page or document. In the tree, each branch ends in a node, and each node contains objects. DOM methods allow us programmatic access to the tree. Using the DOM methods, you can change the document's structure, content or style.
+
+HTML creates the web page's structure, and JavaScript adds interaction to the web page by manipulating the HTML elements.
+
+JavaScript cant interact directly with HTML elements. So, whenever a web page loads in the browser, it creates a DOM.
+
+So, the document object represents the HTML document displayed in that window. Furthermore, each iframe in the webpage creates a new DOM. The Document object has various properties that refer to other objects that allow access to and modify document content.
+
+The way a document content is accessed and modified is called the Document Object Model, or DOM. The Objects are organized in a hierarchy. This hierarchical structure applies to the organization of objects in a Web document.
