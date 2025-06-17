@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #content {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="Accessfile()">Click</button>
+    <div id="content"></div>
+    <script>
+        function Accessfile() {
+            document.getElementById("content").innerHTML = 
+            "Hello, World!, Welcome to DOM Manipulation!";
+        }
+    </script>
+</body>
+</html>
