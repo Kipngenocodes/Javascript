@@ -1,0 +1,67 @@
+<!-- let id = setInterval(frame_func, timeframe);
+function frame_func() {
+    if (animation_end) {
+        clearInterval(id);
+    } else {
+        change style to animate
+    }
+}-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+    #parent {
+        width: 700px;
+        height: 200px;
+        background: green;
+        transition: opacity 0.05s linear; /* Smooth opacity changes */
+    }
+    </style>
+</head>
+<body>
+    <div id="parent"></div>
+    <br>
+    <button onclick="startAnimation()">Animate Div</button>
+    <script>
+    let animationId = null; // Store interval ID globally to prevent multiple animations
+
+    function startAnimation() {
+        // Prevent starting a new animation if one is running
+        if (animationId !== null) {
+            return;
+        }
+
+        const parent = document.getElementById("parent");
+        let opacity = 1;
+        const timeframe = 50; // 50ms interval
+        let animation_end = false;
+
+        // Reset initial state
+        parent.style.opacity = 1;
+        parent.style.backgroundColor = "green";
+
+        // Start animation
+        animationId = setInterval(frame_func, timeframe);
+
+    function frame_func() {
+            if (animation_end) {
+            clearInterval(animationId);
+            animationId = null; // Reset ID
+            // Final state
+            parent.style.backgroundColor = "red";
+            } else {
+            // Animate by decreasing opacity
+            opacity -= 0.1;
+            parent.style.opacity = opacity;
+            // Check if animation should end
+            if (opacity <= 0) {
+                animation_end = true;
+            }
+            }
+        }
+        }
+</script>
+</body>
+</html>
