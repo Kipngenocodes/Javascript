@@ -32,9 +32,22 @@
             document.getElementById("content").innerHTML = 
             "Hello, World! Welcome to DOM Manipulation!";
         }
+        function countForms() {
+            const forms = document.forms;
+            let formCount = 0;
+            for (let i = 0; i < forms.length; i++) {
+                formCount++;
+            }
+            document.getElementById("content").innerHTML = 
+            "Total number of forms: " + formCount;
+        }
 
         document.addEventListener('mouseover', function () {
             document.body.style.backgroundColor = 'red';
         });
+        document.addEventListener('mouseout', function () {
+            document.body.style.backgroundColor = 'white';
+        });
     </script>
+</body>
 </html>
