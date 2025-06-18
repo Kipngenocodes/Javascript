@@ -47,6 +47,16 @@
             const email = document.querySelector('input[name="email"]').value;
             document.getElementById("content").innerHTML = 
             `Form submitted! Name: ${name}, Email: ${email}`;
+
+            // Clear the form fields
+            document.querySelector('input[name="name"]').value = '';
+            document.querySelector('input[name="email"]').value = '';
+            if (name && email) {
+                alert(`Thank you, ${name}! Your email ${email} has been recorded.`);
+            } else {
+                alert('Please fill out both fields.');
+            }
+            
         }
 
         document.addEventListener('mouseover', function () {
