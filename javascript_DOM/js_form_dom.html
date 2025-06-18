@@ -41,6 +41,13 @@
             document.getElementById("content").innerHTML = 
             "Total number of forms: " + formCount;
         }
+        function submitForm(event) {
+            event.preventDefault(); // Prevent the form from submitting
+            const name = document.querySelector('input[name="name"]').value;
+            const email = document.querySelector('input[name="email"]').value;
+            document.getElementById("content").innerHTML = 
+            `Form submitted! Name: ${name}, Email: ${email}`;
+        }
 
         document.addEventListener('mouseover', function () {
             document.body.style.backgroundColor = 'red';
