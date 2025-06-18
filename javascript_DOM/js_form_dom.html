@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #content {
+            margin: 20px;
+            min-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h2>DOM Manipulation Example</h2>
+    <button onclick="Accessfile()">Click</button>
+    <button onclick="countForms()">Count Forms</button>
+    <div id="content"></div>
+
+
+    <form id="myForm">
+        <input type="text" name="name" placeholder="Enter your name">
+        <input type="email" name="email" placeholder="Enter your email">
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        function Accessfile() {
+            document.getElementById("content").innerHTML = 
+            "Hello, World! Welcome to DOM Manipulation!";
+        }
+
+        document.addEventListener('mouseover', function () {
+            document.body.style.backgroundColor = 'red';
+        });
+    </script>
+</html>
