@@ -1,0 +1,41 @@
+<!--Designed for making HTTP requests, Axios emerges as a popular JavaScript library. 
+Its popularity is largely due to its clean and concise syntax: built on Promises; furthermore, 
+it boasts automatic JSON data transformation support features that set it apart from other libraries in the field.
+Offering more than just basic functionality, Axios presents advanced features such as request and response interceptors, 
+a robust selection for managing AJAX operations within the context of modern web development environment.-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Using Axios</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
+            #content {
+                margin: 20px;
+            }
+        </style>
+    <body>
+        <h2>Axios Example</h2>
+        <button onclick="fetchData()">Fetch Data</button>
+        <pre id="result"></pre>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script>
+            function fetchData() {
+                axios.get('https://jsonplaceholder.typicode.com/posts/1')
+                    .then(response => {
+                        const responseData = JSON.stringify(response.data, null, 2);
+                        document.getElementById('result').innerText = 
+                            'Axios Response:\n' + responseData;
+                    })
+                    .catch(error => {
+                        document.getElementById('result').innerText = 
+                            'Error fetching data: ' + error.message;
+                    });
+            }
+        </script>
+    </body>    
+</html>
