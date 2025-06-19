@@ -2,3 +2,45 @@
 it returns Promises thus enhancing the intuitive handling of asynchronous operations. Supporting an extensive array of HTTP methods and headers:
 this provides developers with a cleaner, concise method for making asynchronous requests. 
 Contemporary JavaScript applications often prefer it for its clarity and ease of use.-->
+
+<!DOCTYPE html>
+<html lang="en">    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Fetch API IN AJAX IN JAVASCRIPT</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
+            #content {
+                margin: 20px;
+            }
+        </style>
+<body>
+        <h2>Fetch API Example</h2>
+        <button onclick="fetchData()">Make a request to Fetch Data</button>
+        <pre id="result"></pre>
+
+        <script>
+            function fetchData() {
+                fetch('https://jsonplaceholder.typicode.com/posts/1')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok ' + response.statusText);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        const responseData = JSON.stringify(data, null, 2);
+                        document.getElementById('result').innerText = 
+                            'Fetch API Response:\n' + responseData;
+                    })
+                    .catch(error => {
+                        document.getElementById('result').innerText = 
+                            'Error fetching data: ' + error.message;
+                    });
+            }
+        </script>
+</body>
+    </head>
