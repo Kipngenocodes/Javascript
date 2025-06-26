@@ -1,0 +1,38 @@
+<!-- JavaScript incorporates promises as a characteristic to manage asynchronous operations;
+these promises symbolize 
+the potential outcomes, either completion or failure of an asynchronous task. -->
+<--The 'for await...of' loop elegantly navigates the asynchronous sequence, 
+emphasizing promise utilization in managing non-blocking operations without compromising code lucidity.-->
+<!DOCTYPE html>
+    <html>
+    <body>
+    <h2>Async Iteration with Promises</h2>
+    <div id="output"></div>
+    <script>
+    function asyncOperation(value) {
+        return new Promise(resolve => {
+        setTimeout(() => {
+            document.getElementById('output').innerHTML += `<p>Processed: ${value}</p>`;
+            resolve(value);
+        }, 1000);
+        });
+    }
+
+    const asyncIterable = {
+        [Symbol.asyncIterator]: async function* () {
+        for (let i = 1; i <= 3; i++) {
+            yield await asyncOperation(i);
+        }
+        },
+    };
+
+    async function processAsyncIterable() {
+        for await (const result of asyncIterable) {
+        document.getElementById('output').innerHTML += `<p>Received: ${result}</p>`;
+        }
+    }
+
+    processAsyncIterable();
+</script>
+</body>
+</html>
