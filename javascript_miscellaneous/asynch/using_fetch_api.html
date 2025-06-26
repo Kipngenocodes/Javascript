@@ -1,0 +1,35 @@
+<!--The asyncIterable operates to fetch data in an asynchronous manner. 
+Furthermore; employing a 'for await...of' loop - it elegantly traverses through 
+results showcasing how seamlessly async iteration amalgamates with external source data retrieval.-->
+
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Using Fetch API with Promises</h2>
+<div id="output"></div> 
+
+<script>
+    const url = 'https://jsonplaceholder.typicode.com/todos/';
+    const asyncIterable = {
+        [Symbol.asyncIterator]: async function* () {
+        for (let i = 1; i <= 15; i++) {
+            const response = await fetch(`${url}${i}`);
+            const data = await response.json();
+            document.getElementById('output').innerHTML += `<p>Received: ${JSON.stringify(data)}</p>`;
+            yield data;
+        }
+        },
+    };
+
+    async function processAsyncIterable() {
+        for await (const result of asyncIterable) {
+        // Already displaying results above, no need for additional output.
+        }
+    }
+
+    processAsyncIterable();
+
+</script>
+</body>
+
+</html>
