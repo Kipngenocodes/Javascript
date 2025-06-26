@@ -1,0 +1,5 @@
+asynchronous iteration refers to the ability to iterate 
+over asynchronous sequences or collections, such as those returned
+ by asynchronous functions or generators. Async iteration is typically 
+ used with operations that involve asynchronous tasks, 
+such as fetching data from a remote server or reading from a file.
