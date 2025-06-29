@@ -1,0 +1,42 @@
+<!--The approach employs a callback-based mechanism to achieve asynchronous iteration. 
+The function asyncOperation imitates an asynchronous task and calls back upon completion. 
+Meanwhile, the processAsyncIterable function 
+actively iterates through an array, invoking the asynchronous operation for every element. -->
+
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Async Iteration with Callbacks</h2>
+<div id="output"></div>
+<script>
+        function asyncOperation(value, callback) {
+        setTimeout(() => {
+        document.getElementById('output').innerHTML += `<p>Processed: ${value}</p>`;
+        callback(value);
+        }, 1000);
+    }
+
+    function processAsyncIterable(iterable, callback) {
+        const iterator = iterable[Symbol.iterator]();  
+        function iterate() {
+        const next = iterator.next();
+        if (next.done) {        
+            return;
+        }
+
+        const value = next.value;
+        asyncOperation(value, result => {
+            document.getElementById('output').innerHTML += `<p>Received: ${result}</p>`;
+            iterate(); 
+        });
+        }
+        iterate(); 
+    }
+
+    const asyncIterable = [5,6,7,8,9,10]; 
+    processAsyncIterable(asyncIterable, result => {
+        // You can handle final result or additional actions here if needed.
+    });
+</script>
+</body>
+</html>
