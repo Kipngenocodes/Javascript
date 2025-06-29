@@ -73,13 +73,28 @@
     console.log("Date in Locale Format: " + date34);    
 
 // create a new date object and customize it
-var date = new Date();
-date.setFullYear(2023);
-date.setMonth(11); // December (0-based index)
-date.setDate(25);
-date.setHours(12);
-date.setMinutes(30);
-date.setSeconds(45);
-date.setMilliseconds(0);
+var date1 = new Date();
+date1.setFullYear(2023);
+date1.setMonth(11); // December (0-based index)
+date1.setDate(25);
+date1.setHours(12);
+date1.setMinutes(30);
+date1.setSeconds(45);
+date1.setMilliseconds(0);
 // Display the customized date
-console.log("Customized Date: " + date.toString());
+console.log("Customized Date: " + date1.toString());
+
+// Generate next 10 dates from today
+var today = new Date(); 
+var nextDates = [];
+for (var i = 1; i <= 10; i++) {
+    var nextDate = new Date(today);
+    nextDate.setDate(today.getDate() + i);
+    nextDates.push(nextDate);
+}
+
+// Display the next 10 dates
+console.log("Next 10 Dates:");
+nextDates.forEach(function(date) {
+    console.log(date.toString());
+});
