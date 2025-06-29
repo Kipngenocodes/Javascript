@@ -71,3 +71,15 @@
     console.log("Time in Locale Format: " + date32);    
     console.log("Date and Time in Locale Format: " + date33);    
     console.log("Date in Locale Format: " + date34);    
+
+// create a new date object and customize it
+var date = new Date();
+date.setFullYear(2023);
+date.setMonth(11); // December (0-based index)
+date.setDate(25);
+date.setHours(12);
+date.setMinutes(30);
+date.setSeconds(45);
+date.setMilliseconds(0);
+// Display the customized date
+console.log("Customized Date: " + date.toString());
