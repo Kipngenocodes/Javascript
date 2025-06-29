@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!-- This file is used to demonstrate form validation using JavaScript. -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <title>Form Validation</title>      
+    <script type="text/javascript">
+        function validate() {
+            // Get form elements
+            var name = document.forms["myForm"]["Name"].value;
+            var email = document.forms["myForm"]["EMail"].value;
+            var zip = document.forms["myForm"]["Zip"].value;
+            var country = document.forms["myForm"]["Country"].value;
+
+            // Regular expressions for validation
+            var nameRegex = /^[a-zA-Z\s]+$/; // Letters and spaces only
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email format
+            var zipRegex = /^\d{5}$/; // 5-digit zip code
+
+            // Name validation
+            if (name === "") {
+                alert("Name must be filled out");
+                return false;
+            }
+            if (!nameRegex.test(name)) {
+                alert("Name can only contain letters and spaces");
+                return false;
+            }
+
+            // Email validation
+            if (email === "") {
+                alert("Email must be filled out");
+                return false;
+            }
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address");
+                return false;
+            }
+
+            // Zip code validation
+            if (zip === "") {
+                alert("Zip Code must be filled out");
+                return false;
+            }
+            if (!zipRegex.test(zip)) {
+                alert("Zip Code must be a 5-digit number");
+                return false;
+            }
+
+            // Country validation
+            if (country === "-1") {
+                alert("Please select a country");
+                return false;
+            }
+
+            // If all validations pass
+            return true;
+        }
+    </script>      
+</head>
+<body>
+    <form action="/cgi-bin/test.cgi" name="myForm" onsubmit="return validate();">
+        <table cellspacing="2" cellpadding="2" border="1">
+            <tr>
+                <td align="right">Name</td>
+                <td><input type="text" name="Name" /></td>
+            </tr>
+            <tr>
+                <td align="right">EMail</td>
+                <td><input type="text" name="EMail" /></td>
+            </tr>
+            <tr>
+                <td align="right">Zip Code</td>
+                <td><input type="text" name="Zip" /></td>
+            </tr>
+            <tr>
+                <td align="right">Country</td>
+                <td>
+                    <select name="Country">
+                        <option value="-1" selected>[choose yours]</option>
+                        <option value="1">USA</option>
+                        <option value="2">UK</option>
+                        <option value="3">INDIA</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="right"></td>
+                <td><input type="submit" value="Submit" /></td>
+            </tr>
+        </table>
+    </form>      
+</body>
+</html>
