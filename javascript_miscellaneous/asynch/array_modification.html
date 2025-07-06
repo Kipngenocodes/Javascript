@@ -8,8 +8,12 @@
     <h2>Async Iteration with Callbacks</h2>   
     <div id="output"></div>
     <script>
-        function modifyArray(arr) {
+        function modifyArray(arr) { 
             arr.push(6, 7, 8, 9, 10);
+            // Simulating an asynchronous operation
+            setTimeout(() => {
+                console.log("Array modified:", arr);
+            }, 1000); // Delay of 1 second  
         }
 
         const numbers = [1, 2, 3, 4, 5];
